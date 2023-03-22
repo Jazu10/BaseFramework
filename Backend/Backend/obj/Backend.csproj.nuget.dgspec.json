@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Backend\\Backend\\Backend.csproj": {}
+    "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Backend\\Backend\\Backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Backend\\Backend\\Backend.csproj": {
+    "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Backend\\Backend\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Backend\\Backend\\Backend.csproj",
+        "projectUniqueName": "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Backend\\Backend\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Backend\\Backend\\Backend.csproj",
-        "packagesPath": "C:\\Users\\jaseem.saheer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Backend\\Backend\\obj\\",
+        "projectPath": "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Backend\\Backend\\Backend.csproj",
+        "packagesPath": "C:\\Users\\amal.antony\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Backend\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\jaseem.saheer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\amal.antony\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

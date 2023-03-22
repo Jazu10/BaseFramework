@@ -1,11 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "zE+77GIf4dSzC0WtYhbJPXjOKsNVKcGyjeshoUqeiCfQbEb9VmWEtB6E0xeV2r5pa3MF+EZQWZxIBLjtwRIm7Q==",
+  "dgSpecHash": "5YJ7BY1V5/u99N/g9KRI3lkEfj7jlI3kN02qfgRx43g1ZU+KrsWiVm2Tcmrzwu8QpmNdVVgw1z3xa3qk3lGqiA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Frontend\\Frontend.DTO\\Frontend.DTO.csproj",
+  "projectFilePath": "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Frontend\\Frontend.DTO\\Frontend.DTO.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\jaseem.saheer\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
-    "C:\\Users\\jaseem.saheer\\.nuget\\packages\\microsoft.extensions.primitives\\2.2.0\\microsoft.extensions.primitives.2.2.0.nupkg.sha512",
+    "C:\\Users\\amal.antony\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
+    "C:\\Users\\amal.antony\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.14\\microsoft.aspnetcore.jsonpatch.6.0.14.nupkg.sha512",
+    "C:\\Users\\amal.antony\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\6.0.14\\microsoft.aspnetcore.mvc.newtonsoftjson.6.0.14.nupkg.sha512",
+    "C:\\Users\\amal.antony\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\amal.antony\\.nuget\\packages\\microsoft.extensions.primitives\\2.2.0\\microsoft.extensions.primitives.2.2.0.nupkg.sha512",
+    "C:\\Users\\amal.antony\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\amal.antony\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.memory\\4.5.1\\system.memory.4.5.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.runtime.compilerservices.unsafe\\4.5.1\\system.runtime.compilerservices.unsafe.4.5.1.nupkg.sha512"
   ],

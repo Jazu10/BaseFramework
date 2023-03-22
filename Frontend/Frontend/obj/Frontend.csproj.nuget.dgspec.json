@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Frontend\\Frontend\\Frontend.csproj": {}
+    "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Frontend\\Frontend\\Frontend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Frontend\\Frontend.DTO\\Frontend.DTO.csproj": {
+    "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Frontend\\Frontend.DTO\\Frontend.DTO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Frontend\\Frontend.DTO\\Frontend.DTO.csproj",
+        "projectUniqueName": "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Frontend\\Frontend.DTO\\Frontend.DTO.csproj",
         "projectName": "Frontend.DTO",
-        "projectPath": "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Frontend\\Frontend.DTO\\Frontend.DTO.csproj",
-        "packagesPath": "C:\\Users\\jaseem.saheer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Frontend\\Frontend.DTO\\obj\\",
+        "projectPath": "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Frontend\\Frontend.DTO\\Frontend.DTO.csproj",
+        "packagesPath": "C:\\Users\\amal.antony\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Frontend\\Frontend.DTO\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\jaseem.saheer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\amal.antony\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -46,6 +46,10 @@
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[6.0.14, )"
             }
           },
           "imports": [
@@ -68,20 +72,20 @@
         }
       }
     },
-    "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Frontend\\Frontend\\Frontend.csproj": {
+    "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Frontend\\Frontend\\Frontend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Frontend\\Frontend\\Frontend.csproj",
+        "projectUniqueName": "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Frontend\\Frontend\\Frontend.csproj",
         "projectName": "Frontend",
-        "projectPath": "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Frontend\\Frontend\\Frontend.csproj",
-        "packagesPath": "C:\\Users\\jaseem.saheer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Frontend\\Frontend\\obj\\",
+        "projectPath": "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Frontend\\Frontend\\Frontend.csproj",
+        "packagesPath": "C:\\Users\\amal.antony\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Frontend\\Frontend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\jaseem.saheer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\amal.antony\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -95,8 +99,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Frontend\\Frontend.DTO\\Frontend.DTO.csproj": {
-                "projectPath": "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Frontend\\Frontend.DTO\\Frontend.DTO.csproj"
+              "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Frontend\\Frontend.DTO\\Frontend.DTO.csproj": {
+                "projectPath": "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Frontend\\Frontend.DTO\\Frontend.DTO.csproj"
               }
             }
           }
@@ -113,7 +117,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
-              "version": "[6.0.12, )"
+              "version": "[6.0.14, )"
             },
             "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
@@ -126,6 +130,10 @@
             "NToastNotify": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             }
           },
           "imports": [
