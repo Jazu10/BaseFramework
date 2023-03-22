@@ -1958,3 +1958,48 @@ SELECT @@ROWCOUNT;
 [2023-03-22 16:14:01.081 +05:30  INF]  Executed action Backend.Controllers.AccountController.UsersList (Backend) in 0.2926ms
 [2023-03-22 16:14:01.081 +05:30  INF]  Executed endpoint 'Backend.Controllers.AccountController.UsersList (Backend)'
 [2023-03-22 16:14:01.081 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Account/UserList/ - - - 200 - application/json;+charset=utf-8 0.9748ms
+[2023-03-22 17:19:23.909 +05:30  INF]  User profile is available. Using 'C:\Users\jaseem.saheer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2023-03-22 17:19:24.173 +05:30  INF]  Now listening on: http://localhost:5238
+[2023-03-22 17:19:24.177 +05:30  INF]  Application started. Press Ctrl+C to shut down.
+[2023-03-22 17:19:24.177 +05:30  INF]  Hosting environment: Development
+[2023-03-22 17:19:24.177 +05:30  INF]  Content root path: C:\Users\jaseem.saheer\Documents\Programs\BaseFramework\Backend\Backend\
+[2023-03-22 17:19:25.800 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/swagger/index.html - -
+[2023-03-22 17:19:26.408 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/swagger/index.html - - - 200 - text/html;charset=utf-8 613.9033ms
+[2023-03-22 17:19:26.437 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/_framework/aspnetcore-browser-refresh.js - -
+[2023-03-22 17:19:26.443 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/_framework/aspnetcore-browser-refresh.js - - - 200 11984 application/javascript;+charset=utf-8 5.5061ms
+[2023-03-22 17:19:26.469 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/_vs/browserLink - -
+[2023-03-22 17:19:26.520 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 50.7456ms
+[2023-03-22 17:19:26.584 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/swagger/v1/swagger.json - -
+[2023-03-22 17:19:26.753 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 169.6658ms
+[2023-03-22 17:20:06.453 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/GetNewsByUserId?userId=656 - -
+[2023-03-22 17:20:06.604 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetNewsByUserId (Backend)'
+[2023-03-22 17:20:06.646 +05:30  INF]  Route matched with {action = "GetNewsByUserId", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetNewsByUserId(System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-22 17:20:08.508 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-22 17:20:10.224 +05:30  INF]  Executed DbCommand (126ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[NewsId], [n].[Content], [n].[CreatedAt], [n].[Image], [n].[IsActive], [n].[IsDeleted], [n].[Subject], [n].[UserId], [u].[UserId], [u].[Address], [u].[DOB], [u].[DOJ], [u].[FirstName], [u].[Gender], [u].[Image], [u].[LastName]
+FROM [News] AS [n]
+INNER JOIN [Users] AS [u] ON [n].[UserId] = [u].[UserId]
+WHERE [n].[UserId] = @__userId_0
+[2023-03-22 17:20:10.287 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.NewsModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-22 17:20:10.299 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetNewsByUserId (Backend) in 3648.1661ms
+[2023-03-22 17:20:10.301 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetNewsByUserId (Backend)'
+[2023-03-22 17:20:10.313 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/GetNewsByUserId?userId=656 - - - 200 - application/json;+charset=utf-8 3860.1482ms
+[2023-03-22 17:20:27.399 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Account/SingleUser?userId=hgdfg - -
+[2023-03-22 17:20:27.428 +05:30  INF]  Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+[2023-03-22 17:20:27.442 +05:30  INF]  AuthenticationScheme: Bearer was challenged.
+[2023-03-22 17:20:27.443 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Account/SingleUser?userId=hgdfg - - - 401 0 - 43.6950ms
+[2023-03-22 17:20:49.647 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Account/SingleUser/?userId=06ab450b-fb36-4360-a38e-b7ea31b8874 - -
+[2023-03-22 17:20:49.954 +05:30  INF]  Executing endpoint 'Backend.Controllers.AccountController.SingleUserDetails (Backend)'
+[2023-03-22 17:20:49.959 +05:30  INF]  Route matched with {action = "SingleUserDetails", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SingleUserDetails(System.String) on controller Backend.Controllers.AccountController (Backend).
+[2023-03-22 17:20:50.000 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-22 17:20:50.033 +05:30  INF]  Executed DbCommand (7ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Address], [u].[DOB], [u].[DOJ], [u].[FirstName], [u].[Gender], [u].[Image], [u].[LastName], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Users] AS [u]
+INNER JOIN [AspNetUsers] AS [a] ON [u].[UserId] = [a].[Id]
+WHERE [u].[UserId] = @__userId_0
+[2023-03-22 17:20:50.181 +05:30  ERR]  Error Occured While Fetching User
+[2023-03-22 17:20:50.182 +05:30  INF]  Executing BadRequestObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[Backend.Core.Data.Entities.UserModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2023-03-22 17:20:50.184 +05:30  INF]  Executed action Backend.Controllers.AccountController.SingleUserDetails (Backend) in 225.5329ms
+[2023-03-22 17:20:50.185 +05:30  INF]  Executed endpoint 'Backend.Controllers.AccountController.SingleUserDetails (Backend)'
+[2023-03-22 17:20:50.187 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Account/SingleUser/?userId=06ab450b-fb36-4360-a38e-b7ea31b8874 - - - 400 - application/json;+charset=utf-8 540.0748ms
