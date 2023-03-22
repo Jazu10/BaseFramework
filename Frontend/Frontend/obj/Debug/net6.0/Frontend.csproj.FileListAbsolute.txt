@@ -542,3 +542,4 @@ C:\Users\jaseem.saheer\Documents\Programs\BaseFramework\Frontend\Frontend\obj\De
 C:\Users\jaseem.saheer\Documents\Programs\BaseFramework\Frontend\Frontend\obj\Debug\net6.0\Frontend.pdb
 C:\Users\jaseem.saheer\Documents\Programs\BaseFramework\Frontend\Frontend\obj\Debug\net6.0\Frontend.genruntimeconfig.cache
 C:\Users\jaseem.saheer\Documents\Programs\BaseFramework\Frontend\Frontend\obj\Debug\net6.0\ref\Frontend.dll
+C:\Users\jaseem.saheer\Documents\Programs\BaseFramework\Frontend\Frontend\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll

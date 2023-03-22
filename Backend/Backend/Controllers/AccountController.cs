@@ -110,7 +110,7 @@ namespace Backend.Controllers
 
         public async Task<IActionResult> Register([FromBody] UserModel model)
         {
-            var response = new Results<IdentityResult>()
+            var response = new Results<SuccessResult>()
             {
                 Errors = new List<Error>()
             };
@@ -136,7 +136,12 @@ namespace Backend.Controllers
 
                         _logger.LogInformation("New User Created");
 
-                        response.Response = result;
+                        response.Response = new SuccessResult()
+                        {
+                            Succeeded = result.Succeeded,
+                            Message = "User Registration Successfull"
+                        };
+
                         return Ok(response);
                     }
                     var ErrorList = result.Errors.ToList();
@@ -190,6 +195,7 @@ namespace Backend.Controllers
                 {
                     response.Response = await _context.UserList.Include(item => item.User)
                     .Where(item => item.UserId == user.Id).FirstOrDefaultAsync();
+
                     return Ok(response);
                 }
 
@@ -216,7 +222,7 @@ namespace Backend.Controllers
         [Route("SingleUser")]
         public async Task<IActionResult> UpdateUser([FromBody] UserModel model)
         {
-            var response = new Results<UserModel>()
+            var response = new Results<SuccessResult>()
             {
                 Errors = new List<Error>()
             };
@@ -238,8 +244,11 @@ namespace Backend.Controllers
                     _context.UserList.Update(model);
                     _context.SaveChanges();
 
-                    response.Response = await _context.UserList.Include(item => item.User).
-                        Where(item => item.UserId == model.UserId).FirstAsync();
+                    response.Response = new SuccessResult()
+                    {
+                        Succeeded = true,
+                        Message = "User Profile Updated"
+                    };
 
                     if (_cache.Get(UserListCache) != null)
                         _cache.Remove(UserListCache);
@@ -270,7 +279,7 @@ namespace Backend.Controllers
         [Route("ChangePassword")]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
-            var response = new Results<IdentityResult>()
+            var response = new Results<SuccessResult>()
             {
                 Errors = new List<Error>()
             };
@@ -288,7 +297,12 @@ namespace Backend.Controllers
                     var result = await _userManager.ChangePasswordAsync(user, model.Password, model.NewPassword);
                     if (result.Succeeded)
                     {
-                        response.Response = result;
+                        response.Response = new SuccessResult()
+                        {
+                            Succeeded = true,
+                            Message = "Password Updated"
+                        };
+
                         return Ok(response);
                     }
                     else
