@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frontend", "Frontend\Frontend.csproj", "{1D6A51A5-DD36-4886-85ED-41162699CE7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frontend.DTO", "Frontend.DTO\Frontend.DTO.csproj", "{C6760D1B-15C7-4256-AFCF-C52A366B564A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D6A51A5-DD36-4886-85ED-41162699CE7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D6A51A5-DD36-4886-85ED-41162699CE7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D6A51A5-DD36-4886-85ED-41162699CE7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D6A51A5-DD36-4886-85ED-41162699CE7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6760D1B-15C7-4256-AFCF-C52A366B564A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6760D1B-15C7-4256-AFCF-C52A366B564A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6760D1B-15C7-4256-AFCF-C52A366B564A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6760D1B-15C7-4256-AFCF-C52A366B564A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D0E6C9C9-0944-4BA9-9A04-20CEAD507182}
+	EndGlobalSection
+EndGlobal

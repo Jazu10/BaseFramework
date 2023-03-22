@@ -1,0 +1,90 @@
+﻿@model Result<List<UserResponseDTO>>
+
+@{
+    ViewData["Title"] = "UsersList";
+}
+
+<h1>UsersList</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Response.First().user.userName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Response.First().firstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Response.First().lastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Response.First().user.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Response.First().user.phoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Response.First().image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Response.First().dob)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Response.First().doj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Response.First().gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Response.First().address)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Response)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user.userName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.firstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user.phoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.image)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dob)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.doj)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.address)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditUser", new { userId=item.userId  }) |
+                    @Html.ActionLink("Details", "UserDetails", new {  userId=item.userId }) |
+                    @Html.ActionLink("Delete", "DeleteUser", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

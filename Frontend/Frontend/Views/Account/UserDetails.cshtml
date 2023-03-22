@@ -1,0 +1,85 @@
+﻿@model Result<UserResponseDTO>
+
+@{
+    ViewData["Title"] = "UserDetails";
+}
+
+<h1>UserDetails</h1>
+
+<div>
+    <h4>RegistrationRequestDTO</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Response.userId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model =>  model.Response.userId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Response.user.userName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Response.user.userName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Response.user.email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Response.user.email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Response.user.phoneNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Response.user.phoneNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Response.firstName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Response.firstName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Response.lastName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Response.lastName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Response.image)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Response.image)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Response.dob)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Response.dob)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Response.doj)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Response.doj)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Response.gender)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Response.gender)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Response.address)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Response.address)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "EditUser", new {  userId = Model.Response.userId  }) |
+    <a asp-action="UsersList">Back to List</a>
+
+</div>
