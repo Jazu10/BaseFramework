@@ -2,7 +2,6 @@
 using Backend.Core.Data.Entities;
 using Backend.Core.RepositoryInterface;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Backend.Core.Repository
 {

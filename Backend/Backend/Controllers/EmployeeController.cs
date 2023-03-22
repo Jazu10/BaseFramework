@@ -38,5 +38,25 @@ namespace Backend.Controllers
                 return BadRequest(response);
             }
         }
+        [Route("GetNewsByUserId")]
+        [HttpGet]
+        public async Task<IActionResult> GetNewsByUserId(string userId)
+        {
+            var response = new Results<List<NewsModel>>()
+            {
+                Errors = new List<Error>()
+            };
+
+            try
+            {
+                response.Response = await _repository.GetUsersNews(userId);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
+                return BadRequest(response);
+            }
+        }
     }
 }
