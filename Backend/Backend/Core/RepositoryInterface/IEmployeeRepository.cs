@@ -20,7 +20,7 @@ namespace Backend.Core.RepositoryInterface
         public Task<List<PostModel>> GetUsersPosts(string userId);
         public Task<bool> CreatePost(PostModel model);
         public Task<bool> UpdatePost(PostModel model);
-        public Task<bool> DeletePost(string newsId);;
+        public Task<bool> DeletePost(string newsId);
 
     }
 }
