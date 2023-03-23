@@ -4408,3 +4408,46 @@ ORDER BY [a].[AdvertisementId], [u].[UserId], [u0].[UserId]
 [2023-03-23 16:23:03.025 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend) in 29742.6635ms
 [2023-03-23 16:23:03.029 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
 [2023-03-23 16:23:03.053 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/AdvertisementList - - - 400 - application/json;+charset=utf-8 30062.1668ms
+[2023-03-23 16:24:03.362 +05:30  INF]  User profile is available. Using 'C:\Users\jaseem.saheer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2023-03-23 16:24:03.618 +05:30  INF]  Now listening on: http://localhost:5238
+[2023-03-23 16:24:03.621 +05:30  INF]  Application started. Press Ctrl+C to shut down.
+[2023-03-23 16:24:03.621 +05:30  INF]  Hosting environment: Development
+[2023-03-23 16:24:03.621 +05:30  INF]  Content root path: C:\Users\jaseem.saheer\Documents\Programs\BaseFramework\Backend\Backend\
+[2023-03-23 16:24:04.127 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/swagger/index.html - -
+[2023-03-23 16:24:04.491 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/swagger/index.html - - - 200 - text/html;charset=utf-8 369.2359ms
+[2023-03-23 16:24:04.516 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/_framework/aspnetcore-browser-refresh.js - -
+[2023-03-23 16:24:04.522 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/_framework/aspnetcore-browser-refresh.js - - - 200 11984 application/javascript;+charset=utf-8 5.7443ms
+[2023-03-23 16:24:04.552 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/_vs/browserLink - -
+[2023-03-23 16:24:04.586 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 33.5157ms
+[2023-03-23 16:24:04.645 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/swagger/v1/swagger.json - -
+[2023-03-23 16:24:04.771 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 125.2696ms
+[2023-03-23 16:24:11.190 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/AdvertisementList - -
+[2023-03-23 16:24:11.393 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
+[2023-03-23 16:24:11.424 +05:30  INF]  Route matched with {action = "GetAllAdvertisements", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAdvertisements() on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-23 16:24:16.785 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-23 16:24:18.409 +05:30  INF]  Executed DbCommand (96ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[UserId], [a].[AdvertisementId], [a].[CreatedAt], [a].[Content], [a].[IsActive], [a].[IsDeleted], [a].[Subject], [u].[UserId], [u0].[UserId], [i].[AdvertisementId], [i].[Image], [i].[ImageId], [u0].[Address], [u0].[DOB], [u0].[DOJ], [u0].[FirstName], [u0].[Gender], [u0].[Image], [u0].[LastName]
+FROM [Advertisements] AS [a]
+INNER JOIN [Users] AS [u] ON [a].[UserId] = [u].[UserId]
+INNER JOIN [Users] AS [u0] ON [a].[UserId] = [u0].[UserId]
+LEFT JOIN [Images] AS [i] ON [a].[AdvertisementId] = [i].[AdvertisementId]
+ORDER BY [a].[AdvertisementId], [u].[UserId], [u0].[UserId]
+[2023-03-23 16:24:18.627 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.AdvertisementModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-23 16:24:18.659 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend) in 7222.9794ms
+[2023-03-23 16:24:18.661 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
+[2023-03-23 16:24:18.677 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/AdvertisementList - - - 200 - application/json;+charset=utf-8 7486.3135ms
+[2023-03-23 16:57:04.551 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/AdvertisementList - -
+[2023-03-23 16:57:04.563 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
+[2023-03-23 16:57:04.565 +05:30  INF]  Route matched with {action = "GetAllAdvertisements", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAdvertisements() on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-23 16:57:07.887 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-23 16:57:07.929 +05:30  INF]  Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[UserId], [a].[AdvertisementId], [a].[CreatedAt], [a].[Content], [a].[IsActive], [a].[IsDeleted], [a].[Subject], [u].[UserId], [u0].[UserId], [i].[AdvertisementId], [i].[Image], [i].[ImageId], [u0].[Address], [u0].[DOB], [u0].[DOJ], [u0].[FirstName], [u0].[Gender], [u0].[Image], [u0].[LastName]
+FROM [Advertisements] AS [a]
+INNER JOIN [Users] AS [u] ON [a].[UserId] = [u].[UserId]
+INNER JOIN [Users] AS [u0] ON [a].[UserId] = [u0].[UserId]
+LEFT JOIN [Images] AS [i] ON [a].[AdvertisementId] = [i].[AdvertisementId]
+ORDER BY [a].[AdvertisementId], [u].[UserId], [u0].[UserId]
+[2023-03-23 16:57:34.096 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.AdvertisementModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-23 16:57:34.105 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend) in 29539.5768ms
+[2023-03-23 16:57:34.110 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
+[2023-03-23 16:57:34.112 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/AdvertisementList - - - 200 - application/json;+charset=utf-8 29562.5655ms
