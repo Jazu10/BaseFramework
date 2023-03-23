@@ -1,10 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Frontend",
-    "\\Frontend\\Frontend",
-    "\\Frontend\\Frontend\\Controllers"
+    "\\Backend",
+    "\\Backend\\Backend",
+    "\\Backend\\Backend\\Controllers",
+    "\\Backend\\Backend\\Core",
+    "\\Backend\\Backend\\Core\\Repository",
+    "\\Frontend"
   ],
-  "SelectedNode": "\\Frontend\\Frontend\\Program.cs",
+  "SelectedNode": "\\Backend\\Backend\\Core\\Repository\\EmployeeRepository.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace Frontend.DTO.Response
 {
-    public class IdentityResultResponseDTO
+    public class SuccessResultDTO
     {
-        public IdentityResultResponseDTO()
+        public SuccessResultDTO()
         {
             Errors = new List<Error>();
         }
         public bool Succeeded { get; set; }
+        public string? Message { get; set; }
         public List<Error> Errors { get; set; }
     }
 }

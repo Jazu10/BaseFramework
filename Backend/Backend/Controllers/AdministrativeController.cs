@@ -54,7 +54,7 @@ namespace Backend.Controllers
         [Route("Roles")]
         public async Task<IActionResult> CreateRole(RoleViewModel model)
         {
-            var response = new Results<IdentityResult>()
+            var response = new Results<SuccessResult>()
             {
                 Errors = new List<Error>()
             };
@@ -72,7 +72,11 @@ namespace Backend.Controllers
 
                     if (result.Succeeded)
                     {
-                        response.Response = result;
+                        response.Response = new SuccessResult()
+                        {
+                            Succeeded = true,
+                            Message = "New Role Created"
+                        }; 
                         return Ok(response);
                     }
 
@@ -133,7 +137,7 @@ namespace Backend.Controllers
         [Route("SingleRole")]
         public async Task<IActionResult> UpdateRole(RoleViewModel model)
         {
-            var response = new Results<IdentityResult>()
+            var response = new Results<SuccessResult>()
             {
                 Errors = new List<Error>()
             };
@@ -153,7 +157,11 @@ namespace Backend.Controllers
 
                     if (result.Succeeded)
                     {
-                        response.Response = result;
+                        response.Response = new SuccessResult()
+                        {
+                            Succeeded = true,
+                            Message = "Role Updated"
+                        };
                         return Ok(response);
                     }
 
@@ -233,7 +241,7 @@ namespace Backend.Controllers
         [Route("UserRoles")]
         public async Task<IActionResult> AddRemoveRoles(UserResult model)
         {
-            var response = new Results<bool>()
+            var response = new Results<SuccessResult>()
             {
                 Errors = new List<Error>()
             };
@@ -261,7 +269,13 @@ namespace Backend.Controllers
                         continue;
                     }
                 }
-                response.Response = true;
+
+                response.Response = new SuccessResult()
+                {
+                    Succeeded = true,
+                    Message = $"Roles Updated For The User {model.UserName}"
+                };
+
                 return Ok(response);
             }
             catch (Exception ex)
@@ -321,7 +335,7 @@ namespace Backend.Controllers
         [Route("UserClaims")]
         public async Task<IActionResult> AddRemoveClaims(UserClaimViewModel model)
         {
-            var response = new Results<bool>()
+            var response = new Results<SuccessResult>()
             {
                 Errors = new List<Error>()
             };
@@ -346,7 +360,12 @@ namespace Backend.Controllers
                     throw new Exception("Can't add claims for the given user");
                 }
 
-                response.Response = true;
+                response.Response = new SuccessResult()
+                {
+                    Succeeded = true,
+                    Message = $"Claims Updated For The User"
+                };
+
                 return Ok(response);
             }
             catch (Exception ex)
@@ -399,7 +418,7 @@ namespace Backend.Controllers
         [Route("RoleClaims")]
         public async Task<IActionResult> AddRemoveRoleClaims(RoleClaimViewModel model)
         {
-            var response = new Results<bool>();
+            var response = new Results<SuccessResult>();
             try
             {
                 var role = await _roleManager.FindByIdAsync(model.RoleId);
@@ -418,7 +437,12 @@ namespace Backend.Controllers
                     await _roleManager.AddClaimAsync(role, claim);
                 }
 
-                response.Response = true;
+                response.Response = new SuccessResult()
+                {
+                    Succeeded = true,
+                    Message = $"Claims Updated For The Role {model.RoleName}"
+                };
+
                 return Ok(response);
             }
             catch (Exception ex)

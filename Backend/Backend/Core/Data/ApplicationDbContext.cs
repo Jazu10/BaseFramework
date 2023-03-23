@@ -16,8 +16,8 @@ namespace Backend.Core.Data
         {
             SeedUsers(modelBuilder);
             SeedRole(modelBuilder);
-            SeedUserRole(modelBuilder); 
-            
+            SeedUserRole(modelBuilder);
+
             base.OnModelCreating(modelBuilder);
         }
         private void SeedUsers(ModelBuilder modelBuilder)
@@ -34,9 +34,23 @@ namespace Backend.Core.Data
             //PasswordHasher<IdentityUser> passwordHasher = new PasswordHasher<IdentityUser>();
             var password = new PasswordHasher<IdentityUser>();
             var hashead = password.HashPassword(user, "Admin@123");
-            user.PasswordHash = hashead; 
-            
+            user.PasswordHash = hashead;
+
+            UserModel model = new UserModel()
+            {
+                UserId = user.Id,
+                FirstName = "Root",
+                LastName = "User",
+                Gender = "Male",
+                DOB = DateTime.Now,
+                DOJ = DateTime.Now,
+                Image = "",
+                Address = "UIS Global"
+            };
+
             modelBuilder.Entity<IdentityUser>().HasData(user);
+            modelBuilder.Entity<UserModel>().HasData(model);
+
         }
         private void SeedRole(ModelBuilder modelBuilder)
         {
@@ -47,7 +61,7 @@ namespace Backend.Core.Data
                 Name = "superuser",
                 NormalizedName = "SUPERUSER"
             };
-            
+
             modelBuilder.Entity<IdentityRole>().HasData(role);
         }
         private void SeedUserRole(ModelBuilder modelBuilder)
@@ -59,9 +73,14 @@ namespace Backend.Core.Data
             });
         }
 
-        //public DbSet<ErrorCodes> ErrorCode { get; set; }
         public DbSet<UserModel> UserList { get; set; }
+
+        //Comment These Lines Before Migration
         public DbSet<NewsModel> NewsList { get; set; }
+        public DbSet<AdvertisementModel> AdvertisementList { get; set; }
+        public DbSet<PostModel> PostList { get; set; }
+
+
 
     }
 }

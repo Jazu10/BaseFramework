@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Backend\\Backend\\Backend.csproj": {}
+    "C:\\Users\\amal.antony\\source\\repos\\AmalAntonyUnity\\BaseFramework\\Backend\\Backend\\Backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Backend\\Backend\\Backend.csproj": {
+    "C:\\Users\\amal.antony\\source\\repos\\AmalAntonyUnity\\BaseFramework\\Backend\\Backend\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Backend\\Backend\\Backend.csproj",
+        "projectUniqueName": "C:\\Users\\amal.antony\\source\\repos\\AmalAntonyUnity\\BaseFramework\\Backend\\Backend\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Backend\\Backend\\Backend.csproj",
+        "projectPath": "C:\\Users\\amal.antony\\source\\repos\\AmalAntonyUnity\\BaseFramework\\Backend\\Backend\\Backend.csproj",
         "packagesPath": "C:\\Users\\amal.antony\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Backend\\Backend\\obj\\",
         "projectStyle": "PackageReference",

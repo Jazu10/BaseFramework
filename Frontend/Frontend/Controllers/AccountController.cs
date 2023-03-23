@@ -7,7 +7,6 @@ using Frontend.DTO.Request;
 using Frontend.DTO.Response;
 using Newtonsoft.Json;
 using NToastNotify;
-using Microsoft.AspNetCore.Identity;
 using Frontend.DTO.Response.Common;
 using Microsoft.AspNetCore.Authorization;
 
@@ -51,7 +50,8 @@ namespace Frontend.Controllers
                     var flag = await CreateIdentity(result.Response);
                     if (flag)
                     {
-                        _toastService.AddSuccessToastMessage("Welcome User, Login Successfull");
+                        _toastService.AddSuccessToastMessage($"Welcome {result.Response.firstName} {result.Response.lastName}");
+
                         return RedirectToAction(nameof(UsersList), "Account");
                     }
                 }
@@ -89,10 +89,10 @@ namespace Frontend.Controllers
                         model.File.CopyTo(new FileStream(filePath, FileMode.Create));
                         model.Image = model.File.FileName;
                     }
-                    var result = await _client.PostAsync<IdentityResultResponseDTO>(ApiConstants.Register, model);
+                    var result = await _client.PostAsync<SuccessResultDTO>(ApiConstants.Register, model);
 
                     if(result.Response.Succeeded) 
-                        _toastService.AddSuccessToastMessage("User Registration Successful");
+                        _toastService.AddSuccessToastMessage(result.Response.Message);
 
                     return RedirectToAction(nameof(Login));
                 }
@@ -164,8 +164,11 @@ namespace Frontend.Controllers
                     updateModel.Image = model.Response.File.FileName;
                 }
 
-                var result = await _client.PutAsync<UserResponseDTO>($"{ApiConstants.SingleUser}", updateModel);
-                _toastService.AddSuccessToastMessage("User Details Updated");
+                var result = await _client.PutAsync<SuccessResultDTO>($"{ApiConstants.SingleUser}", updateModel);
+
+                if(result.Response.Succeeded)
+                    _toastService.AddSuccessToastMessage(result.Response.Message);
+
                 return RedirectToAction(nameof(UsersList));
             }
             catch (Exception ex)
@@ -204,10 +207,10 @@ namespace Frontend.Controllers
                 if (ModelState.IsValid)
                 {
                     model.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                    var result = await _client.PostAsync<IdentityResultResponseDTO>(ApiConstants.ChangePassword, model);
+                    var result = await _client.PostAsync<SuccessResultDTO>(ApiConstants.ChangePassword, model);
                     if (result.Response.Succeeded)
                     {
-                        _toastService.AddSuccessToastMessage("Password Updated");
+                        _toastService.AddSuccessToastMessage(result.Response.Message);
                         await HttpContext.SignOutAsync();
                         return RedirectToAction(nameof(Login));
                     }

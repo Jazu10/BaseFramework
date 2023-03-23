@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "j1HDryFFQGEiGvOLbn+9V++XfEHo/3EnKQFG2Fly1ke32QlyGUbt8mcqmQ8iZ9mWULRj3iKnzzAF+uWnRaCnyQ==",
+  "dgSpecHash": "JxBQnpdxxnHH0o7qmxQ1z/D5yPhLcqA4ne7a8At3boU/FeSp0SEJzuuatAA9gImSa+jbvWNdgxFVNC+NGCj6sQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\amal.antony\\Source\\Repos\\AmalAntonyUnity\\BaseFramework\\Frontend\\Frontend\\Frontend.csproj",
   "expectedPackageFiles": [
@@ -90,7 +90,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Users\\amal.antony\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
-    "C:\\Users\\amal.antony\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\amal.antony\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\amal.antony\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\amal.antony\\.nuget\\packages\\ntoastnotify\\8.0.0\\ntoastnotify.8.0.0.nupkg.sha512",
     "C:\\Users\\amal.antony\\.nuget\\packages\\nuget.common\\6.3.1\\nuget.common.6.3.1.nupkg.sha512",

@@ -62,7 +62,7 @@ namespace Frontend.Controllers
         {
             try
             {
-                var result = await _client.PostAsync<IdentityResultResponseDTO>(ApiConstants.GetAllRoles, model.Response);
+                var result = await _client.PostAsync<SuccessResultDTO>(ApiConstants.GetAllRoles, model.Response);
                 return RedirectToAction(nameof(RolesList));
             }
             catch (Exception ex)
@@ -91,7 +91,11 @@ namespace Frontend.Controllers
         {
             try
             {
-                var result = await _client.PutAsync<IdentityResultResponseDTO>(ApiConstants.SingleRole, model.Response);
+                var result = await _client.PutAsync<SuccessResultDTO>(ApiConstants.SingleRole, model.Response);
+
+                if (result.Response.Succeeded)
+                    _toastService.AddSuccessToastMessage(result.Response.Message);
+
                 return RedirectToAction(nameof(RolesList));
             }
             catch(Exception ex) {
@@ -119,9 +123,10 @@ namespace Frontend.Controllers
         {
             try
             {
-                var result = await _client.PostAsync<bool>(ApiConstants.UserRoles, model.Response);
-                if (result.Response)
-                    _toastService.AddSuccessToastMessage("User Role Updated");
+                var result = await _client.PostAsync<SuccessResultDTO>(ApiConstants.UserRoles, model.Response);
+                if (result.Response.Succeeded)
+                    _toastService.AddSuccessToastMessage(result.Response.Message);
+
                 return RedirectToAction("UsersList", "Account");
             }
             catch (Exception ex)

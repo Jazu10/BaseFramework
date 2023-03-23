@@ -542,6 +542,7 @@ C:\Users\jaseem.saheer\Documents\Programs\BaseFramework\Frontend\Frontend\obj\De
 C:\Users\jaseem.saheer\Documents\Programs\BaseFramework\Frontend\Frontend\obj\Debug\net6.0\Frontend.pdb
 C:\Users\jaseem.saheer\Documents\Programs\BaseFramework\Frontend\Frontend\obj\Debug\net6.0\Frontend.genruntimeconfig.cache
 C:\Users\jaseem.saheer\Documents\Programs\BaseFramework\Frontend\Frontend\obj\Debug\net6.0\ref\Frontend.dll
+<<<<<<< HEAD
 C:\Users\amal.antony\Source\Repos\AmalAntonyUnity\BaseFramework\Frontend\Frontend\obj\Debug\net6.0\Frontend.csproj.AssemblyReference.cache
 C:\Users\amal.antony\Source\Repos\AmalAntonyUnity\BaseFramework\Frontend\Frontend\obj\Debug\net6.0\Frontend.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\amal.antony\Source\Repos\AmalAntonyUnity\BaseFramework\Frontend\Frontend\obj\Debug\net6.0\Frontend.AssemblyInfoInputs.cache
@@ -1087,3 +1088,6 @@ C:\Users\amal.antony\Source\Repos\AmalAntonyUnity\BaseFramework\Frontend\Fronten
 C:\Users\amal.antony\Source\Repos\AmalAntonyUnity\BaseFramework\Frontend\Frontend\obj\Debug\net6.0\Frontend.csproj.CopyComplete
 C:\Users\amal.antony\Source\Repos\AmalAntonyUnity\BaseFramework\Frontend\Frontend\obj\Debug\net6.0\Frontend.genruntimeconfig.cache
 C:\Users\amal.antony\Source\Repos\AmalAntonyUnity\BaseFramework\Frontend\Frontend\obj\Debug\net6.0\ref\Frontend.dll
+=======
+C:\Users\jaseem.saheer\Documents\Programs\BaseFramework\Frontend\Frontend\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+>>>>>>> 289f8a97d7c61f0d2cbfe5a6ec0b184d7eda3ed6
