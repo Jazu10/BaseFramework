@@ -130,14 +130,34 @@ namespace Backend.Core.Repository
             return true;
         }
 
-        public Task<bool> UpdatePost(PostModel model)
+        public async Task<bool> UpdatePost(PostModel model)
         {
-            throw new NotImplementedException();
+            var result = await _context.PostList.Where(x => x.PostId == model.PostId)
+                .AsNoTracking().FirstOrDefaultAsync();
+
+            if (result == null)
+                throw new Exception($"No Advertisement Found With Id: {model.PostId}");
+
+
+            _context.PostList.Update(model);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
 
-        public Task<bool> DeletePost(string newsId)
+        public async Task<bool> DeletePost(string postId)
         {
-            throw new NotImplementedException();
+            var result = await _context.PostList.FindAsync(postId);
+
+            if (result == null)
+                throw new Exception($"No Advertisement Found With Id: {postId}");
+
+            result.IsActive = false;
+            result.IsDeleted = true;
+            _context.PostList.Update(result);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
     }
 }

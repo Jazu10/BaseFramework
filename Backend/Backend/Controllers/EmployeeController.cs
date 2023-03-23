@@ -207,13 +207,13 @@ namespace Backend.Controllers
                 };
 
                 return Ok(response);
-        }
+            }
             catch (Exception ex)
             {
                 response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
                 return BadRequest(response);
-    }
-}
+            }
+        }
 
         [Route("SingleAdvertisement")]
         [HttpDelete]
@@ -284,10 +284,7 @@ namespace Backend.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatePosts(PostModel model)
         {
-            var response = new Results<SuccessResult>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<SuccessResult>();
 
             try
             {
@@ -299,13 +296,62 @@ namespace Backend.Controllers
                 {
                     response.Response = new SuccessResult()
                     {
-                        Succeeded = await _repository.CreatePost(model)
+                        Succeeded = await _repository.CreatePost(model),
+                        Message = "Post Created"
                     };
                     return Ok(response);
                 }
 
                 response.Errors = ErrorHandler.GetErrorAsync(response.Errors, "Please Enter All The Fields", 400, null);
                 return BadRequest(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
+                return BadRequest(response);
+            }
+        }
+
+        [Route("SinglePost")]
+        [HttpPut]
+        public async Task<IActionResult> EditPosts(PostModel model)
+        {
+            var response = new Results<SuccessResult>();
+
+            try
+            {
+                model.IsActive = true;
+
+                response.Response = new SuccessResult()
+                {
+                    Succeeded = await _repository.UpdatePost(model),
+                    Message = "Post Updated"
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
+                return BadRequest(response);
+            }
+        }
+
+        [Route("SinglePost")]
+        [HttpDelete]
+        public async Task<IActionResult> DeletePosts(string postId)
+        {
+            var response = new Results<SuccessResult>();
+
+            try
+            {
+                response.Response = new SuccessResult()
+                {
+                    Succeeded = await _repository.DeletePost(postId),
+                    Message = "Post Deleted"
+                };
+
+                return Ok(response);
             }
             catch (Exception ex)
             {
