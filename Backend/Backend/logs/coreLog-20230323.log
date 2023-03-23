@@ -89,3 +89,47 @@ WHERE [a].[IsDeleted] = CAST(0 AS bit)
 [2023-03-23 09:07:19.003 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 55.6179ms
 [2023-03-23 09:07:19.107 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/swagger/v1/swagger.json - -
 [2023-03-23 09:07:19.319 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 211.7397ms
+[2023-03-23 10:56:42.832 +05:30  INF]  User profile is available. Using 'C:\Users\jaseem.saheer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2023-03-23 10:56:43.298 +05:30  INF]  Now listening on: http://localhost:5238
+[2023-03-23 10:56:43.303 +05:30  INF]  Application started. Press Ctrl+C to shut down.
+[2023-03-23 10:56:43.303 +05:30  INF]  Hosting environment: Development
+[2023-03-23 10:56:43.303 +05:30  INF]  Content root path: C:\Users\jaseem.saheer\Documents\Programs\BaseFramework\Backend\Backend\
+[2023-03-23 10:56:44.316 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/swagger/index.html - -
+[2023-03-23 10:56:44.828 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/swagger/index.html - - - 200 - text/html;charset=utf-8 522.6778ms
+[2023-03-23 10:56:44.879 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/_framework/aspnetcore-browser-refresh.js - -
+[2023-03-23 10:56:44.885 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/_framework/aspnetcore-browser-refresh.js - - - 200 11984 application/javascript;+charset=utf-8 5.8696ms
+[2023-03-23 10:56:44.949 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/_vs/browserLink - -
+[2023-03-23 10:56:45.014 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 64.5410ms
+[2023-03-23 10:56:45.134 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/swagger/v1/swagger.json - -
+[2023-03-23 10:56:45.352 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 219.0620ms
+[2023-03-23 11:01:35.231 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/NewsList - -
+[2023-03-23 11:01:35.660 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllNews (Backend)'
+[2023-03-23 11:01:35.715 +05:30  INF]  Route matched with {action = "GetAllNews", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNews() on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-23 11:01:38.229 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-23 11:01:40.656 +05:30  INF]  Executed DbCommand (104ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[NewsId], [n].[Content], [n].[CreatedAt], [n].[Image], [n].[IsActive], [n].[IsDeleted], [n].[Subject], [n].[UserId], [u].[UserId], [u].[Address], [u].[DOB], [u].[DOJ], [u].[FirstName], [u].[Gender], [u].[Image], [u].[LastName]
+FROM [News] AS [n]
+INNER JOIN [Users] AS [u] ON [n].[UserId] = [u].[UserId]
+WHERE [n].[IsDeleted] = CAST(0 AS bit)
+[2023-03-23 11:01:40.891 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.NewsModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-23 11:01:40.918 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllNews (Backend) in 5204.1456ms
+[2023-03-23 11:01:40.921 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllNews (Backend)'
+[2023-03-23 11:01:40.939 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/NewsList - - - 200 - application/json;+charset=utf-8 5744.6459ms
+[2023-03-23 11:19:39.439 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/GetAllNews - -
+[2023-03-23 11:19:39.456 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/GetAllNews - - - 404 0 - 17.0225ms
+[2023-03-23 11:19:42.933 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/GetAllNews - -
+[2023-03-23 11:19:42.935 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/GetAllNews - - - 404 0 - 1.7111ms
+[2023-03-23 11:20:15.973 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/Employee/NewsList application/json 159
+[2023-03-23 11:20:15.973 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.CreateNews (Backend)'
+[2023-03-23 11:20:16.002 +05:30  INF]  Route matched with {action = "CreateNews", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateNews(Backend.Core.Data.Entities.NewsModel) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-23 11:20:16.058 +05:30  INF]  Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+[2023-03-23 11:20:16.059 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.CreateNews (Backend) in 56.6896ms
+[2023-03-23 11:20:16.059 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.CreateNews (Backend)'
+[2023-03-23 11:20:16.059 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/Employee/NewsList application/json 159 - 400 - application/problem+json;+charset=utf-8 86.4939ms
+[2023-03-23 11:20:35.956 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/Employee/NewsList application/json 158
+[2023-03-23 11:20:35.956 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.CreateNews (Backend)'
+[2023-03-23 11:20:35.956 +05:30  INF]  Route matched with {action = "CreateNews", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateNews(Backend.Core.Data.Entities.NewsModel) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-23 11:20:35.969 +05:30  INF]  Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+[2023-03-23 11:20:35.969 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.CreateNews (Backend) in 12.8711ms
+[2023-03-23 11:20:35.969 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.CreateNews (Backend)'
+[2023-03-23 11:20:35.969 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/Employee/NewsList application/json 158 - 400 - application/problem+json;+charset=utf-8 13.8294ms

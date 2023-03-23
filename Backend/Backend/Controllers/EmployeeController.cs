@@ -24,10 +24,7 @@ namespace Backend.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllNews()
         {
-            var response = new Results<List<NewsModel>>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<List<NewsModel>>();
 
             try
             {
@@ -45,10 +42,7 @@ namespace Backend.Controllers
         [HttpGet]
         public async Task<IActionResult> GetNewsByUserId(string userId)
         {
-            var response = new Results<List<NewsModel>>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<List<NewsModel>>();
 
             try
             {
@@ -66,10 +60,7 @@ namespace Backend.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateNews(NewsModel model)
         {
-            var response = new Results<SuccessResult>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<SuccessResult>();
 
             try
             {
@@ -92,10 +83,7 @@ namespace Backend.Controllers
         [HttpPut]
         public async Task<IActionResult> EditNews(NewsModel model)
         {
-            var response = new Results<SuccessResult>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<SuccessResult>();
 
             try
             {
@@ -117,10 +105,7 @@ namespace Backend.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteNews(string newsId)
         {
-            var response = new Results<SuccessResult>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<SuccessResult>();
 
             try
             {
@@ -145,10 +130,7 @@ namespace Backend.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllAdvertisements()
         {
-            var response = new Results<List<AdvertisementModel>>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<List<AdvertisementModel>>();
 
             try
             {
@@ -166,10 +148,7 @@ namespace Backend.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAdvertisementsByUserId(string userId)
         {
-            var response = new Results<List<AdvertisementModel>>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<List<AdvertisementModel>>();
 
             try
             {
@@ -187,10 +166,7 @@ namespace Backend.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAdvertisements(AdvertisementModel model)
         {
-            var response = new Results<SuccessResult>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<SuccessResult>();
 
             try
             {
@@ -220,14 +196,16 @@ namespace Backend.Controllers
         [HttpPut]
         public async Task<IActionResult> EditAdvertisements(AdvertisementModel model)
         {
-            var response = new Results<bool>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<SuccessResult>();
 
             try
             {
-                response.Response = await _repository.UpdateAdvertisements(model);
+                response.Response = new SuccessResult()
+                {
+                    Succeeded = await _repository.UpdateAdvertisements(model),
+                    Message = "Advertisement Updated"
+                };
+
                 return Ok(response);
             }
             catch (Exception ex)
@@ -241,10 +219,7 @@ namespace Backend.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteAdvertisement(string adertisementId)
         {
-            var response = new Results<SuccessResult>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<SuccessResult>();
 
             try
             {
