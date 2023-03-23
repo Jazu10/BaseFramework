@@ -76,3 +76,16 @@ WHERE [a].[IsDeleted] = CAST(0 AS bit)
 [2023-03-23 08:48:49.465 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend) in 253.1904ms
 [2023-03-23 08:48:49.465 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
 [2023-03-23 08:48:49.466 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/GetAllAdvertisements - - - 200 - application/json;+charset=utf-8 284.1183ms
+[2023-03-23 09:07:17.278 +05:30  INF]  User profile is available. Using 'C:\Users\jaseem.saheer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2023-03-23 09:07:17.613 +05:30  INF]  Now listening on: http://localhost:5238
+[2023-03-23 09:07:17.616 +05:30  INF]  Application started. Press Ctrl+C to shut down.
+[2023-03-23 09:07:17.617 +05:30  INF]  Hosting environment: Development
+[2023-03-23 09:07:17.617 +05:30  INF]  Content root path: C:\Users\jaseem.saheer\Documents\Programs\BaseFramework\Backend\Backend\
+[2023-03-23 09:07:18.335 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/swagger/index.html - -
+[2023-03-23 09:07:18.826 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/swagger/index.html - - - 200 - text/html;charset=utf-8 495.2559ms
+[2023-03-23 09:07:18.872 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/_framework/aspnetcore-browser-refresh.js - -
+[2023-03-23 09:07:18.879 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/_framework/aspnetcore-browser-refresh.js - - - 200 11984 application/javascript;+charset=utf-8 7.6659ms
+[2023-03-23 09:07:18.947 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/_vs/browserLink - -
+[2023-03-23 09:07:19.003 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 55.6179ms
+[2023-03-23 09:07:19.107 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/swagger/v1/swagger.json - -
+[2023-03-23 09:07:19.319 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 211.7397ms
