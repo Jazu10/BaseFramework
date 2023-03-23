@@ -1,4 +1,5 @@
-﻿using Backend.Core.Data;
+﻿using Backend.Core.Common.ErrorHandlers;
+using Backend.Core.Data;
 using Backend.Core.Data.Entities;
 using Backend.Core.RepositoryInterface;
 using Microsoft.EntityFrameworkCore;
@@ -50,15 +51,22 @@ namespace Backend.Core.Repository
 
         public async Task<bool> UpdateNews(NewsModel model)
         {
+            var result = await _context.NewsList.Where(x => x.NewsId == model.NewsId)
+                                            .AsNoTracking().FirstOrDefaultAsync();
+
+            if (result == null)
+                throw new Exception($"No News Found With Id: {model.NewsId}");
+
             _context.NewsList.Update(model);
             _context.SaveChanges();
+
             return true;
         }
 
 
         public async Task<bool> DeleteAdvertisements(string advertisementId)
         {
-            var result =  await _context.AdvertisementList.FindAsync(advertisementId);
+            var result = await _context.AdvertisementList.FindAsync(advertisementId);
 
             if (result == null)
                 throw new Exception($"No Advertisement Found With Id: {advertisementId}");
@@ -92,8 +100,16 @@ namespace Backend.Core.Repository
 
         public async Task<bool> UpdateAdvertisements(AdvertisementModel model)
         {
+            var result = await _context.AdvertisementList.Where(x => x.AdvertisementId == model.AdvertisementId)
+                .AsNoTracking().FirstOrDefaultAsync();
+
+            if (result == null)
+                throw new Exception($"No Advertisement Found With Id: {model.AdvertisementId}");
+
+
             _context.AdvertisementList.Update(model);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+
             return true;
         }
     }

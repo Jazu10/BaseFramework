@@ -207,17 +207,17 @@ namespace Backend.Controllers
                 };
 
                 return Ok(response);
-            }
+        }
             catch (Exception ex)
             {
                 response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
                 return BadRequest(response);
-            }
-        }
+    }
+}
 
         [Route("SingleAdvertisement")]
         [HttpDelete]
-        public async Task<IActionResult> DeleteAdvertisement(string adertisementId)
+        public async Task<IActionResult> DeleteAdvertisement(string advertisementId)
         {
             var response = new Results<SuccessResult>();
 
@@ -225,7 +225,7 @@ namespace Backend.Controllers
             {
                 response.Response = new SuccessResult()
                 {
-                    Succeeded = await _repository.DeleteAdvertisements(adertisementId),
+                    Succeeded = await _repository.DeleteAdvertisements(advertisementId),
                     Message = "Advertisement Deleted"
                 };
 
