@@ -1764,3 +1764,147 @@ SELECT @@ROWCOUNT;
 [2023-03-23 13:17:46.053 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.EditAdvertisements (Backend) in 26.2151ms
 [2023-03-23 13:17:46.053 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.EditAdvertisements (Backend)'
 [2023-03-23 13:17:46.053 +05:30  INF]  Request finished HTTP/1.1 PUT http://localhost:5238/api/Employee/SingleAdvertisement application/json 263 - 200 - application/json;+charset=utf-8 35.1753ms
+[2023-03-23 13:20:31.426 +05:30  INF]  User profile is available. Using 'C:\Users\jaseem.saheer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2023-03-23 13:20:31.755 +05:30  INF]  Now listening on: http://localhost:5238
+[2023-03-23 13:20:31.759 +05:30  INF]  Application started. Press Ctrl+C to shut down.
+[2023-03-23 13:20:31.759 +05:30  INF]  Hosting environment: Development
+[2023-03-23 13:20:31.760 +05:30  INF]  Content root path: C:\Users\jaseem.saheer\Documents\Programs\BaseFramework\Backend\Backend\
+[2023-03-23 13:20:31.971 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/AdvertisementList - -
+[2023-03-23 13:20:32.343 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
+[2023-03-23 13:20:32.375 +05:30  INF]  Route matched with {action = "GetAllAdvertisements", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAdvertisements() on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-23 13:20:32.617 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/swagger/index.html - -
+[2023-03-23 13:20:33.099 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/swagger/index.html - - - 200 - text/html;charset=utf-8 480.6227ms
+[2023-03-23 13:20:33.140 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/_framework/aspnetcore-browser-refresh.js - -
+[2023-03-23 13:20:33.150 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/_framework/aspnetcore-browser-refresh.js - - - 200 11984 application/javascript;+charset=utf-8 9.3344ms
+[2023-03-23 13:20:33.218 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/_vs/browserLink - -
+[2023-03-23 13:20:33.301 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 82.8973ms
+[2023-03-23 13:20:33.436 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/swagger/v1/swagger.json - -
+[2023-03-23 13:20:33.673 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 237.5292ms
+[2023-03-23 13:20:34.969 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-23 13:20:38.216 +05:30  INF]  Executed DbCommand (187ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[AdvertisementId], [a].[Content], [a].[CreatedAt], [a].[IsActive], [a].[IsDeleted], [a].[Subject], [a].[UserId], [u].[UserId], [u].[Address], [u].[DOB], [u].[DOJ], [u].[FirstName], [u].[Gender], [u].[Image], [u].[LastName]
+FROM [Advertisements] AS [a]
+INNER JOIN [Users] AS [u] ON [a].[UserId] = [u].[UserId]
+WHERE [a].[IsDeleted] = CAST(0 AS bit)
+[2023-03-23 13:20:38.701 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.AdvertisementModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-23 13:20:38.768 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend) in 6375.2992ms
+[2023-03-23 13:20:38.772 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
+[2023-03-23 13:20:38.808 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/AdvertisementList - - - 200 - application/json;+charset=utf-8 6842.5095ms
+[2023-03-23 13:20:59.106 +05:30  INF]  Request starting HTTP/1.1 PUT http://localhost:5238/api/Employee/SingleAdvertisement application/json 261
+[2023-03-23 13:20:59.115 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.EditAdvertisements (Backend)'
+[2023-03-23 13:20:59.158 +05:30  INF]  Route matched with {action = "EditAdvertisements", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] EditAdvertisements(Backend.Core.Data.Entities.AdvertisementModel) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-23 13:20:59.323 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-23 13:20:59.558 +05:30  INF]  Executed DbCommand (135ms) [Parameters=[@__model_AdvertisementId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[AdvertisementId], [a].[Content], [a].[CreatedAt], [a].[IsActive], [a].[IsDeleted], [a].[Subject], [a].[UserId]
+FROM [Advertisements] AS [a]
+WHERE [a].[AdvertisementId] = @__model_AdvertisementId_0
+[2023-03-23 13:21:00.073 +05:30  INF]  Executed DbCommand (23ms) [Parameters=[@p6='?' (Size = 450), @p0='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean), @p3='?' (DbType = Boolean), @p4='?' (Size = 4000), @p5='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Advertisements] SET [Content] = @p0, [CreatedAt] = @p1, [IsActive] = @p2, [IsDeleted] = @p3, [Subject] = @p4, [UserId] = @p5
+WHERE [AdvertisementId] = @p6;
+SELECT @@ROWCOUNT;
+[2023-03-23 13:21:00.213 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[Backend.Core.ViewModels.SuccessResult, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2023-03-23 13:21:00.218 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.EditAdvertisements (Backend) in 1059.9473ms
+[2023-03-23 13:21:00.218 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.EditAdvertisements (Backend)'
+[2023-03-23 13:21:00.219 +05:30  INF]  Request finished HTTP/1.1 PUT http://localhost:5238/api/Employee/SingleAdvertisement application/json 261 - 200 - application/json;+charset=utf-8 1112.7282ms
+[2023-03-23 13:21:02.399 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/AdvertisementList - -
+[2023-03-23 13:21:02.403 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
+[2023-03-23 13:21:02.404 +05:30  INF]  Route matched with {action = "GetAllAdvertisements", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAdvertisements() on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-23 13:21:02.563 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-23 13:21:02.583 +05:30  INF]  Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[AdvertisementId], [a].[Content], [a].[CreatedAt], [a].[IsActive], [a].[IsDeleted], [a].[Subject], [a].[UserId], [u].[UserId], [u].[Address], [u].[DOB], [u].[DOJ], [u].[FirstName], [u].[Gender], [u].[Image], [u].[LastName]
+FROM [Advertisements] AS [a]
+INNER JOIN [Users] AS [u] ON [a].[UserId] = [u].[UserId]
+WHERE [a].[IsDeleted] = CAST(0 AS bit)
+[2023-03-23 13:21:02.584 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.AdvertisementModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-23 13:21:02.584 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend) in 180.2529ms
+[2023-03-23 13:21:02.585 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
+[2023-03-23 13:21:02.585 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/AdvertisementList - - - 200 - application/json;+charset=utf-8 186.1401ms
+[2023-03-23 13:21:19.155 +05:30  INF]  Request starting HTTP/1.1 PUT http://localhost:5238/api/Employee/SingleAdvertisement application/json 262
+[2023-03-23 13:21:19.155 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.EditAdvertisements (Backend)'
+[2023-03-23 13:21:19.156 +05:30  INF]  Route matched with {action = "EditAdvertisements", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] EditAdvertisements(Backend.Core.Data.Entities.AdvertisementModel) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-23 13:21:19.159 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-23 13:21:19.163 +05:30  INF]  Executed DbCommand (3ms) [Parameters=[@__model_AdvertisementId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[AdvertisementId], [a].[Content], [a].[CreatedAt], [a].[IsActive], [a].[IsDeleted], [a].[Subject], [a].[UserId]
+FROM [Advertisements] AS [a]
+WHERE [a].[AdvertisementId] = @__model_AdvertisementId_0
+[2023-03-23 13:21:19.171 +05:30  INF]  Executed DbCommand (2ms) [Parameters=[@p6='?' (Size = 450), @p0='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean), @p3='?' (DbType = Boolean), @p4='?' (Size = 4000), @p5='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Advertisements] SET [Content] = @p0, [CreatedAt] = @p1, [IsActive] = @p2, [IsDeleted] = @p3, [Subject] = @p4, [UserId] = @p5
+WHERE [AdvertisementId] = @p6;
+SELECT @@ROWCOUNT;
+[2023-03-23 13:21:19.173 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[Backend.Core.ViewModels.SuccessResult, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2023-03-23 13:21:19.173 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.EditAdvertisements (Backend) in 17.7128ms
+[2023-03-23 13:21:19.174 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.EditAdvertisements (Backend)'
+[2023-03-23 13:21:19.174 +05:30  INF]  Request finished HTTP/1.1 PUT http://localhost:5238/api/Employee/SingleAdvertisement application/json 262 - 200 - application/json;+charset=utf-8 19.1712ms
+[2023-03-23 13:21:22.154 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/AdvertisementList - -
+[2023-03-23 13:21:22.155 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
+[2023-03-23 13:21:22.155 +05:30  INF]  Route matched with {action = "GetAllAdvertisements", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAdvertisements() on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-23 13:21:22.157 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-23 13:21:22.160 +05:30  INF]  Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[AdvertisementId], [a].[Content], [a].[CreatedAt], [a].[IsActive], [a].[IsDeleted], [a].[Subject], [a].[UserId], [u].[UserId], [u].[Address], [u].[DOB], [u].[DOJ], [u].[FirstName], [u].[Gender], [u].[Image], [u].[LastName]
+FROM [Advertisements] AS [a]
+INNER JOIN [Users] AS [u] ON [a].[UserId] = [u].[UserId]
+WHERE [a].[IsDeleted] = CAST(0 AS bit)
+[2023-03-23 13:21:22.162 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.AdvertisementModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-23 13:21:22.163 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend) in 7.5488ms
+[2023-03-23 13:21:22.163 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
+[2023-03-23 13:21:22.164 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/AdvertisementList - - - 200 - application/json;+charset=utf-8 9.0016ms
+[2023-03-23 13:21:54.700 +05:30  INF]  Request starting HTTP/1.1 PUT http://localhost:5238/api/Employee/SingleNews application/json 262
+[2023-03-23 13:21:54.701 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.EditNews (Backend)'
+[2023-03-23 13:21:54.708 +05:30  INF]  Route matched with {action = "EditNews", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] EditNews(Backend.Core.Data.Entities.NewsModel) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-23 13:21:54.731 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-23 13:21:54.753 +05:30  INF]  Executed DbCommand (8ms) [Parameters=[@__model_NewsId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [n].[NewsId], [n].[Content], [n].[CreatedAt], [n].[Image], [n].[IsActive], [n].[IsDeleted], [n].[Subject], [n].[UserId]
+FROM [News] AS [n]
+WHERE [n].[NewsId] = @__model_NewsId_0
+[2023-03-23 13:21:54.871 +05:30  INF]  Executed DbCommand (14ms) [Parameters=[@p7='?' (Size = 450), @p0='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p3='?' (DbType = Boolean), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [News] SET [Content] = @p0, [CreatedAt] = @p1, [Image] = @p2, [IsActive] = @p3, [IsDeleted] = @p4, [Subject] = @p5, [UserId] = @p6
+WHERE [NewsId] = @p7;
+SELECT @@ROWCOUNT;
+[2023-03-23 13:21:54.893 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[Backend.Core.ViewModels.SuccessResult, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2023-03-23 13:21:54.894 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.EditNews (Backend) in 184.9197ms
+[2023-03-23 13:21:54.894 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.EditNews (Backend)'
+[2023-03-23 13:21:54.894 +05:30  INF]  Request finished HTTP/1.1 PUT http://localhost:5238/api/Employee/SingleNews application/json 262 - 200 - application/json;+charset=utf-8 194.1039ms
+[2023-03-23 13:22:00.411 +05:30  INF]  Request starting HTTP/1.1 DELETE http://localhost:5238/api/Employee/SingleAdvertisement?advertisementId= - -
+[2023-03-23 13:22:00.412 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.DeleteAdvertisement (Backend)'
+[2023-03-23 13:22:00.421 +05:30  INF]  Route matched with {action = "DeleteAdvertisement", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DeleteAdvertisement(System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-23 13:22:00.442 +05:30  INF]  Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+[2023-03-23 13:22:00.446 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.DeleteAdvertisement (Backend) in 24.6233ms
+[2023-03-23 13:22:00.446 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.DeleteAdvertisement (Backend)'
+[2023-03-23 13:22:00.446 +05:30  INF]  Request finished HTTP/1.1 DELETE http://localhost:5238/api/Employee/SingleAdvertisement?advertisementId= - - - 400 - application/problem+json;+charset=utf-8 34.8842ms
+[2023-03-23 13:22:18.988 +05:30  INF]  Request starting HTTP/1.1 DELETE http://localhost:5238/api/Employee/SingleAdvertisement?advertisementId=af8502b1-6087-43b0-b8f7-1eddc72d9477 - -
+[2023-03-23 13:22:18.988 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.DeleteAdvertisement (Backend)'
+[2023-03-23 13:22:18.988 +05:30  INF]  Route matched with {action = "DeleteAdvertisement", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DeleteAdvertisement(System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-23 13:22:18.997 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-23 13:22:19.043 +05:30  INF]  Executed DbCommand (11ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[AdvertisementId], [a].[Content], [a].[CreatedAt], [a].[IsActive], [a].[IsDeleted], [a].[Subject], [a].[UserId]
+FROM [Advertisements] AS [a]
+WHERE [a].[AdvertisementId] = @__p_0
+[2023-03-23 13:22:19.074 +05:30  INF]  Executed DbCommand (13ms) [Parameters=[@p6='?' (Size = 450), @p0='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean), @p3='?' (DbType = Boolean), @p4='?' (Size = 4000), @p5='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Advertisements] SET [Content] = @p0, [CreatedAt] = @p1, [IsActive] = @p2, [IsDeleted] = @p3, [Subject] = @p4, [UserId] = @p5
+WHERE [AdvertisementId] = @p6;
+SELECT @@ROWCOUNT;
+[2023-03-23 13:22:19.075 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[Backend.Core.ViewModels.SuccessResult, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2023-03-23 13:22:19.076 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.DeleteAdvertisement (Backend) in 87.4617ms
+[2023-03-23 13:22:19.076 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.DeleteAdvertisement (Backend)'
+[2023-03-23 13:22:19.076 +05:30  INF]  Request finished HTTP/1.1 DELETE http://localhost:5238/api/Employee/SingleAdvertisement?advertisementId=af8502b1-6087-43b0-b8f7-1eddc72d9477 - - - 200 - application/json;+charset=utf-8 88.6170ms
+[2023-03-23 13:22:22.222 +05:30  INF]  Request starting HTTP/1.1 DELETE http://localhost:5238/api/Employee/SingleAdvertisement?advertisementId=af8502b1-6087-43b0-b8f7-1eddc72d9477 - -
+[2023-03-23 13:22:22.223 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.DeleteAdvertisement (Backend)'
+[2023-03-23 13:22:22.223 +05:30  INF]  Route matched with {action = "DeleteAdvertisement", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DeleteAdvertisement(System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-23 13:22:22.225 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-23 13:22:22.230 +05:30  INF]  Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[AdvertisementId], [a].[Content], [a].[CreatedAt], [a].[IsActive], [a].[IsDeleted], [a].[Subject], [a].[UserId]
+FROM [Advertisements] AS [a]
+WHERE [a].[AdvertisementId] = @__p_0
+[2023-03-23 13:22:22.237 +05:30  INF]  Executed DbCommand (2ms) [Parameters=[@p6='?' (Size = 450), @p0='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean), @p3='?' (DbType = Boolean), @p4='?' (Size = 4000), @p5='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Advertisements] SET [Content] = @p0, [CreatedAt] = @p1, [IsActive] = @p2, [IsDeleted] = @p3, [Subject] = @p4, [UserId] = @p5
+WHERE [AdvertisementId] = @p6;
+SELECT @@ROWCOUNT;
+[2023-03-23 13:22:22.238 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[Backend.Core.ViewModels.SuccessResult, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2023-03-23 13:22:22.239 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.DeleteAdvertisement (Backend) in 15.9044ms
+[2023-03-23 13:22:22.239 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.DeleteAdvertisement (Backend)'
+[2023-03-23 13:22:22.239 +05:30  INF]  Request finished HTTP/1.1 DELETE http://localhost:5238/api/Employee/SingleAdvertisement?advertisementId=af8502b1-6087-43b0-b8f7-1eddc72d9477 - - - 200 - application/json;+charset=utf-8 17.4405ms
