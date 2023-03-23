@@ -177,7 +177,8 @@ namespace Backend.Controllers
                 {
                     response.Response = new SuccessResult()
                     {
-                        Succeeded = await _repository.CreateAdvertisements(model)
+                        Succeeded = await _repository.CreateAdvertisements(model),
+                        Message = "Advertisement Created"
                     };
                     return Ok(response);
                 }

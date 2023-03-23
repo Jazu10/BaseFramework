@@ -42,7 +42,6 @@ namespace Backend.Controllers
             {
                 Errors = new List<Error>()
             };
-
             try
             {
                 if (_cache.TryGetValue(UserListCache, out Results<List<UserModel>> userList))
