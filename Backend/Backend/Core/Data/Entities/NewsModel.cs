@@ -7,7 +7,8 @@ namespace Backend.Core.Data.Entities
     public class NewsModel
     {
         [Key]
-        public string NewsId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public string? NewsId { get; set; }
         public DateTime CreatedAt { get; set; }
         public string Subject { get; set; }
         public string Content { get; set; }

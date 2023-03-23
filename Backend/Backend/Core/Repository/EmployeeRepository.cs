@@ -1,4 +1,5 @@
-﻿using Backend.Core.Data;
+﻿using Backend.Core.Common.ErrorHandlers;
+using Backend.Core.Data;
 using Backend.Core.Data.Entities;
 using Backend.Core.RepositoryInterface;
 using Microsoft.EntityFrameworkCore;
@@ -14,60 +15,101 @@ namespace Backend.Core.Repository
             _context = context;
         }
 
-
-        public Task<bool> DeleteNews(string newsId)
+        public async Task<bool> DeleteNews(string newsId)
         {
-            throw new NotImplementedException();
+            var result = await _context.NewsList.FindAsync(newsId);
+
+            if (result == null)
+                throw new Exception($"No News Found With Id: {newsId}");
+
+            result.IsDeleted = true;
+            _context.NewsList.Update(result);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
 
-        public Task<bool> CreateNews(NewsModel news)
+        public async Task<bool> CreateNews(NewsModel news)
         {
-            throw new NotImplementedException();
+            await _context.NewsList.AddAsync(news);
+            _context.SaveChanges();
+
+            return true;
         }
 
         public async Task<List<NewsModel>> GetAllNews()
         {
-            return await _context.NewsList.Include(item => item.User).Where(item => item.IsDeleted == false).ToListAsync();
+            return await _context.NewsList.Include(item => item.User)
+                .Where(item => item.IsDeleted == false).ToListAsync();
         }
 
         public async Task<List<NewsModel>> GetUsersNews(string userId)
         {
-            return await _context.NewsList.Include(item => item.User).Where(item => item.UserId == userId).ToListAsync();
+            return await _context.NewsList.Include(item => item.User)
+                .Where(item => item.UserId == userId && item.IsDeleted == false).ToListAsync();
         }
 
         public async Task<bool> UpdateNews(NewsModel model)
         {
+            var result = await _context.NewsList.Where(x => x.NewsId == model.NewsId)
+                                            .AsNoTracking().FirstOrDefaultAsync();
+
+            if (result == null)
+                throw new Exception($"No News Found With Id: {model.NewsId}");
+
             _context.NewsList.Update(model);
+            _context.SaveChanges();
+
             return true;
         }
 
 
-
-        public Task<bool> DeleteAdvertisements(string advertisementId)
+        public async Task<bool> DeleteAdvertisements(string advertisementId)
         {
-            throw new NotImplementedException();
+            var result = await _context.AdvertisementList.FindAsync(advertisementId);
+
+            if (result == null)
+                throw new Exception($"No Advertisement Found With Id: {advertisementId}");
+
+            result.IsDeleted = true;
+            _context.AdvertisementList.Update(result);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
 
         public async Task<bool> CreateAdvertisements(AdvertisementModel model)
         {
-            var result = await _context.AdvertisementList.AddAsync(model);
+            await _context.AdvertisementList.AddAsync(model);
             _context.SaveChanges();
+
             return true;
         }
 
         public async Task<List<AdvertisementModel>> GetAllAdvertisements()
         {
-            return await _context.AdvertisementList.Include(item => item.User).Where(item => item.IsDeleted == false).ToListAsync();
+            return await _context.AdvertisementList.Include(item => item.User)
+                .Where(item => item.IsDeleted == false).ToListAsync();
         }
 
         public async Task<List<AdvertisementModel>> GetUsersAdvertisements(string userId)
         {
-            return await _context.AdvertisementList.Include(item => item.User).Where(item => item.UserId == userId).ToListAsync();
+            return await _context.AdvertisementList.Include(item => item.User)
+                .Where(item => item.UserId == userId && item.IsDeleted == false).ToListAsync();
         }
 
         public async Task<bool> UpdateAdvertisements(AdvertisementModel model)
         {
+            var result = await _context.AdvertisementList.Where(x => x.AdvertisementId == model.AdvertisementId)
+                .AsNoTracking().FirstOrDefaultAsync();
+
+            if (result == null)
+                throw new Exception($"No Advertisement Found With Id: {model.AdvertisementId}");
+
+
             _context.AdvertisementList.Update(model);
+            await _context.SaveChangesAsync();
+
             return true;
         }
 

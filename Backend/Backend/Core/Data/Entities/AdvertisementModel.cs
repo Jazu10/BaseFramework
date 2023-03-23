@@ -22,7 +22,7 @@ namespace Backend.Core.Data.Entities
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
 
-        [ForeignKey("Users")]
+        [ForeignKey("AspNetUsers")]
         public string UserId { get; set; }
         
         [ForeignKey("UserId")]

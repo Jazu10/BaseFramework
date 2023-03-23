@@ -78,6 +78,8 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
+var d = new DbContextOptionsBuilder<ApplicationDbContext>();
+d.EnableSensitiveDataLogging();
 
 var logger = new LoggerConfiguration()
 .ReadFrom.Configuration(builder.Configuration)
