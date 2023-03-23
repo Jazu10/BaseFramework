@@ -1,0 +1,78 @@
+[2023-03-23 08:33:48.689 +05:30  INF]  User profile is available. Using 'C:\Users\jaseem.saheer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2023-03-23 08:33:49.868 +05:30  INF]  Now listening on: http://localhost:5238
+[2023-03-23 08:33:49.875 +05:30  INF]  Application started. Press Ctrl+C to shut down.
+[2023-03-23 08:33:49.876 +05:30  INF]  Hosting environment: Development
+[2023-03-23 08:33:49.876 +05:30  INF]  Content root path: C:\Users\jaseem.saheer\Documents\Programs\BaseFramework\Backend\Backend\
+[2023-03-23 08:33:53.689 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/swagger/index.html - -
+[2023-03-23 08:33:55.224 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/swagger/index.html - - - 200 - text/html;charset=utf-8 1549.5241ms
+[2023-03-23 08:33:55.340 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/_framework/aspnetcore-browser-refresh.js - -
+[2023-03-23 08:33:55.354 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/_framework/aspnetcore-browser-refresh.js - - - 200 11984 application/javascript;+charset=utf-8 13.6672ms
+[2023-03-23 08:33:55.427 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/_vs/browserLink - -
+[2023-03-23 08:33:55.515 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 87.9583ms
+[2023-03-23 08:33:55.636 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/swagger/v1/swagger.json - -
+[2023-03-23 08:33:56.082 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 446.3920ms
+[2023-03-23 08:34:38.331 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/GetAllNews - -
+[2023-03-23 08:34:39.467 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllNews (Backend)'
+[2023-03-23 08:34:39.538 +05:30  INF]  Route matched with {action = "GetAllNews", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNews() on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-23 08:34:45.282 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-23 08:34:50.095 +05:30  INF]  Executed DbCommand (202ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[NewsId], [n].[Content], [n].[CreatedAt], [n].[Image], [n].[IsActive], [n].[IsDeleted], [n].[Subject], [n].[UserId], [u].[UserId], [u].[Address], [u].[DOB], [u].[DOJ], [u].[FirstName], [u].[Gender], [u].[Image], [u].[LastName]
+FROM [News] AS [n]
+INNER JOIN [Users] AS [u] ON [n].[UserId] = [u].[UserId]
+WHERE [n].[IsDeleted] = CAST(0 AS bit)
+[2023-03-23 08:34:50.636 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.NewsModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-23 08:34:50.706 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllNews (Backend) in 11149.1481ms
+[2023-03-23 08:34:50.710 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllNews (Backend)'
+[2023-03-23 08:34:50.740 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/GetAllNews - - - 200 - application/json;+charset=utf-8 12412.3408ms
+[2023-03-23 08:38:36.508 +05:30  INF]  User profile is available. Using 'C:\Users\jaseem.saheer\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2023-03-23 08:38:36.898 +05:30  INF]  Now listening on: http://localhost:5238
+[2023-03-23 08:38:36.902 +05:30  INF]  Application started. Press Ctrl+C to shut down.
+[2023-03-23 08:38:36.903 +05:30  INF]  Hosting environment: Development
+[2023-03-23 08:38:36.903 +05:30  INF]  Content root path: C:\Users\jaseem.saheer\Documents\Programs\BaseFramework\Backend\Backend\
+[2023-03-23 08:38:37.704 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/swagger/index.html - -
+[2023-03-23 08:38:38.224 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/swagger/index.html - - - 200 - text/html;charset=utf-8 528.2717ms
+[2023-03-23 08:38:38.283 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/_framework/aspnetcore-browser-refresh.js - -
+[2023-03-23 08:38:38.289 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/_framework/aspnetcore-browser-refresh.js - - - 200 11984 application/javascript;+charset=utf-8 5.3857ms
+[2023-03-23 08:38:38.371 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/_vs/browserLink - -
+[2023-03-23 08:38:38.471 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 100.2726ms
+[2023-03-23 08:38:38.581 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/swagger/v1/swagger.json - -
+[2023-03-23 08:38:38.790 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 208.9005ms
+[2023-03-23 08:46:02.873 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/GetAllNews - -
+[2023-03-23 08:46:03.241 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllNews (Backend)'
+[2023-03-23 08:46:03.314 +05:30  INF]  Route matched with {action = "GetAllNews", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllNews() on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-23 08:46:08.267 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-23 08:46:12.824 +05:30  INF]  Executed DbCommand (279ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[NewsId], [n].[Content], [n].[CreatedAt], [n].[Image], [n].[IsActive], [n].[IsDeleted], [n].[Subject], [n].[UserId], [u].[UserId], [u].[Address], [u].[DOB], [u].[DOJ], [u].[FirstName], [u].[Gender], [u].[Image], [u].[LastName]
+FROM [News] AS [n]
+INNER JOIN [Users] AS [u] ON [n].[UserId] = [u].[UserId]
+WHERE [n].[IsDeleted] = CAST(0 AS bit)
+[2023-03-23 08:46:13.529 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.NewsModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-23 08:46:13.648 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllNews (Backend) in 10301.3082ms
+[2023-03-23 08:46:13.654 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllNews (Backend)'
+[2023-03-23 08:46:13.693 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/GetAllNews - - - 200 - application/json;+charset=utf-8 10819.7855ms
+[2023-03-23 08:48:20.207 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/GetNewsByUserId?userId=ab181cd5-cdde-43d6-8aa2-93d2230b79ca - -
+[2023-03-23 08:48:20.228 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetNewsByUserId (Backend)'
+[2023-03-23 08:48:20.282 +05:30  INF]  Route matched with {action = "GetNewsByUserId", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetNewsByUserId(System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-23 08:48:20.377 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-23 08:48:20.589 +05:30  INF]  Executed DbCommand (136ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[NewsId], [n].[Content], [n].[CreatedAt], [n].[Image], [n].[IsActive], [n].[IsDeleted], [n].[Subject], [n].[UserId], [u].[UserId], [u].[Address], [u].[DOB], [u].[DOJ], [u].[FirstName], [u].[Gender], [u].[Image], [u].[LastName]
+FROM [News] AS [n]
+INNER JOIN [Users] AS [u] ON [n].[UserId] = [u].[UserId]
+WHERE ([n].[UserId] = @__userId_0) AND ([n].[IsDeleted] = CAST(0 AS bit))
+[2023-03-23 08:48:20.595 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.NewsModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-23 08:48:20.596 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetNewsByUserId (Backend) in 313.6967ms
+[2023-03-23 08:48:20.596 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetNewsByUserId (Backend)'
+[2023-03-23 08:48:20.597 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/GetNewsByUserId?userId=ab181cd5-cdde-43d6-8aa2-93d2230b79ca - - - 200 - application/json;+charset=utf-8 389.5783ms
+[2023-03-23 08:48:49.182 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/GetAllAdvertisements - -
+[2023-03-23 08:48:49.204 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
+[2023-03-23 08:48:49.211 +05:30  INF]  Route matched with {action = "GetAllAdvertisements", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAdvertisements() on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-23 08:48:49.373 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-23 08:48:49.419 +05:30  INF]  Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[AdvertisementId], [a].[Content], [a].[CreatedAt], [a].[IsActive], [a].[IsDeleted], [a].[Subject], [a].[UserId], [u].[UserId], [u].[Address], [u].[DOB], [u].[DOJ], [u].[FirstName], [u].[Gender], [u].[Image], [u].[LastName]
+FROM [Advertisements] AS [a]
+INNER JOIN [Users] AS [u] ON [a].[UserId] = [u].[UserId]
+WHERE [a].[IsDeleted] = CAST(0 AS bit)
+[2023-03-23 08:48:49.459 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.AdvertisementModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-23 08:48:49.465 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend) in 253.1904ms
+[2023-03-23 08:48:49.465 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
+[2023-03-23 08:48:49.466 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/GetAllAdvertisements - - - 200 - application/json;+charset=utf-8 284.1183ms

@@ -5,6 +5,7 @@ using Backend.Core.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography;
 
 namespace Backend.Controllers
 {
@@ -19,7 +20,7 @@ namespace Backend.Controllers
             _repository = repository;
         }
 
-        [Route("GetAllNews")]
+        [Route("NewsList")]
         [HttpGet]
         public async Task<IActionResult> GetAllNews()
         {
@@ -40,7 +41,7 @@ namespace Backend.Controllers
             }
         }
 
-        [Route("GetNewsByUserId")]
+        [Route("UsersNews")]
         [HttpGet]
         public async Task<IActionResult> GetNewsByUserId(string userId)
         {
@@ -61,19 +62,74 @@ namespace Backend.Controllers
             }
         }
 
-
-        [Route("EditNews")]
-        [HttpGet]
-        public async Task<IActionResult> EditNews(NewsModel model)
+        [Route("NewsList")]
+        [HttpPost]
+        public async Task<IActionResult> CreateNews(NewsModel model)
         {
-            var response = new Results<bool>()
+            var response = new Results<SuccessResult>()
             {
                 Errors = new List<Error>()
             };
 
             try
             {
-                response.Response = await _repository.UpdateNews(model);
+                response.Response = new SuccessResult()
+                {
+                    Succeeded = await _repository.CreateNews(model),
+                    Message = "News Created"
+                };
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
+                return BadRequest(response);
+            }
+        }
+
+
+        [Route("SingleNews")]
+        [HttpPut]
+        public async Task<IActionResult> EditNews(NewsModel model)
+        {
+            var response = new Results<SuccessResult>()
+            {
+                Errors = new List<Error>()
+            };
+
+            try
+            {
+                response.Response = new SuccessResult()
+                {
+                    Succeeded = await _repository.UpdateNews(model),
+                    Message = "News Updated"
+                };
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
+                return BadRequest(response);
+            }
+        }
+
+        [Route("SingleNews")]
+        [HttpDelete]
+        public async Task<IActionResult> DeleteNews(string newsId)
+        {
+            var response = new Results<SuccessResult>()
+            {
+                Errors = new List<Error>()
+            };
+
+            try
+            {
+                response.Response = new SuccessResult()
+                {
+                    Succeeded = await _repository.DeleteNews(newsId),
+                    Message = "News Deleted"
+                };
+
                 return Ok(response);
             }
             catch (Exception ex)
@@ -85,7 +141,7 @@ namespace Backend.Controllers
 
 
 
-        [Route("GetAllAdvertisements")]
+        [Route("AdvertisementList")]
         [HttpGet]
         public async Task<IActionResult> GetAllAdvertisements()
         {
@@ -106,7 +162,7 @@ namespace Backend.Controllers
             }
         }
 
-        [Route("GetAdvetisementsByUserId")]
+        [Route("UsersAdvertisement")]
         [HttpGet]
         public async Task<IActionResult> GetAdvertisementsByUserId(string userId)
         {
@@ -127,7 +183,7 @@ namespace Backend.Controllers
             }
         }
 
-        [Route("CreateAdvertisements")]
+        [Route("AdvertisementList")]
         [HttpPost]
         public async Task<IActionResult> CreateAdvertisements(AdvertisementModel model)
         {
@@ -160,8 +216,7 @@ namespace Backend.Controllers
             }
         }
 
-
-        [Route("EditAdvertisements")]
+        [Route("SingleAdvertisement")]
         [HttpPut]
         public async Task<IActionResult> EditAdvertisements(AdvertisementModel model)
         {
@@ -173,6 +228,32 @@ namespace Backend.Controllers
             try
             {
                 response.Response = await _repository.UpdateAdvertisements(model);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
+                return BadRequest(response);
+            }
+        }
+
+        [Route("SingleAdvertisement")]
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAdvertisement(string adertisementId)
+        {
+            var response = new Results<SuccessResult>()
+            {
+                Errors = new List<Error>()
+            };
+
+            try
+            {
+                response.Response = new SuccessResult()
+                {
+                    Succeeded = await _repository.DeleteAdvertisements(adertisementId),
+                    Message = "Advertisement Deleted"
+                };
+
                 return Ok(response);
             }
             catch (Exception ex)
