@@ -293,6 +293,7 @@ namespace Backend.Controllers
             {
                 model.IsActive = true;
                 model.IsDeleted = false;
+                model.CreatedAt = DateTime.Now;
 
                 if (ModelState.IsValid)
                 {
