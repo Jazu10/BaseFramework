@@ -1,23 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Frontend\\Frontend.DTO\\Frontend.DTO.csproj": {}
+    "C:\\Users\\Ambareesh.sankaran\\source\\repos\\Ambareeshvs\\BaseFramework\\Frontend\\Frontend.DTO\\Frontend.DTO.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Frontend\\Frontend.DTO\\Frontend.DTO.csproj": {
+    "C:\\Users\\Ambareesh.sankaran\\source\\repos\\Ambareeshvs\\BaseFramework\\Frontend\\Frontend.DTO\\Frontend.DTO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Frontend\\Frontend.DTO\\Frontend.DTO.csproj",
+        "projectUniqueName": "C:\\Users\\Ambareesh.sankaran\\source\\repos\\Ambareeshvs\\BaseFramework\\Frontend\\Frontend.DTO\\Frontend.DTO.csproj",
         "projectName": "Frontend.DTO",
-        "projectPath": "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Frontend\\Frontend.DTO\\Frontend.DTO.csproj",
-        "packagesPath": "C:\\Users\\jaseem.saheer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Frontend\\Frontend.DTO\\obj\\",
+        "projectPath": "C:\\Users\\Ambareesh.sankaran\\source\\repos\\Ambareeshvs\\BaseFramework\\Frontend\\Frontend.DTO\\Frontend.DTO.csproj",
+        "packagesPath": "C:\\Users\\Ambareesh.sankaran\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Ambareesh.sankaran\\source\\repos\\Ambareeshvs\\BaseFramework\\Frontend\\Frontend.DTO\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\jaseem.saheer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Ambareesh.sankaran\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,6 +27,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
