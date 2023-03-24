@@ -92,9 +92,9 @@ namespace Backend.Core.Repository
             return true;
         }
 
-        public async Task<List<AdvertisementModel>> GetAllAdvertisements()
+        public async Task<List<AdvertisementModel>> GetAllAdvertisements(string? search)
         {
-            var result = await (from advertisement in _context.AdvertisementList
+            var result =  (from advertisement in _context.AdvertisementList
                                 join
                           user in _context.UserList on advertisement.UserId equals user.UserId
                                 select (new AdvertisementModel
@@ -112,8 +112,12 @@ namespace Backend.Core.Repository
                                     User = _context.UserList.Include(item => item.User)
                                                 .Where(item => item.UserId == advertisement.UserId)
                                                 .FirstOrDefault()
-                                })).ToListAsync();
-            return result;
+                                })).Where(item => item.IsDeleted == false).ToList();
+
+            if (!string.IsNullOrWhiteSpace(search))
+                return result.Where(item => item.Subject.Contains(search, StringComparison.OrdinalIgnoreCase)).ToList();
+
+            return result.ToList();
             //return await _context.AdvertisementList.Include(item => item.User)
             //    .Where(item => item.IsDeleted == false).ToListAsync();
         }
@@ -138,7 +142,9 @@ namespace Backend.Core.Repository
                                     User = _context.UserList.Include(item => item.User)
                                                 .Where(item => item.UserId == advertisement.UserId)
                                                 .FirstOrDefault()
-                                })).Where(item => item.UserId == userId).ToListAsync();
+                                })).Where(item => item.UserId == userId)
+                                   .Where(item => item.IsDeleted == false)
+                                   .ToListAsync();
             return result;
         }
 
@@ -162,7 +168,8 @@ namespace Backend.Core.Repository
                                     User = _context.UserList.Include(item => item.User)
                                                 .Where(item => item.UserId == advertisement.UserId)
                                                 .FirstOrDefault()
-                                })).Where(item => item.AdvertisementId == advertisementId).FirstOrDefaultAsync();
+                                })).Where(item => item.AdvertisementId == advertisementId)
+                                   .FirstOrDefaultAsync();
 
             if (result == null)
                 throw new Exception($"No Advertisement Found With This Id {advertisementId}");

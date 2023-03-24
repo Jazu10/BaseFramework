@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ambareesh.sankaran\\source\\repos\\Ambareeshvs\\BaseFramework\\Backend\\Backend\\Backend.csproj": {}
+    "C:\\Users\\jaseem.saheer\\source\\repos\\BaseFramework\\Backend\\Backend\\Backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ambareesh.sankaran\\source\\repos\\Ambareeshvs\\BaseFramework\\Backend\\Backend\\Backend.csproj": {
+    "C:\\Users\\jaseem.saheer\\source\\repos\\BaseFramework\\Backend\\Backend\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ambareesh.sankaran\\source\\repos\\Ambareeshvs\\BaseFramework\\Backend\\Backend\\Backend.csproj",
+        "projectUniqueName": "C:\\Users\\jaseem.saheer\\source\\repos\\BaseFramework\\Backend\\Backend\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "C:\\Users\\Ambareesh.sankaran\\source\\repos\\Ambareeshvs\\BaseFramework\\Backend\\Backend\\Backend.csproj",
-        "packagesPath": "C:\\Users\\Ambareesh.sankaran\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ambareesh.sankaran\\source\\repos\\Ambareeshvs\\BaseFramework\\Backend\\Backend\\obj\\",
+        "projectPath": "C:\\Users\\jaseem.saheer\\source\\repos\\BaseFramework\\Backend\\Backend\\Backend.csproj",
+        "packagesPath": "C:\\Users\\jaseem.saheer\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jaseem.saheer\\source\\repos\\BaseFramework\\Backend\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Ambareesh.sankaran\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jaseem.saheer\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

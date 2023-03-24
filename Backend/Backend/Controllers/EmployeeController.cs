@@ -128,13 +128,13 @@ namespace Backend.Controllers
 
         [Route("AdvertisementList")]
         [HttpGet]
-        public async Task<IActionResult> GetAllAdvertisements()
+        public async Task<IActionResult> GetAllAdvertisements(string? search)
         {
             var response = new Results<List<AdvertisementModel>>();
 
             try
             {
-                response.Response = await _repository.GetAllAdvertisements();
+                response.Response = await _repository.GetAllAdvertisements(search);
                 return Ok(response);
             }
             catch (Exception ex)

@@ -10,7 +10,7 @@ namespace Backend.Core.RepositoryInterface
         public Task<bool> UpdateNews(NewsModel model);
         public Task<bool> DeleteNews(string newsId);
 
-        public Task<List<AdvertisementModel>> GetAllAdvertisements();
+        public Task<List<AdvertisementModel>> GetAllAdvertisements(string? search);
         public Task<List<AdvertisementModel>> GetUsersAdvertisements(string userId);
         public Task<AdvertisementModel> GetSingleAdvertisement(string advertisementId);
         public Task<bool> CreateAdvertisements(AdvertisementModel model);
