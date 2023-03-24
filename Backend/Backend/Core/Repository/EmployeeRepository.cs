@@ -97,7 +97,6 @@ namespace Backend.Core.Repository
             var result = await (from advertisement in _context.AdvertisementList
                                 join
                           user in _context.UserList on advertisement.UserId equals user.UserId
-
                                 select (new AdvertisementModel
                                 {
                                     UserId = advertisement.UserId,
@@ -107,15 +106,12 @@ namespace Backend.Core.Repository
                                     IsActive = advertisement.IsActive,
                                     IsDeleted = advertisement.IsDeleted,
                                     Subject = advertisement.Subject,
-                                    Images = (from i in _context.ImageList
-                                              where i.AdvertisementId == advertisement.AdvertisementId
-                                              select (new ImageModel
-                                              {
-                                                  AdvertisementId = i.AdvertisementId,
-                                                  Image = i.Image,
-                                                  ImageId = i.ImageId
-                                              })).ToList(),
-                                    User = advertisement.User
+                                    Images = _context.ImageList
+                                                .Where(item => item.AdvertisementId == advertisement.AdvertisementId)
+                                                .ToList(),
+                                    User = _context.UserList.Include(item => item.User)
+                                                .Where(item => item.UserId == advertisement.UserId)
+                                                .FirstOrDefault()
                                 })).ToListAsync();
             return result;
             //return await _context.AdvertisementList.Include(item => item.User)
@@ -124,8 +120,54 @@ namespace Backend.Core.Repository
 
         public async Task<List<AdvertisementModel>> GetUsersAdvertisements(string userId)
         {
-            return await _context.AdvertisementList.Include(item => item.User).Include(item => item.Images)
-                .Where(item => item.UserId == userId && item.IsDeleted == false).ToListAsync();
+            var result = await (from advertisement in _context.AdvertisementList
+                                join
+                          user in _context.UserList on advertisement.UserId equals user.UserId
+                                select (new AdvertisementModel
+                                {
+                                    UserId = advertisement.UserId,
+                                    AdvertisementId = advertisement.AdvertisementId,
+                                    CreatedAt = advertisement.CreatedAt,
+                                    Content = advertisement.Content,
+                                    IsActive = advertisement.IsActive,
+                                    IsDeleted = advertisement.IsDeleted,
+                                    Subject = advertisement.Subject,
+                                    Images = _context.ImageList
+                                                .Where(item => item.AdvertisementId == advertisement.AdvertisementId)
+                                                .ToList(),
+                                    User = _context.UserList.Include(item => item.User)
+                                                .Where(item => item.UserId == advertisement.UserId)
+                                                .FirstOrDefault()
+                                })).Where(item => item.UserId == userId).ToListAsync();
+            return result;
+        }
+
+        public async Task<AdvertisementModel> GetSingleAdvertisement(string advertisementId)
+        {
+            var result = await (from advertisement in _context.AdvertisementList
+                                join
+                          user in _context.UserList on advertisement.UserId equals user.UserId
+                                select (new AdvertisementModel
+                                {
+                                    UserId = advertisement.UserId,
+                                    AdvertisementId = advertisement.AdvertisementId,
+                                    CreatedAt = advertisement.CreatedAt,
+                                    Content = advertisement.Content,
+                                    IsActive = advertisement.IsActive,
+                                    IsDeleted = advertisement.IsDeleted,
+                                    Subject = advertisement.Subject,
+                                    Images = _context.ImageList
+                                                .Where(item => item.AdvertisementId == advertisement.AdvertisementId)
+                                                .ToList(),
+                                    User = _context.UserList.Include(item => item.User)
+                                                .Where(item => item.UserId == advertisement.UserId)
+                                                .FirstOrDefault()
+                                })).Where(item => item.AdvertisementId == advertisementId).FirstOrDefaultAsync();
+
+            if (result == null)
+                throw new Exception($"No Advertisement Found With This Id {advertisementId}");
+
+            return result;
         }
 
         public async Task<bool> UpdateAdvertisements(AdvertisementModel model)

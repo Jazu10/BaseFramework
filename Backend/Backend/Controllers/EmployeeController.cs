@@ -162,6 +162,24 @@ namespace Backend.Controllers
             }
         }
 
+        [Route("SingleAdvertisement")]
+        [HttpGet]
+        public async Task<IActionResult> GetSingleAdvertisement(string advertisementId)
+        {
+            var response = new Results<AdvertisementModel>();
+
+            try
+            {
+                response.Response = await _repository.GetSingleAdvertisement(advertisementId);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
+                return BadRequest(response);
+            }
+        }
+
         [Route("AdvertisementList")]
         [HttpPost]
         public async Task<IActionResult> CreateAdvertisements(AdvertisementModel model)
@@ -208,13 +226,13 @@ namespace Backend.Controllers
                 };
 
                 return Ok(response);
-        }
+            }
             catch (Exception ex)
             {
                 response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
                 return BadRequest(response);
-    }
-}
+            }
+        }
 
         [Route("SingleAdvertisement")]
         [HttpDelete]

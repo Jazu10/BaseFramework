@@ -118,7 +118,7 @@ namespace Backend.Controllers
             {
                 IdentityUser user = new IdentityUser
                 {
-                    UserName = model.UserName,
+                    UserName = model.EmailId,
                     Email = model.EmailId,
                     PhoneNumber = model.PhoneNumber
                 };
