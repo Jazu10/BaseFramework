@@ -43,7 +43,7 @@ namespace Backend.Core.Data.Entities
 
 
         [NotMapped]
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
 
         [NotMapped]
         public string EmailId { get; set; }

@@ -12,6 +12,7 @@ namespace Backend.Core.RepositoryInterface
 
         public Task<List<AdvertisementModel>> GetAllAdvertisements();
         public Task<List<AdvertisementModel>> GetUsersAdvertisements(string userId);
+        public Task<AdvertisementModel> GetSingleAdvertisement(string advertisementId);
         public Task<bool> CreateAdvertisements(AdvertisementModel model);
         public Task<bool> UpdateAdvertisements(AdvertisementModel model);
         public Task<bool> DeleteAdvertisements(string newsId);

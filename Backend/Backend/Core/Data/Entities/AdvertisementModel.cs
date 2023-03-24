@@ -8,6 +8,11 @@ namespace Backend.Core.Data.Entities
     [Table("Advertisements")]
     public class AdvertisementModel
     {
+        public AdvertisementModel()
+        {
+            Images = new List<ImageModel>();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string? AdvertisementId { get; set; }
@@ -27,5 +32,7 @@ namespace Backend.Core.Data.Entities
         
         [ForeignKey("UserId")]
         public UserModel? User { get; set; }
+
+        public List<ImageModel>? Images { get; set; }
     }
 }

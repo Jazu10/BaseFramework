@@ -50,8 +50,9 @@ CREATE TABLE Posts
 
 CREATE TABLE Images
 (
-	ImageId VARCHAR(50) PRIMARY KEY DEFAULT NEWID(),
-	AdvertisementId VARCHAR(50) REFERENCES ADVERTISEMENTS(AdvertisementId)
+	ImageId int PRIMARY KEY IDENTITY(1,1),
+	AdvertisementId VARCHAR(50) REFERENCES ADVERTISEMENTS(AdvertisementId),
+	Image varchar(max)
 );
 
 CREATE TABLE Likes

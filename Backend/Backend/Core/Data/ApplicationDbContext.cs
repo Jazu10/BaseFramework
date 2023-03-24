@@ -78,6 +78,8 @@ namespace Backend.Core.Data
         //Comment These Lines Before Migration
         public DbSet<NewsModel> NewsList { get; set; }
         public DbSet<AdvertisementModel> AdvertisementList { get; set; }
+        public DbSet<ImageModel> ImageList { get; set; }
+
 
 
     }

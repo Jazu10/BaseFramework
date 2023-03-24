@@ -42,7 +42,6 @@ namespace Backend.Controllers
             {
                 Errors = new List<Error>()
             };
-
             try
             {
                 if (_cache.TryGetValue(UserListCache, out Results<List<UserModel>> userList))
@@ -119,7 +118,7 @@ namespace Backend.Controllers
             {
                 IdentityUser user = new IdentityUser
                 {
-                    UserName = model.UserName,
+                    UserName = model.EmailId,
                     Email = model.EmailId,
                     PhoneNumber = model.PhoneNumber
                 };
