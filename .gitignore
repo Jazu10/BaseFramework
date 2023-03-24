@@ -1,6 +1,12 @@
-/Frontend/.vs
-/Backend/.vs
 /.vs
+
+/Frontend/.vs
 /Frontend/Frontend/bin
+/Frontend/Frontend/obj
+
 /Frontend/Frontend.DTO/bin
+/Frontend/Frontend.DTO/obj
+
+/Backend/.vs
 /Backend/Backend/bin
+/Backend/Backend/obj
