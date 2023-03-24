@@ -64,8 +64,8 @@ CREATE TABLE Likes
 
 CREATE TABLE Comments
 (
-	UserId nvarchar(450) REFERENCES Users(UserId),
+	CommentId int PRIMARY KEY IDENTITY(1,1),
+	UserId NVARCHAR(450) REFERENCES Users(UserId),
 	ContentId VARCHAR(50),
 	Comment VARCHAR(MAX),
-	PRIMARY KEY(UserId, ContentId)
 );
