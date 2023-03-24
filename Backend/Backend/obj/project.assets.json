@@ -2910,25 +2910,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jaseem.saheer\\.nuget\\packages\\": {},
+    "C:\\Users\\Ambareesh.sankaran\\.nuget\\packages\\": {},
     "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Backend\\Backend\\Backend.csproj",
+      "projectUniqueName": "C:\\Users\\Ambareesh.sankaran\\source\\repos\\Ambareeshvs\\BaseFramework\\Backend\\Backend\\Backend.csproj",
       "projectName": "Backend",
-      "projectPath": "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Backend\\Backend\\Backend.csproj",
-      "packagesPath": "C:\\Users\\jaseem.saheer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jaseem.saheer\\Documents\\Programs\\BaseFramework\\Backend\\Backend\\obj\\",
+      "projectPath": "C:\\Users\\Ambareesh.sankaran\\source\\repos\\Ambareeshvs\\BaseFramework\\Backend\\Backend\\Backend.csproj",
+      "packagesPath": "C:\\Users\\Ambareesh.sankaran\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Ambareesh.sankaran\\source\\repos\\Ambareeshvs\\BaseFramework\\Backend\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\jaseem.saheer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Ambareesh.sankaran\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.1.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2999,5 +2999,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Ambareesh.sankaran\\source\\repos\\Ambareeshvs\\BaseFramework\\Backend\\Backend\\obj\\project.nuget.cache : Unexpected character encountered while parsing value: <. Path '', line 0, position 0."
+    }
+  ]
 }

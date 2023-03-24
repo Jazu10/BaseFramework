@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Backend",
+    "\\Backend\\Backend",
+    "\\Backend\\Backend\\Controllers",
+    "\\Frontend",
+    "\\Frontend\\Frontend",
+    "\\Frontend\\Frontend\\Core\\HttpClients",
+    "\\Frontend\\Frontend\\Views",
+    "\\Frontend\\Frontend\\Views\\Shared"
+  ],
+  "SelectedNode": "\\Backend\\Backend.sln",
+  "PreviewInSolutionExplorer": false
+}
