@@ -52,6 +52,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRpdmVcRWRpdFJvbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Ambareesh.sankaran/source/repos/Ambareeshvs/BaseFramework/Frontend/Frontend/Views/Administrative/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRpdmVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Ambareesh.sankaran/source/repos/Ambareeshvs/BaseFramework/Frontend/Frontend/Views/Administrative/RolesList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRpdmVcUm9sZXNMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -60,16 +64,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRpdmVcU2luZ2xlUm9sZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ambareesh.sankaran/source/repos/Ambareeshvs/BaseFramework/Frontend/Frontend/Views/Advertisement/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWR2ZXJ0aXNlbWVudFxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Ambareesh.sankaran/source/repos/Ambareeshvs/BaseFramework/Frontend/Frontend/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ambareesh.sankaran/source/repos/Ambareeshvs/BaseFramework/Frontend/Frontend/Views/Shared/_EmptyLayout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9FbXB0eUxheW91dC5jc2h0bWw=
+[C:/Users/Ambareesh.sankaran/source/repos/Ambareeshvs/BaseFramework/Frontend/Frontend/Views/Shared/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ambareesh.sankaran/source/repos/Ambareeshvs/BaseFramework/Frontend/Frontend/Views/Shared/_MenuLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NZW51TGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ambareesh.sankaran/source/repos/Ambareeshvs/BaseFramework/Frontend/Frontend/Views/Shared/_ValidationScriptsPartial.cshtml]
