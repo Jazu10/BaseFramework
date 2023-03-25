@@ -14,20 +14,6 @@ namespace Backend.Core.Repository
             _context = context;
         }
 
-        public async Task<bool> DeleteNews(string newsId)
-        {
-            var result = await _context.NewsList.FindAsync(newsId);
-
-            if (result == null)
-                throw new Exception($"No News Found With Id: {newsId}");
-
-            result.IsDeleted = true;
-            _context.NewsList.Update(result);
-            await _context.SaveChangesAsync();
-
-            return true;
-        }
-
         public async Task<bool> CreateNews(NewsModel news)
         {
             await _context.NewsList.AddAsync(news);
@@ -62,20 +48,23 @@ namespace Backend.Core.Repository
             return true;
         }
 
-
-        public async Task<bool> DeleteAdvertisements(string advertisementId)
+        public async Task<bool> DeleteNews(string newsId)
         {
-            var result = await _context.AdvertisementList.FindAsync(advertisementId);
+            var result = await _context.NewsList.FindAsync(newsId);
 
             if (result == null)
-                throw new Exception($"No Advertisement Found With Id: {advertisementId}");
+                throw new Exception($"No News Found With Id: {newsId}");
 
+            result.IsActive = false;
             result.IsDeleted = true;
-            _context.AdvertisementList.Update(result);
+
+            _context.NewsList.Update(result);
             await _context.SaveChangesAsync();
 
             return true;
         }
+
+     
 
         public async Task<bool> CreateAdvertisements(AdvertisementModel model)
         {
@@ -94,30 +83,34 @@ namespace Backend.Core.Repository
 
         public async Task<List<AdvertisementModel>> GetAllAdvertisements(string? search)
         {
-            var result =  (from advertisement in _context.AdvertisementList
-                                join
-                          user in _context.UserList on advertisement.UserId equals user.UserId
-                                select (new AdvertisementModel
-                                {
-                                    UserId = advertisement.UserId,
-                                    AdvertisementId = advertisement.AdvertisementId,
-                                    CreatedAt = advertisement.CreatedAt,
-                                    Content = advertisement.Content,
-                                    IsActive = advertisement.IsActive,
-                                    IsDeleted = advertisement.IsDeleted,
-                                    Subject = advertisement.Subject,
-                                    Images = _context.ImageList
-                                                .Where(item => item.AdvertisementId == advertisement.AdvertisementId)
-                                                .ToList(),
-                                    User = _context.UserList.Include(item => item.User)
-                                                .Where(item => item.UserId == advertisement.UserId)
-                                                .FirstOrDefault()
-                                })).Where(item => item.IsDeleted == false).ToList();
+            var result = (from advertisement in _context.AdvertisementList
+                          join
+                    user in _context.UserList on advertisement.UserId equals user.UserId
+                          select (new AdvertisementModel
+                          {
+                              UserId = advertisement.UserId,
+                              AdvertisementId = advertisement.AdvertisementId,
+                              CreatedAt = advertisement.CreatedAt,
+                              Content = advertisement.Content,
+                              IsActive = advertisement.IsActive,
+                              IsDeleted = advertisement.IsDeleted,
+                              Subject = advertisement.Subject,
+                              Images = _context.ImageList
+                                          .Where(item => item.AdvertisementId == advertisement.AdvertisementId)
+                                          .ToList(),
+                              User = _context.UserList.Include(item => item.User)
+                                          .Where(item => item.UserId == advertisement.UserId)
+                                          .FirstOrDefault()
+                          })).Where(item => item.IsDeleted == false).ToList();
 
             if (!string.IsNullOrWhiteSpace(search))
-                return result.Where(item => item.Subject.Contains(search, StringComparison.OrdinalIgnoreCase)).ToList();
+                return result.Where(item =>
+                        item.Subject.Contains(search, StringComparison.OrdinalIgnoreCase)
+                    ||
+                        item.Content.Contains(search, StringComparison.OrdinalIgnoreCase)
+                ).ToList();
 
-            return result.ToList();
+            return result;
             //return await _context.AdvertisementList.Include(item => item.User)
             //    .Where(item => item.IsDeleted == false).ToListAsync();
         }
@@ -187,6 +180,143 @@ namespace Backend.Core.Repository
 
 
             _context.AdvertisementList.Update(model);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> DeleteAdvertisements(string advertisementId)
+        {
+            var result = await _context.AdvertisementList.FindAsync(advertisementId);
+
+            if (result == null)
+                throw new Exception($"No Advertisement Found With Id: {advertisementId}");
+
+            result.IsActive = false;
+            result.IsDeleted = true;
+
+            _context.AdvertisementList.Update(result);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
+
+
+        public async Task<List<PostModel>> GetAllPosts(string? search)
+        {
+            var result = (from post in _context.PostList
+                          join
+                    user in _context.UserList on post.UserId equals user.UserId
+                          select (new PostModel
+                          {
+                              UserId = post.UserId,
+                              Subject = post.Subject,
+                              CreatedAt = post.CreatedAt,
+                              IsActive = post.IsActive,
+                              IsDeleted = post.IsDeleted,
+                              Content = post.Content,
+                              Image = post.Image,
+                              User = _context.UserList
+                                          .Where(item => item.UserId == post.UserId)
+                                          .FirstOrDefault()
+                          })).ToList();
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                return result.Where(item => item.Subject.Contains(search, StringComparison.CurrentCultureIgnoreCase)
+                           || item.Content.Contains(search, StringComparison.CurrentCultureIgnoreCase)).ToList();
+
+            }
+            return result;
+        }
+
+        public async Task<List<PostModel>> GetUsersPosts(string userId)
+        {
+            var result = await (from post in _context.PostList
+                                join
+                          user in _context.UserList on post.UserId equals user.UserId
+                                select (new PostModel
+                                {
+                                    UserId = post.UserId,
+                                    Subject = post.Subject,
+                                    CreatedAt = post.CreatedAt,
+                                    IsActive = post.IsActive,
+                                    IsDeleted = post.IsDeleted,
+                                    Content= post.Content,
+                                    Image = post.Image,
+                                    User = _context.UserList
+                                                .Where(item => item.UserId == post.UserId)
+                                                .FirstOrDefault()
+                                })).Where(item => item.UserId == userId)
+                                   .ToListAsync();
+            return result;
+        }
+
+        public async Task<bool> CreatePost(PostModel model)
+        {
+            await _context.PostList.AddAsync(model);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> UpdatePost(PostModel model)
+        {
+            var result = await _context.PostList.Where(x => x.PostId == model.PostId)
+                                .AsNoTracking().FirstOrDefaultAsync();
+
+            if (result == null)
+                throw new Exception($"No Advertisement Found With Id: {model.PostId}");
+
+            _context.PostList.Update(model);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> DeletePost(string postId)
+        {
+            var result = await _context.PostList.FindAsync(postId);
+
+            if (result == null)
+                throw new Exception($"No Advertisement Found With Id: {postId}");
+
+            result.IsActive = false;
+            result.IsDeleted = true;
+
+            _context.PostList.Update(result);
+            
+            var comments = await _context.CommentList.ToListAsync();
+            _context.CommentList.RemoveRange(comments);
+
+            await _context.SaveChangesAsync();
+
+            return true;
+
+        }
+
+        //public async Task<List<CommentModel>> GetAllComments(string postId)
+        //{
+        //    return await _context.CommentList.Where(item => item.PostId == postId).ToListAsync();
+        //}
+
+        public async Task<bool> CreateComment(CommentModel model)
+        {
+            await _context.CommentList.AddAsync(model);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> DeleteComment(int commentId)
+        {
+            var result = await _context.CommentList.FindAsync(commentId);
+
+            if (result == null)
+                throw new Exception($"No Comment Found With Id: {commentId}");
+
+            _context.CommentList.Remove(result);
             await _context.SaveChangesAsync();
 
             return true;

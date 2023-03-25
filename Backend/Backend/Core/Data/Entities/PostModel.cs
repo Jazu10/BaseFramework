@@ -7,7 +7,8 @@ namespace Backend.Core.Data.Entities
     public class PostModel
     {
         [Key]
-        public string PostId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public string? PostId { get; set; }
         public DateTime CreatedAt { get; set; }
 
         [Required(ErrorMessage = "Please Enter The Subject")]

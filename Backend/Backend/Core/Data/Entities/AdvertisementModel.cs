@@ -33,6 +33,7 @@ namespace Backend.Core.Data.Entities
         [ForeignKey("UserId")]
         public UserModel? User { get; set; }
 
+        [NotMapped]
         public List<ImageModel>? Images { get; set; }
     }
 }

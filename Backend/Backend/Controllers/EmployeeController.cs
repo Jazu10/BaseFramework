@@ -64,6 +64,8 @@ namespace Backend.Controllers
 
             try
             {
+                model.IsActive = true;
+
                 response.Response = new SuccessResult()
                 {
                     Succeeded = await _repository.CreateNews(model),
@@ -189,7 +191,6 @@ namespace Backend.Controllers
             try
             {
                 model.IsActive = true;
-                model.IsDeleted = false;
 
                 if (ModelState.IsValid)
                 {
@@ -256,5 +257,142 @@ namespace Backend.Controllers
                 return BadRequest(response);
             }
         }
+
+        [Route("PostList")]
+        [HttpGet]
+        public async Task<IActionResult> GetAllPosts(string? search)
+        {
+            var response = new Results<List<PostModel>>();
+
+            try
+            {
+                response.Response = await _repository.GetAllPosts(search);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
+                return BadRequest(response);
+            }
+        }
+
+        [Route("UsersPost")]
+        [HttpGet]
+        public async Task<IActionResult> GetPostsByUserId(string userId)
+        {
+            var response = new Results<List<PostModel>>();
+           
+            try
+            {
+                response.Response = await _repository.GetUsersPosts(userId);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
+                return BadRequest(response);
+            }
+        }
+
+        [Route("PostList")]
+        [HttpPost]
+        public async Task<IActionResult> CreatePosts(PostModel model)
+        {
+            var response = new Results<SuccessResult>();
+
+            try
+            {
+                model.IsActive = true;
+
+                if (ModelState.IsValid)
+                {
+                    response.Response = new SuccessResult()
+                    {
+                        Succeeded = await _repository.CreatePost(model),
+                        Message = "Post Created"
+                    };
+                    return Ok(response);
+                }
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, "Please Enter All The Fields", 400, null);
+                return BadRequest(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
+                return BadRequest(response);
+            }
+        }
+
+        [Route("SinglePost")]
+        [HttpPut]
+        public async Task<IActionResult> EditPosts(PostModel model)
+        {
+            var response = new Results<SuccessResult>();
+
+            try
+            {
+                model.IsActive = true;
+
+                response.Response = new SuccessResult()
+                {
+                    Succeeded = await _repository.UpdatePost(model),
+                    Message = "Post Updated"
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
+                return BadRequest(response);
+            }
+        }
+
+        [Route("SinglePost")]
+        [HttpDelete]
+        public async Task<IActionResult> DeletePosts(string postId)
+        {
+            var response = new Results<SuccessResult>();
+            try
+            {
+                response.Response = new SuccessResult()
+                {
+                    Succeeded = await _repository.DeletePost(postId),
+                    Message = "Post Deleted"
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
+                return BadRequest(response);
+            }
+        }
+
+
+        [Route("Comment")]
+        [HttpPost]
+        public async Task<IActionResult> CreateComment(CommentModel model)
+        {
+            var response = new Results<SuccessResult>();
+
+            try
+            {
+                response.Response = new SuccessResult()
+                {
+                    Succeeded = await _repository.CreateComment(model),
+                    Message = "Comment Added"
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
+                return BadRequest(response);
+            }
+        }
+
     }
 }

@@ -79,8 +79,9 @@ namespace Backend.Core.Data
         public DbSet<NewsModel> NewsList { get; set; }
         public DbSet<AdvertisementModel> AdvertisementList { get; set; }
         public DbSet<ImageModel> ImageList { get; set; }
-
-
+        public DbSet<PostModel> PostList { get; set; }
+        public DbSet<CommentModel> CommentList { get; set; }
+        //public DbSet<PostModel> LikeList { get; set; }
 
     }
 }
