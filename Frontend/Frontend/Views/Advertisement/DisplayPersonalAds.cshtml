@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿@model IEnumerable<Frontend.DTO.Response.Advertisement.AdvertisementResponseDTO>
 
 @{
@@ -80,3 +81,87 @@
     </script>
 }
 
+=======
+﻿@model IEnumerable<Frontend.DTO.Response.Advertisement.AdvertisementResponseDTO>
+
+@{
+    Layout = "_MenuLayout";
+}
+
+<div class="container mt-2">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col col-4">
+                <div class="card h-100">
+
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+
+                        @foreach (var x in item.Images)
+                        {
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="@x.Image" alt="Third slide">
+                                </div>
+                            </div>
+                        }
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Subject</h5>
+                        <p class="card-text">
+                            @item.Content
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="media">
+                            <img class="mr-3 rounded-circle" src="https://assets.codepen.io/460692/internal/avatars/users/default.png" alt="Image of the post Adder" style="max-width:50px">
+                            <div class="media-body">
+                                <h6 class="card-title">@item.User.firstName</h6>
+                                <small>@item.User.user.phoneNumber</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="d-flex justify-content-end mr-3">
+                            <div class="mb-1">
+                                <a asp-action="DeleteAds" class="btn btn-danger" asp-route-id="@item.AdvertisementId">Delete</a>
+                            </div>
+                            <div class="mb-1">
+                                <a asp-action="EditAds" class="btn btn-secondary" asp-route-id="@item.AdvertisementId">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+@section scripts
+    {
+    <script>
+        $(document).ready(function () {
+            $('.carousel').carousel({
+                interval: 1
+            });
+        });
+    </script>
+}
+
+>>>>>>> da45c59eb01f2ebd994edd0f15a3fad5fd26b7f9

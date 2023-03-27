@@ -64,7 +64,7 @@ namespace Backend.Core.Repository
             return true;
         }
 
-     
+
 
         public async Task<bool> CreateAdvertisements(AdvertisementModel model)
         {
@@ -202,14 +202,14 @@ namespace Backend.Core.Repository
         }
 
 
-
-        public async Task<List<PostModel>> GetAllPosts(string? search)
+        public async Task<List<PostModel>> GetAdminPosts()
         {
             var result = (from post in _context.PostList
                           join
                     user in _context.UserList on post.UserId equals user.UserId
                           select (new PostModel
                           {
+                              PostId = post.PostId,
                               UserId = post.UserId,
                               Subject = post.Subject,
                               CreatedAt = post.CreatedAt,
@@ -219,8 +219,38 @@ namespace Backend.Core.Repository
                               Image = post.Image,
                               User = _context.UserList
                                           .Where(item => item.UserId == post.UserId)
-                                          .FirstOrDefault()
-                          })).ToList();
+                                          .FirstOrDefault(),
+
+                              LikeCount = _context.LikeList.Where(item => item.ContentId == post.PostId).Count(),
+                          })).Where(item => item.IsDeleted == false).ToList();
+
+            return result;
+        }
+
+        public async Task<List<PostModel>> GetAllPosts(string? search, string userId)
+        {
+            var result = (from post in _context.PostList
+                          join
+                    user in _context.UserList on post.UserId equals user.UserId
+                          select (new PostModel
+                          {
+                              PostId = post.PostId,
+                              UserId = post.UserId,
+                              Subject = post.Subject,
+                              CreatedAt = post.CreatedAt,
+                              IsActive = post.IsActive,
+                              IsDeleted = post.IsDeleted,
+                              Content = post.Content,
+                              Image = post.Image,
+                              User = _context.UserList
+                                          .Where(item => item.UserId == post.UserId)
+                                          .FirstOrDefault(),
+
+                              IsLiked = _context.LikeList.Where(item => item.ContentId == post.PostId
+                                             && item.UserId == userId).FirstOrDefault() != null ? true : false,
+
+                              LikeCount = _context.LikeList.Where(item => item.ContentId == post.PostId).Count(),
+                          })).Where(item => item.IsActive == true && item.IsDeleted == false).ToList();
 
             if (!string.IsNullOrWhiteSpace(search))
             {
@@ -231,7 +261,7 @@ namespace Backend.Core.Repository
             return result;
         }
 
-        public async Task<List<PostModel>> GetUsersPosts(string userId)
+        public async Task<List<PostModel>> GetUsersPosts(string postUser, string userId)
         {
             var result = await (from post in _context.PostList
                                 join
@@ -243,12 +273,17 @@ namespace Backend.Core.Repository
                                     CreatedAt = post.CreatedAt,
                                     IsActive = post.IsActive,
                                     IsDeleted = post.IsDeleted,
-                                    Content= post.Content,
+                                    Content = post.Content,
                                     Image = post.Image,
                                     User = _context.UserList
                                                 .Where(item => item.UserId == post.UserId)
-                                                .FirstOrDefault()
-                                })).Where(item => item.UserId == userId)
+                                                .FirstOrDefault(),
+
+                                    IsLiked = _context.LikeList.Where(item => item.ContentId == post.PostId
+                                             && item.UserId == userId).FirstOrDefault() != null ? true : false,
+
+                                    LikeCount = _context.LikeList.Where(item => item.ContentId == post.PostId).Count(),
+                                })).Where(item => item.UserId == postUser && item.IsActive == true && item.IsDeleted == false)
                                    .ToListAsync();
             return result;
         }
@@ -267,7 +302,7 @@ namespace Backend.Core.Repository
                                 .AsNoTracking().FirstOrDefaultAsync();
 
             if (result == null)
-                throw new Exception($"No Advertisement Found With Id: {model.PostId}");
+                throw new Exception($"No Post Found With Id: {model.PostId}");
 
             _context.PostList.Update(model);
             await _context.SaveChangesAsync();
@@ -275,18 +310,33 @@ namespace Backend.Core.Repository
             return true;
         }
 
+        public async Task<bool> ApprovePost(string postId)
+        {
+            var result = await _context.PostList.FindAsync(postId);
+
+            if (result == null)
+                throw new Exception("$\"No Post Found With Id: {postId}");
+            result.IsActive = true;
+
+            _context.PostList.Update(result);
+            await _context.SaveChangesAsync();
+
+            return true;
+
+        }
+
         public async Task<bool> DeletePost(string postId)
         {
             var result = await _context.PostList.FindAsync(postId);
 
             if (result == null)
-                throw new Exception($"No Advertisement Found With Id: {postId}");
+                throw new Exception($"No Post Found With Id: {postId}");
 
             result.IsActive = false;
             result.IsDeleted = true;
 
             _context.PostList.Update(result);
-            
+
             var comments = await _context.CommentList.ToListAsync();
             _context.CommentList.RemoveRange(comments);
 
@@ -300,6 +350,19 @@ namespace Backend.Core.Repository
         //{
         //    return await _context.CommentList.Where(item => item.PostId == postId).ToListAsync();
         //}
+        public async Task<List<CommentModel>> GetAllComments(string postId)
+        {
+            var result = await _context.CommentList.Include(item => item.User)
+                .Where(item => item.PostId == postId)
+                .ToListAsync();
+
+            if (result == null)
+                throw new Exception($"No Post Found With Id: {postId}");
+
+            return result;
+
+        }
+
 
         public async Task<bool> CreateComment(CommentModel model)
         {
@@ -319,6 +382,28 @@ namespace Backend.Core.Repository
             _context.CommentList.Remove(result);
             await _context.SaveChangesAsync();
 
+            return true;
+        }
+
+        public async Task<bool> HandleLikes(string postId, string userId)
+        {
+            var result = await _context.LikeList.Where(item => item.ContentId == postId
+                                && item.UserId == userId).FirstOrDefaultAsync();
+            if (result == null)
+            {
+                var res = new LikeModel()
+                {
+                    ContentId = postId,
+                    UserId = userId
+                };
+
+                await _context.LikeList.AddAsync(res);
+            }
+            else
+            {
+                _context.LikeList.Remove(result);
+            }
+            await _context.SaveChangesAsync();
             return true;
         }
     }

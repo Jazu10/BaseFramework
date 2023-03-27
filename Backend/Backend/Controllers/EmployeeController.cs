@@ -258,15 +258,33 @@ namespace Backend.Controllers
             }
         }
 
-        [Route("PostList")]
+        [Route("AdminPosts")]
         [HttpGet]
-        public async Task<IActionResult> GetAllPosts(string? search)
+        public async Task<IActionResult> GetAdminPosts()
         {
             var response = new Results<List<PostModel>>();
 
             try
             {
-                response.Response = await _repository.GetAllPosts(search);
+                response.Response = await _repository.GetAdminPosts();
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
+                return BadRequest(response);
+            }
+        }
+
+        [Route("PostList")]
+        [HttpGet]
+        public async Task<IActionResult> GetAllPosts(string? search, string userId)
+        {
+            var response = new Results<List<PostModel>>();
+
+            try
+            {
+                response.Response = await _repository.GetAllPosts(search, userId);
                 return Ok(response);
             }
             catch (Exception ex)
@@ -278,13 +296,13 @@ namespace Backend.Controllers
 
         [Route("UsersPost")]
         [HttpGet]
-        public async Task<IActionResult> GetPostsByUserId(string userId)
+        public async Task<IActionResult> GetPostsByUserId(string postUser, string userId)
         {
             var response = new Results<List<PostModel>>();
-           
+
             try
             {
-                response.Response = await _repository.GetUsersPosts(userId);
+                response.Response = await _repository.GetUsersPosts(postUser, userId);
                 return Ok(response);
             }
             catch (Exception ex)
@@ -302,7 +320,6 @@ namespace Backend.Controllers
 
             try
             {
-                model.IsActive = true;
 
                 if (ModelState.IsValid)
                 {
@@ -348,6 +365,30 @@ namespace Backend.Controllers
             }
         }
 
+        [Route("ApprovePost")]
+        [HttpPut]
+        public async Task<IActionResult> ApprovePosts(string postId)
+        {
+            var response = new Results<SuccessResult>();
+
+            try
+            {
+
+                response.Response = new SuccessResult()
+                {
+                    Succeeded = await _repository.ApprovePost(postId),
+                    Message = "Post Approved"
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
+                return BadRequest(response);
+            }
+        }
+
         [Route("SinglePost")]
         [HttpDelete]
         public async Task<IActionResult> DeletePosts(string postId)
@@ -370,6 +411,23 @@ namespace Backend.Controllers
             }
         }
 
+        [Route("Comment")]
+        [HttpGet]
+        public async Task<IActionResult> GetAllComments(string postId)
+        {
+            var response = new Results<List<CommentModel>>();
+
+            try
+            {
+                response.Response = await _repository.GetAllComments(postId);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
+                return BadRequest(response);
+            }
+        }
 
         [Route("Comment")]
         [HttpPost]
@@ -383,6 +441,52 @@ namespace Backend.Controllers
                 {
                     Succeeded = await _repository.CreateComment(model),
                     Message = "Comment Added"
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
+                return BadRequest(response);
+            }
+        }
+
+        [Route("Comment")]
+        [HttpDelete]
+        public async Task<IActionResult> DeleteComment(int commentId)
+        {
+            var response = new Results<SuccessResult>();
+
+            try
+            {
+                response.Response = new SuccessResult()
+                {
+                    Succeeded = await _repository.DeleteComment(commentId),
+                    Message = "Comment Deleted"
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
+                return BadRequest(response);
+            }
+        }
+
+        [Route("Liker")]
+        [HttpPost]
+        public async Task<IActionResult> Liker(string postId, string userId)
+        {
+            var response = new Results<SuccessResult>();
+
+            try
+            {
+                response.Response = new SuccessResult()
+                {
+                    Succeeded = await _repository.HandleLikes(postId, userId),
+                    Message = "Like Updated"
                 };
 
                 return Ok(response);

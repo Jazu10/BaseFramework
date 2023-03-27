@@ -18,17 +18,24 @@ namespace Backend.Core.RepositoryInterface
         public Task<bool> UpdateAdvertisements(AdvertisementModel model);
         public Task<bool> DeleteAdvertisements(string newsId);
 
-
-        public Task<List<PostModel>> GetAllPosts(string? search);
-        public Task<List<PostModel>> GetUsersPosts(string userId);
+        public Task<List<PostModel>> GetAdminPosts();
+        public Task<List<PostModel>> GetAllPosts(string? search, string userId);
+        public Task<List<PostModel>> GetUsersPosts(string postUser, string userId);
         public Task<bool> CreatePost(PostModel model);
         public Task<bool> UpdatePost(PostModel model);
+        public Task<bool> ApprovePost(string postId);
+
         public Task<bool> DeletePost(string postId);
 
         //public Task<List<CommentModel>> GetAllComments(string psotId);
+        public Task<List<CommentModel>> GetAllComments(string postId);
+
         public Task<bool> CreateComment(CommentModel model);
+
         public Task<bool> DeleteComment(int commentId);
 
+
+        public Task<bool> HandleLikes(string postId, string userId);
 
     }
 }
