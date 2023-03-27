@@ -1,5 +1,4 @@
 ﻿using Frontend.Core.HttpClients;
-using Frontend.DTO.Request.Advertisement;
 using Frontend.DTO.Response;
 using Frontend.DTO.Response.Advertisement;
 using Frontend.DTO.Response.Common;
