@@ -17,7 +17,7 @@ namespace Backend.Core.Data.Entities
         [ForeignKey("UserId")]
         public UserModel? User { get; set; }
 
-        [ForeignKey("PostId")]
-        public PostModel Post { get; set; }
+        //[ForeignKey("PostId")]
+        //public PostModel Post { get; set; }
     }
 }

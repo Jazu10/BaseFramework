@@ -25,5 +25,12 @@ namespace Backend.Core.Data.Entities
 
         [ForeignKey("UserId")]
         public UserModel? User { get; set; }
+
+
+        [NotMapped]
+        public bool IsLiked { get; set; }
+
+        [NotMapped]
+        public int LikeCount { get; set; }
     }
 }

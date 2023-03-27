@@ -18,6 +18,9 @@ namespace Backend.Core.Data
             SeedRole(modelBuilder);
             SeedUserRole(modelBuilder);
 
+            modelBuilder.Entity<LikeModel>()
+                    .HasKey(item => new { item.UserId, item.ContentId });
+
             base.OnModelCreating(modelBuilder);
         }
         private void SeedUsers(ModelBuilder modelBuilder)
@@ -81,7 +84,7 @@ namespace Backend.Core.Data
         public DbSet<ImageModel> ImageList { get; set; }
         public DbSet<PostModel> PostList { get; set; }
         public DbSet<CommentModel> CommentList { get; set; }
-        //public DbSet<PostModel> LikeList { get; set; }
+        public DbSet<LikeModel> LikeList { get; set; }
 
     }
 }
