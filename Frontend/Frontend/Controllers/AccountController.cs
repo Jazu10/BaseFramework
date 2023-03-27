@@ -20,7 +20,7 @@ namespace Frontend.Controllers
         private IToastNotification _toastService;
 
         public AccountController(IGenericHttpClient client,
-            IWebHostEnvironment env, IToastNotification toastService):base(toastService)
+            IWebHostEnvironment env, IToastNotification toastService) : base(toastService)
         {
             _client = client;
             _env = env;
@@ -52,7 +52,8 @@ namespace Frontend.Controllers
                     {
                         _toastService.AddSuccessToastMessage($"Welcome {result.Response.firstName} {result.Response.lastName}");
 
-                        return RedirectToAction(nameof(UsersList), "Account");
+                        return RedirectToAction("GetAllAds", "Advertisement");
+
                     }
                 }
             }
@@ -91,10 +92,10 @@ namespace Frontend.Controllers
                     }
                     var result = await _client.PostAsync<SuccessResultDTO>(ApiConstants.Register, model);
 
-                    if(result.Response.Succeeded) 
+                    if (result.Response.Succeeded)
                         _toastService.AddSuccessToastMessage(result.Response.Message);
 
-                    return RedirectToAction(nameof(Login));
+                    return RedirectToAction("GetAllAds", "Advertisement");
                 }
             }
             catch (Exception ex)
@@ -166,7 +167,7 @@ namespace Frontend.Controllers
 
                 var result = await _client.PutAsync<SuccessResultDTO>($"{ApiConstants.SingleUser}", updateModel);
 
-                if(result.Response.Succeeded)
+                if (result.Response.Succeeded)
                     _toastService.AddSuccessToastMessage(result.Response.Message);
 
                 return RedirectToAction(nameof(UsersList));
