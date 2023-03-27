@@ -4,26 +4,12 @@
     Layout = "_MenuLayout";
 }
 
-<div class="container">
-    <div class="d-flex justify-content-end mr-3">
-        <div>
-            <a asp-action="DisplayPersonalAds" asp-route-id="@Model.FirstOrDefault().UserId" class="btn btn-primary">My Contributions</a>
-        </div>
-        <div>
-            <a asp-action="CreateAds" asp-route-id="@Model.FirstOrDefault().UserId" class="btn btn-primary">Add</a>
-        </div>
-    </div>
-</div>
-
 <div class="container mt-2">
     <div class="row">
         @foreach (var item in Model)
         {
             <div class="col col-4">
                 <div class="card h-100">
-
-                    @*<img src="https://assets.codepen.io/460692/internal/avatars/users/default.png" class="card-img-top h-100"
-                alt="Image of the Ads" />*@
 
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
@@ -35,18 +21,9 @@
                         @foreach (var x in item.Images)
                         {
                             <div class="carousel-inner">
-                                @*<div class="carousel-item active">
-                                    <img class="d-block w-100" src="https://assets.codepen.io/460692/internal/avatars/users/default.png" alt="First slide">
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="~/images/74472.png" alt="Second slide">
-                                </div>*@
-
-
                                 <div class="carousel-item active">
                                     <img class="d-block w-100" src="@x.Image" alt="Third slide">
                                 </div>
-
                             </div>
                         }
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -71,6 +48,16 @@
                             <div class="media-body">
                                 <h6 class="card-title">@item.User.firstName</h6>
                                 <small>@item.User.user.phoneNumber</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="d-flex justify-content-end mr-3">
+                            <div class="mb-1">
+                                <a asp-action="DeleteAds" class="btn btn-danger" asp-route-id="@item.AdvertisementId">Delete</a>
+                            </div>
+                            <div class="mb-1">
+                                <a asp-action="EditAds" class="btn btn-secondary" asp-route-id="@item.AdvertisementId">Edit</a>
                             </div>
                         </div>
                     </div>

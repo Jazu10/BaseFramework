@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Frontend.DTO.Response.Common;
+using Microsoft.AspNetCore.Http;
+using System.Text.Json.Serialization;
 
 namespace Frontend.DTO.Response.Advertisement
 {
@@ -15,6 +17,8 @@ namespace Frontend.DTO.Response.Advertisement
         {
             Images = new List<ImageModelDTO>();
         }
+
+        public string? AdvertisementId { get; set; }
 
         public DateTime CreatedAt { get; set; }
 
@@ -29,5 +33,7 @@ namespace Frontend.DTO.Response.Advertisement
         public UserResponseDTO? User { get; set; }
 
         public List<ImageModelDTO>? Images { get; set; }
+        [JsonIgnore]
+        public List<IFormFile>? ImgFiles { get; set; }
     }
 }
