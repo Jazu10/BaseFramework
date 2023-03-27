@@ -285,6 +285,9 @@
     @{
         var currentCtrAct = ViewContext?.RouteData?.Values["area"]?.ToString().ToLower() + ViewContext?.RouteData?.Values["Controller"]?.ToString().ToLower() + ViewContext?.RouteData?.Values["Action"]?.ToString().ToLower();
     }
+
+    @await Component.InvokeAsync("NToastNotify")
+     
     <script src="/assets/plugins/global/plugins.bundle.js" asp-append-version="true"></script>
     <script src="/assets/js/scripts.bundle.js" asp-append-version="true"></script>
     <script src="/assets/js/custom/moment.min.js" asp-append-version="true"></script>

@@ -1,0 +1,113 @@
+﻿@model IEnumerable<NewsResponseDTO>
+@{
+    Layout = "_MenuLayout";
+    ViewData["Title"] = "GetAllNews";
+}
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/assets/css/newscard.css" asp-append-version="true" />
+
+
+
+
+    <style>
+                body {
+                        margin: 30px;
+
+        }
+
+
+
+
+    </style>
+</head>
+
+
+
+
+
+<div id="accordion">
+
+
+
+    <div class="card mb-3" style="max-width: 940px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="/assets/media/avatars/blank.png" height="200px" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body" id="heading-2">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <h5 class="mb-0">
+                        <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
+                            How to get this trade copier?
+                        </a>
+                    </h5>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div id="collapse-2" class="collapse" data-parent="#accordion" aria-labelledby="heading-2">
+            <div class="card-body">
+                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
+                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
+                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
+                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
+                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
+                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="card mb-3" style="max-width: 940px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="/assets/media/avatars/blank.png" height="200px" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body" id="heading-3">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <h5 class="mb-0">
+                        <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
+                            How to get this trade copier?
+                        </a>
+                    </h5>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div id="collapse-3" class="collapse" data-parent="#accordion" aria-labelledby="heading-3">
+            <div class="card-body">
+                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
+                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
+                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
+                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
+                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
+                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+
+    <script>
+        $('.collapse').collapse()
+    </script>
+}
