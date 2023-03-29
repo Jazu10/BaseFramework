@@ -1,10 +1,11 @@
 ﻿using Frontend.Core.HttpClients;
-using Frontend.DTO.Request.Advertisement;
 using Frontend.DTO.Response;
 using Frontend.DTO.Response.Advertisement;
 using Frontend.DTO.Response.Common;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Differencing;
 using NToastNotify;
+using System.Security.Claims;
 
 namespace Frontend.Controllers
 {
@@ -87,7 +88,7 @@ namespace Frontend.Controllers
             return RedirectToAction("GetAllAds");
         }
 
-        public async Task<IActionResult> DeleteAds(string id, string userID)
+        public async Task<IActionResult> DeleteAds(string id)
         {
             var response = await _client.DeleteAsync<SuccessResultDTO>($"{ApiConstants.DltAdsById}?advertisementId={id}");
             if (!response.IsError)
@@ -95,6 +96,40 @@ namespace Frontend.Controllers
                 _toastService.AddSuccessToastMessage(response.Response.Message);
             }
             return RedirectToAction("GetAllAds");
+        }
+
+
+        public async Task<IActionResult> EditAds(string id)
+        {
+            var response = await _client.GetAsyncSingle<AdvertisementResponseDTO>($"{ApiConstants.EditAdsById}?advertisementId={id}");
+            //var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if(response.Response!= null)
+            {
+                return View(response.Response);
+            }
+            return RedirectToAction("GetAllAds");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditAds(AdvertisementResponseDTO model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var result = await _client.PutAsync<SuccessResultDTO>(ApiConstants.EditAdsById, model);
+                    if (result.Response.Succeeded)
+                    {
+                        _toastService.AddSuccessToastMessage(result.Response.Message);
+                        return RedirectToAction("GetAllAds");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                DisplayErrors(ex);
+            }
+            return View(model);
         }
     }
 }
