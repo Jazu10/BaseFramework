@@ -3858,3 +3858,792 @@ WHERE [n].[IsDeleted] = CAST(0 AS bit)
 [2023-03-27 11:41:03.467 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllNews (Backend) in 183.0576ms
 [2023-03-27 11:41:03.467 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllNews (Backend)'
 [2023-03-27 11:41:03.468 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/NewsList/ - - - 200 - application/json;+charset=utf-8 193.9973ms
+[2023-03-27 13:07:02.633 +05:30  INF]  User profile is available. Using 'C:\Users\Ambareesh.sankaran\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2023-03-27 13:07:03.526 +05:30  INF]  Now listening on: http://localhost:5238
+[2023-03-27 13:07:03.538 +05:30  INF]  Application started. Press Ctrl+C to shut down.
+[2023-03-27 13:07:03.538 +05:30  INF]  Hosting environment: Development
+[2023-03-27 13:07:03.538 +05:30  INF]  Content root path: C:\Users\Ambareesh.sankaran\source\repos\FinalPrjt\Backend\Backend\
+[2023-03-27 13:07:04.908 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/swagger/index.html - -
+[2023-03-27 13:07:06.324 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/swagger/index.html - - - 200 - text/html;charset=utf-8 1422.5240ms
+[2023-03-27 13:07:06.515 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/_framework/aspnetcore-browser-refresh.js - -
+[2023-03-27 13:07:06.527 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/_framework/aspnetcore-browser-refresh.js - - - 200 11984 application/javascript;+charset=utf-8 11.8200ms
+[2023-03-27 13:07:06.548 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/_vs/browserLink - -
+[2023-03-27 13:07:06.668 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 119.4446ms
+[2023-03-27 13:07:06.818 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/swagger/v1/swagger.json - -
+[2023-03-27 13:07:07.256 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 438.2218ms
+[2023-03-27 13:07:59.309 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/AdminPosts - -
+[2023-03-27 13:07:59.781 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAdminPosts (Backend)'
+[2023-03-27 13:07:59.881 +05:30  INF]  Route matched with {action = "GetAdminPosts", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAdminPosts() on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-27 13:08:05.763 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:08:08.666 +05:30  INF]  Executed DbCommand (150ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PostId], [p].[UserId], [p].[Subject], [p].[CreatedAt], [p].[IsActive], [p].[IsDeleted], [p].[Content], [p].[Image], (
+    SELECT COUNT(*)
+    FROM [Likes] AS [l]
+    WHERE [l].[ContentId] = [p].[PostId]), [t0].[UserId], [t0].[Address], [t0].[DOB], [t0].[DOJ], [t0].[FirstName], [t0].[Gender], [t0].[Image], [t0].[LastName]
+FROM [Posts] AS [p]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[UserId]
+LEFT JOIN (
+    SELECT [t].[UserId], [t].[Address], [t].[DOB], [t].[DOJ], [t].[FirstName], [t].[Gender], [t].[Image], [t].[LastName]
+    FROM (
+        SELECT [u0].[UserId], [u0].[Address], [u0].[DOB], [u0].[DOJ], [u0].[FirstName], [u0].[Gender], [u0].[Image], [u0].[LastName], ROW_NUMBER() OVER(PARTITION BY [u0].[UserId] ORDER BY [u0].[UserId]) AS [row]
+        FROM [Users] AS [u0]
+    ) AS [t]
+    WHERE [t].[row] <= 1
+) AS [t0] ON [p].[UserId] = [t0].[UserId]
+WHERE [p].[IsDeleted] = CAST(0 AS bit)
+[2023-03-27 13:08:08.808 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.PostModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:08:08.864 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAdminPosts (Backend) in 8956.0848ms
+[2023-03-27 13:08:08.867 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAdminPosts (Backend)'
+[2023-03-27 13:08:08.905 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/AdminPosts - - - 200 - application/json;+charset=utf-8 9606.9221ms
+[2023-03-27 13:14:28.221 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/token application/json 40
+[2023-03-27 13:14:28.223 +05:30  INF]  Executing endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:14:28.235 +05:30  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.TokenController (Backend).
+[2023-03-27 13:14:28.461 +05:30  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2023-03-27 13:14:28.461 +05:30  INF]  Executed action Backend.Controllers.TokenController.Post (Backend) in 225.5711ms
+[2023-03-27 13:14:28.461 +05:30  INF]  Executed endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:14:28.461 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/token application/json 40 - 200 - application/json;+charset=utf-8 240.0929ms
+[2023-03-27 13:14:28.519 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/AdvertisementList/ - -
+[2023-03-27 13:14:28.636 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
+[2023-03-27 13:14:28.641 +05:30  INF]  Route matched with {action = "GetAllAdvertisements", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAdvertisements(System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-27 13:14:28.649 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:14:28.781 +05:30  INF]  Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[UserId], [a].[AdvertisementId], [a].[CreatedAt], [a].[Content], [a].[IsActive], [a].[IsDeleted], [a].[Subject], [u].[UserId], [i].[ImageId], [i].[AdvertisementId], [i].[Image], [t0].[UserId], [t0].[Address], [t0].[DOB], [t0].[DOJ], [t0].[FirstName], [t0].[Gender], [t0].[Image], [t0].[LastName], [t0].[Id], [t0].[AccessFailedCount], [t0].[ConcurrencyStamp], [t0].[Email], [t0].[EmailConfirmed], [t0].[LockoutEnabled], [t0].[LockoutEnd], [t0].[NormalizedEmail], [t0].[NormalizedUserName], [t0].[PasswordHash], [t0].[PhoneNumber], [t0].[PhoneNumberConfirmed], [t0].[SecurityStamp], [t0].[TwoFactorEnabled], [t0].[UserName]
+FROM [Advertisements] AS [a]
+INNER JOIN [Users] AS [u] ON [a].[UserId] = [u].[UserId]
+LEFT JOIN [Images] AS [i] ON [a].[AdvertisementId] = [i].[AdvertisementId]
+LEFT JOIN (
+    SELECT [t].[UserId], [t].[Address], [t].[DOB], [t].[DOJ], [t].[FirstName], [t].[Gender], [t].[Image], [t].[LastName], [t].[Id], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[Email], [t].[EmailConfirmed], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UserName]
+    FROM (
+        SELECT [u0].[UserId], [u0].[Address], [u0].[DOB], [u0].[DOJ], [u0].[FirstName], [u0].[Gender], [u0].[Image], [u0].[LastName], [a0].[Id], [a0].[AccessFailedCount], [a0].[ConcurrencyStamp], [a0].[Email], [a0].[EmailConfirmed], [a0].[LockoutEnabled], [a0].[LockoutEnd], [a0].[NormalizedEmail], [a0].[NormalizedUserName], [a0].[PasswordHash], [a0].[PhoneNumber], [a0].[PhoneNumberConfirmed], [a0].[SecurityStamp], [a0].[TwoFactorEnabled], [a0].[UserName], ROW_NUMBER() OVER(PARTITION BY [u0].[UserId] ORDER BY [u0].[UserId], [a0].[Id]) AS [row]
+        FROM [Users] AS [u0]
+        INNER JOIN [AspNetUsers] AS [a0] ON [u0].[UserId] = [a0].[Id]
+    ) AS [t]
+    WHERE [t].[row] <= 1
+) AS [t0] ON [a].[UserId] = [t0].[UserId]
+WHERE [a].[IsDeleted] = CAST(0 AS bit)
+ORDER BY [a].[AdvertisementId], [u].[UserId]
+[2023-03-27 13:14:28.926 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.AdvertisementModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:14:28.949 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend) in 308.0418ms
+[2023-03-27 13:14:28.949 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
+[2023-03-27 13:14:28.950 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/AdvertisementList/ - - - 200 - application/json;+charset=utf-8 430.5767ms
+[2023-03-27 13:15:03.523 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/token application/json 40
+[2023-03-27 13:15:03.523 +05:30  INF]  Executing endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:15:03.526 +05:30  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.TokenController (Backend).
+[2023-03-27 13:15:03.531 +05:30  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2023-03-27 13:15:03.531 +05:30  INF]  Executed action Backend.Controllers.TokenController.Post (Backend) in 3.5237ms
+[2023-03-27 13:15:03.531 +05:30  INF]  Executed endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:15:03.531 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/token application/json 40 - 200 - application/json;+charset=utf-8 8.1029ms
+[2023-03-27 13:15:03.541 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/AdvertisementList/ - -
+[2023-03-27 13:15:03.542 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
+[2023-03-27 13:15:03.542 +05:30  INF]  Route matched with {action = "GetAllAdvertisements", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAdvertisements(System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-27 13:15:03.592 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:15:03.602 +05:30  INF]  Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[UserId], [a].[AdvertisementId], [a].[CreatedAt], [a].[Content], [a].[IsActive], [a].[IsDeleted], [a].[Subject], [u].[UserId], [i].[ImageId], [i].[AdvertisementId], [i].[Image], [t0].[UserId], [t0].[Address], [t0].[DOB], [t0].[DOJ], [t0].[FirstName], [t0].[Gender], [t0].[Image], [t0].[LastName], [t0].[Id], [t0].[AccessFailedCount], [t0].[ConcurrencyStamp], [t0].[Email], [t0].[EmailConfirmed], [t0].[LockoutEnabled], [t0].[LockoutEnd], [t0].[NormalizedEmail], [t0].[NormalizedUserName], [t0].[PasswordHash], [t0].[PhoneNumber], [t0].[PhoneNumberConfirmed], [t0].[SecurityStamp], [t0].[TwoFactorEnabled], [t0].[UserName]
+FROM [Advertisements] AS [a]
+INNER JOIN [Users] AS [u] ON [a].[UserId] = [u].[UserId]
+LEFT JOIN [Images] AS [i] ON [a].[AdvertisementId] = [i].[AdvertisementId]
+LEFT JOIN (
+    SELECT [t].[UserId], [t].[Address], [t].[DOB], [t].[DOJ], [t].[FirstName], [t].[Gender], [t].[Image], [t].[LastName], [t].[Id], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[Email], [t].[EmailConfirmed], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UserName]
+    FROM (
+        SELECT [u0].[UserId], [u0].[Address], [u0].[DOB], [u0].[DOJ], [u0].[FirstName], [u0].[Gender], [u0].[Image], [u0].[LastName], [a0].[Id], [a0].[AccessFailedCount], [a0].[ConcurrencyStamp], [a0].[Email], [a0].[EmailConfirmed], [a0].[LockoutEnabled], [a0].[LockoutEnd], [a0].[NormalizedEmail], [a0].[NormalizedUserName], [a0].[PasswordHash], [a0].[PhoneNumber], [a0].[PhoneNumberConfirmed], [a0].[SecurityStamp], [a0].[TwoFactorEnabled], [a0].[UserName], ROW_NUMBER() OVER(PARTITION BY [u0].[UserId] ORDER BY [u0].[UserId], [a0].[Id]) AS [row]
+        FROM [Users] AS [u0]
+        INNER JOIN [AspNetUsers] AS [a0] ON [u0].[UserId] = [a0].[Id]
+    ) AS [t]
+    WHERE [t].[row] <= 1
+) AS [t0] ON [a].[UserId] = [t0].[UserId]
+WHERE [a].[IsDeleted] = CAST(0 AS bit)
+ORDER BY [a].[AdvertisementId], [u].[UserId]
+[2023-03-27 13:15:03.602 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.AdvertisementModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:15:03.602 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend) in 60.1307ms
+[2023-03-27 13:15:03.602 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
+[2023-03-27 13:15:03.602 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/AdvertisementList/ - - - 200 - application/json;+charset=utf-8 60.9956ms
+[2023-03-27 13:15:33.836 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/token application/json 40
+[2023-03-27 13:15:33.841 +05:30  INF]  Executing endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:15:33.841 +05:30  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.TokenController (Backend).
+[2023-03-27 13:15:33.845 +05:30  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2023-03-27 13:15:33.845 +05:30  INF]  Executed action Backend.Controllers.TokenController.Post (Backend) in 4.3001ms
+[2023-03-27 13:15:33.845 +05:30  INF]  Executed endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:15:33.845 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/token application/json 40 - 200 - application/json;+charset=utf-8 9.8283ms
+[2023-03-27 13:15:33.861 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/AdvertisementList/ - -
+[2023-03-27 13:15:33.862 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
+[2023-03-27 13:15:33.862 +05:30  INF]  Route matched with {action = "GetAllAdvertisements", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAdvertisements(System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-27 13:15:33.863 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:15:33.871 +05:30  INF]  Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[UserId], [a].[AdvertisementId], [a].[CreatedAt], [a].[Content], [a].[IsActive], [a].[IsDeleted], [a].[Subject], [u].[UserId], [i].[ImageId], [i].[AdvertisementId], [i].[Image], [t0].[UserId], [t0].[Address], [t0].[DOB], [t0].[DOJ], [t0].[FirstName], [t0].[Gender], [t0].[Image], [t0].[LastName], [t0].[Id], [t0].[AccessFailedCount], [t0].[ConcurrencyStamp], [t0].[Email], [t0].[EmailConfirmed], [t0].[LockoutEnabled], [t0].[LockoutEnd], [t0].[NormalizedEmail], [t0].[NormalizedUserName], [t0].[PasswordHash], [t0].[PhoneNumber], [t0].[PhoneNumberConfirmed], [t0].[SecurityStamp], [t0].[TwoFactorEnabled], [t0].[UserName]
+FROM [Advertisements] AS [a]
+INNER JOIN [Users] AS [u] ON [a].[UserId] = [u].[UserId]
+LEFT JOIN [Images] AS [i] ON [a].[AdvertisementId] = [i].[AdvertisementId]
+LEFT JOIN (
+    SELECT [t].[UserId], [t].[Address], [t].[DOB], [t].[DOJ], [t].[FirstName], [t].[Gender], [t].[Image], [t].[LastName], [t].[Id], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[Email], [t].[EmailConfirmed], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UserName]
+    FROM (
+        SELECT [u0].[UserId], [u0].[Address], [u0].[DOB], [u0].[DOJ], [u0].[FirstName], [u0].[Gender], [u0].[Image], [u0].[LastName], [a0].[Id], [a0].[AccessFailedCount], [a0].[ConcurrencyStamp], [a0].[Email], [a0].[EmailConfirmed], [a0].[LockoutEnabled], [a0].[LockoutEnd], [a0].[NormalizedEmail], [a0].[NormalizedUserName], [a0].[PasswordHash], [a0].[PhoneNumber], [a0].[PhoneNumberConfirmed], [a0].[SecurityStamp], [a0].[TwoFactorEnabled], [a0].[UserName], ROW_NUMBER() OVER(PARTITION BY [u0].[UserId] ORDER BY [u0].[UserId], [a0].[Id]) AS [row]
+        FROM [Users] AS [u0]
+        INNER JOIN [AspNetUsers] AS [a0] ON [u0].[UserId] = [a0].[Id]
+    ) AS [t]
+    WHERE [t].[row] <= 1
+) AS [t0] ON [a].[UserId] = [t0].[UserId]
+WHERE [a].[IsDeleted] = CAST(0 AS bit)
+ORDER BY [a].[AdvertisementId], [u].[UserId]
+[2023-03-27 13:15:33.872 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.AdvertisementModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:15:33.872 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend) in 9.9433ms
+[2023-03-27 13:15:33.872 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
+[2023-03-27 13:15:33.872 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/AdvertisementList/ - - - 200 - application/json;+charset=utf-8 11.1115ms
+[2023-03-27 13:19:44.654 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Account/UserList - -
+[2023-03-27 13:19:44.684 +05:30  INF]  Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo: 'System.DateTime', Current time: 'System.DateTime'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateTokenPayload(JwtSecurityToken jwtToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
+   at Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler.HandleAuthenticateAsync()
+[2023-03-27 13:19:44.765 +05:30  INF]  Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo: 'System.DateTime', Current time: 'System.DateTime'.
+[2023-03-27 13:19:44.765 +05:30  INF]  Executing endpoint 'Backend.Controllers.AccountController.UsersList (Backend)'
+[2023-03-27 13:19:44.768 +05:30  INF]  Route matched with {action = "UsersList", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UsersList() on controller Backend.Controllers.AccountController (Backend).
+[2023-03-27 13:19:44.771 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:19:44.845 +05:30  INF]  Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserId], [u].[Address], [u].[DOB], [u].[DOJ], [u].[FirstName], [u].[Gender], [u].[Image], [u].[LastName], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Users] AS [u]
+INNER JOIN [AspNetUsers] AS [a] ON [u].[UserId] = [a].[Id]
+[2023-03-27 13:19:44.880 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.UserModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:19:44.883 +05:30  INF]  Executed action Backend.Controllers.AccountController.UsersList (Backend) in 115.5681ms
+[2023-03-27 13:19:44.885 +05:30  INF]  Executed endpoint 'Backend.Controllers.AccountController.UsersList (Backend)'
+[2023-03-27 13:19:44.887 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Account/UserList - - - 200 - application/json;+charset=utf-8 233.6141ms
+[2023-03-27 13:20:16.482 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/Employee/PostList application/json 192
+[2023-03-27 13:20:16.483 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.CreatePosts (Backend)'
+[2023-03-27 13:20:16.492 +05:30  INF]  Route matched with {action = "CreatePosts", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreatePosts(Backend.Core.Data.Entities.PostModel) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-27 13:20:16.507 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:20:16.758 +05:30  INF]  Executed DbCommand (47ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000), @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (Size = 4000), @p7='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Posts] ([PostId], [Content], [CreatedAt], [Image], [IsActive], [IsDeleted], [Subject], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+[2023-03-27 13:20:16.797 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[Backend.Core.ViewModels.SuccessResult, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2023-03-27 13:20:16.798 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.CreatePosts (Backend) in 306.6471ms
+[2023-03-27 13:20:16.799 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.CreatePosts (Backend)'
+[2023-03-27 13:20:16.799 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/Employee/PostList application/json 192 - 200 - application/json;+charset=utf-8 316.3979ms
+[2023-03-27 13:26:36.499 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/PostList?userId=ab181cd5-cdde-43d6-8aa2-93d2230b79ca - -
+[2023-03-27 13:26:36.499 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 13:26:36.510 +05:30  INF]  Route matched with {action = "GetAllPosts", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllPosts(System.String, System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-27 13:26:36.520 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:26:36.572 +05:30  INF]  Executed DbCommand (20ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PostId], [p].[UserId], [p].[Subject], [p].[CreatedAt], [p].[IsActive], [p].[IsDeleted], [p].[Content], [p].[Image], CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Likes] AS [l]
+        WHERE ([l].[ContentId] = [p].[PostId]) AND ([l].[UserId] = @__userId_0)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, (
+    SELECT COUNT(*)
+    FROM [Likes] AS [l0]
+    WHERE [l0].[ContentId] = [p].[PostId]), [t0].[UserId], [t0].[Address], [t0].[DOB], [t0].[DOJ], [t0].[FirstName], [t0].[Gender], [t0].[Image], [t0].[LastName]
+FROM [Posts] AS [p]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[UserId]
+LEFT JOIN (
+    SELECT [t].[UserId], [t].[Address], [t].[DOB], [t].[DOJ], [t].[FirstName], [t].[Gender], [t].[Image], [t].[LastName]
+    FROM (
+        SELECT [u0].[UserId], [u0].[Address], [u0].[DOB], [u0].[DOJ], [u0].[FirstName], [u0].[Gender], [u0].[Image], [u0].[LastName], ROW_NUMBER() OVER(PARTITION BY [u0].[UserId] ORDER BY [u0].[UserId]) AS [row]
+        FROM [Users] AS [u0]
+    ) AS [t]
+    WHERE [t].[row] <= 1
+) AS [t0] ON [p].[UserId] = [t0].[UserId]
+WHERE ([p].[IsActive] = CAST(1 AS bit)) AND ([p].[IsDeleted] = CAST(0 AS bit))
+[2023-03-27 13:26:36.572 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.PostModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:26:36.572 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllPosts (Backend) in 62.0083ms
+[2023-03-27 13:26:36.572 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 13:26:36.572 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/PostList?userId=ab181cd5-cdde-43d6-8aa2-93d2230b79ca - - - 200 - application/json;+charset=utf-8 73.4044ms
+[2023-03-27 13:28:46.309 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/UsersPost?userId=b690852c-30d5-415a-8a28-42e0605c2c28&PostUser=b690852c-30d5-415a-8a28-42e0605c2c28 - -
+[2023-03-27 13:28:46.310 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetPostsByUserId (Backend)'
+[2023-03-27 13:28:46.318 +05:30  INF]  Route matched with {action = "GetPostsByUserId", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPostsByUserId(System.String, System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-27 13:28:46.322 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:28:46.335 +05:30  INF]  Executed DbCommand (7ms) [Parameters=[@__userId_0='?' (Size = 450), @__postUser_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[UserId], [p].[Subject], [p].[CreatedAt], [p].[IsActive], [p].[IsDeleted], [p].[Content], [p].[Image], CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Likes] AS [l]
+        WHERE ([l].[ContentId] = [p].[PostId]) AND ([l].[UserId] = @__userId_0)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, (
+    SELECT COUNT(*)
+    FROM [Likes] AS [l0]
+    WHERE [l0].[ContentId] = [p].[PostId]), [t0].[UserId], [t0].[Address], [t0].[DOB], [t0].[DOJ], [t0].[FirstName], [t0].[Gender], [t0].[Image], [t0].[LastName]
+FROM [Posts] AS [p]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[UserId]
+LEFT JOIN (
+    SELECT [t].[UserId], [t].[Address], [t].[DOB], [t].[DOJ], [t].[FirstName], [t].[Gender], [t].[Image], [t].[LastName]
+    FROM (
+        SELECT [u0].[UserId], [u0].[Address], [u0].[DOB], [u0].[DOJ], [u0].[FirstName], [u0].[Gender], [u0].[Image], [u0].[LastName], ROW_NUMBER() OVER(PARTITION BY [u0].[UserId] ORDER BY [u0].[UserId]) AS [row]
+        FROM [Users] AS [u0]
+    ) AS [t]
+    WHERE [t].[row] <= 1
+) AS [t0] ON [p].[UserId] = [t0].[UserId]
+WHERE (([p].[UserId] = @__postUser_1) AND ([p].[IsActive] = CAST(1 AS bit))) AND ([p].[IsDeleted] = CAST(0 AS bit))
+[2023-03-27 13:28:46.336 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.PostModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:28:46.336 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetPostsByUserId (Backend) in 17.8963ms
+[2023-03-27 13:28:46.336 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetPostsByUserId (Backend)'
+[2023-03-27 13:28:46.336 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/UsersPost?userId=b690852c-30d5-415a-8a28-42e0605c2c28&PostUser=b690852c-30d5-415a-8a28-42e0605c2c28 - - - 200 - application/json;+charset=utf-8 27.2892ms
+[2023-03-27 13:30:10.381 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/UsersPost?userId=b690852c-30d5-415a-8a28-42e0605c2c28&PostUser=b690852c-30d5-415a-8a28-42e0605c2c28 - -
+[2023-03-27 13:30:10.382 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetPostsByUserId (Backend)'
+[2023-03-27 13:30:10.386 +05:30  INF]  Route matched with {action = "GetPostsByUserId", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPostsByUserId(System.String, System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-27 13:30:14.471 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:30:44.536 +05:30  INF]  Executed DbCommand (42ms) [Parameters=[@__userId_0='?' (Size = 450), @__postUser_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[UserId], [p].[Subject], [p].[CreatedAt], [p].[IsActive], [p].[IsDeleted], [p].[Content], [p].[Image], CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Likes] AS [l]
+        WHERE ([l].[ContentId] = [p].[PostId]) AND ([l].[UserId] = @__userId_0)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, (
+    SELECT COUNT(*)
+    FROM [Likes] AS [l0]
+    WHERE [l0].[ContentId] = [p].[PostId]), [t0].[UserId], [t0].[Address], [t0].[DOB], [t0].[DOJ], [t0].[FirstName], [t0].[Gender], [t0].[Image], [t0].[LastName]
+FROM [Posts] AS [p]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[UserId]
+LEFT JOIN (
+    SELECT [t].[UserId], [t].[Address], [t].[DOB], [t].[DOJ], [t].[FirstName], [t].[Gender], [t].[Image], [t].[LastName]
+    FROM (
+        SELECT [u0].[UserId], [u0].[Address], [u0].[DOB], [u0].[DOJ], [u0].[FirstName], [u0].[Gender], [u0].[Image], [u0].[LastName], ROW_NUMBER() OVER(PARTITION BY [u0].[UserId] ORDER BY [u0].[UserId]) AS [row]
+        FROM [Users] AS [u0]
+    ) AS [t]
+    WHERE [t].[row] <= 1
+) AS [t0] ON [p].[UserId] = [t0].[UserId]
+WHERE (([p].[UserId] = @__postUser_1) AND ([p].[IsActive] = CAST(1 AS bit))) AND ([p].[IsDeleted] = CAST(0 AS bit))
+[2023-03-27 13:31:15.764 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.PostModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:31:15.776 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetPostsByUserId (Backend) in 65389.1484ms
+[2023-03-27 13:31:15.777 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetPostsByUserId (Backend)'
+[2023-03-27 13:31:15.783 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/UsersPost?userId=b690852c-30d5-415a-8a28-42e0605c2c28&PostUser=b690852c-30d5-415a-8a28-42e0605c2c28 - - - 200 - application/json;+charset=utf-8 65401.4658ms
+[2023-03-27 13:31:15.850 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/PostList?userId=ab181cd5-cdde-43d6-8aa2-93d2230b79ca - -
+[2023-03-27 13:31:15.850 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 13:31:15.850 +05:30  INF]  Route matched with {action = "GetAllPosts", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllPosts(System.String, System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-27 13:31:15.851 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:31:15.861 +05:30  INF]  Executed DbCommand (9ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PostId], [p].[UserId], [p].[Subject], [p].[CreatedAt], [p].[IsActive], [p].[IsDeleted], [p].[Content], [p].[Image], CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Likes] AS [l]
+        WHERE ([l].[ContentId] = [p].[PostId]) AND ([l].[UserId] = @__userId_0)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, (
+    SELECT COUNT(*)
+    FROM [Likes] AS [l0]
+    WHERE [l0].[ContentId] = [p].[PostId]), [t0].[UserId], [t0].[Address], [t0].[DOB], [t0].[DOJ], [t0].[FirstName], [t0].[Gender], [t0].[Image], [t0].[LastName]
+FROM [Posts] AS [p]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[UserId]
+LEFT JOIN (
+    SELECT [t].[UserId], [t].[Address], [t].[DOB], [t].[DOJ], [t].[FirstName], [t].[Gender], [t].[Image], [t].[LastName]
+    FROM (
+        SELECT [u0].[UserId], [u0].[Address], [u0].[DOB], [u0].[DOJ], [u0].[FirstName], [u0].[Gender], [u0].[Image], [u0].[LastName], ROW_NUMBER() OVER(PARTITION BY [u0].[UserId] ORDER BY [u0].[UserId]) AS [row]
+        FROM [Users] AS [u0]
+    ) AS [t]
+    WHERE [t].[row] <= 1
+) AS [t0] ON [p].[UserId] = [t0].[UserId]
+WHERE ([p].[IsActive] = CAST(1 AS bit)) AND ([p].[IsDeleted] = CAST(0 AS bit))
+[2023-03-27 13:31:15.861 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.PostModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:31:15.861 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllPosts (Backend) in 10.4236ms
+[2023-03-27 13:31:15.861 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 13:31:15.861 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/PostList?userId=ab181cd5-cdde-43d6-8aa2-93d2230b79ca - - - 200 - application/json;+charset=utf-8 10.9334ms
+[2023-03-27 13:31:19.000 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/PostList?userId=b690852c-30d5-415a-8a28-42e0605c2c28 - -
+[2023-03-27 13:31:19.000 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 13:31:19.000 +05:30  INF]  Route matched with {action = "GetAllPosts", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllPosts(System.String, System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-27 13:31:19.001 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:31:19.002 +05:30  INF]  Executed DbCommand (0ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PostId], [p].[UserId], [p].[Subject], [p].[CreatedAt], [p].[IsActive], [p].[IsDeleted], [p].[Content], [p].[Image], CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Likes] AS [l]
+        WHERE ([l].[ContentId] = [p].[PostId]) AND ([l].[UserId] = @__userId_0)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, (
+    SELECT COUNT(*)
+    FROM [Likes] AS [l0]
+    WHERE [l0].[ContentId] = [p].[PostId]), [t0].[UserId], [t0].[Address], [t0].[DOB], [t0].[DOJ], [t0].[FirstName], [t0].[Gender], [t0].[Image], [t0].[LastName]
+FROM [Posts] AS [p]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[UserId]
+LEFT JOIN (
+    SELECT [t].[UserId], [t].[Address], [t].[DOB], [t].[DOJ], [t].[FirstName], [t].[Gender], [t].[Image], [t].[LastName]
+    FROM (
+        SELECT [u0].[UserId], [u0].[Address], [u0].[DOB], [u0].[DOJ], [u0].[FirstName], [u0].[Gender], [u0].[Image], [u0].[LastName], ROW_NUMBER() OVER(PARTITION BY [u0].[UserId] ORDER BY [u0].[UserId]) AS [row]
+        FROM [Users] AS [u0]
+    ) AS [t]
+    WHERE [t].[row] <= 1
+) AS [t0] ON [p].[UserId] = [t0].[UserId]
+WHERE ([p].[IsActive] = CAST(1 AS bit)) AND ([p].[IsDeleted] = CAST(0 AS bit))
+[2023-03-27 13:31:19.002 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.PostModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:31:19.002 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllPosts (Backend) in 2.1883ms
+[2023-03-27 13:31:19.003 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 13:31:19.003 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/PostList?userId=b690852c-30d5-415a-8a28-42e0605c2c28 - - - 200 - application/json;+charset=utf-8 2.7078ms
+[2023-03-27 13:31:21.928 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/PostList?userId=b690852c-30d5-415a-8a28-42e0605c2c28 - -
+[2023-03-27 13:31:21.928 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 13:31:21.929 +05:30  INF]  Route matched with {action = "GetAllPosts", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllPosts(System.String, System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-27 13:31:21.929 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:31:21.930 +05:30  INF]  Executed DbCommand (0ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PostId], [p].[UserId], [p].[Subject], [p].[CreatedAt], [p].[IsActive], [p].[IsDeleted], [p].[Content], [p].[Image], CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Likes] AS [l]
+        WHERE ([l].[ContentId] = [p].[PostId]) AND ([l].[UserId] = @__userId_0)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, (
+    SELECT COUNT(*)
+    FROM [Likes] AS [l0]
+    WHERE [l0].[ContentId] = [p].[PostId]), [t0].[UserId], [t0].[Address], [t0].[DOB], [t0].[DOJ], [t0].[FirstName], [t0].[Gender], [t0].[Image], [t0].[LastName]
+FROM [Posts] AS [p]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[UserId]
+LEFT JOIN (
+    SELECT [t].[UserId], [t].[Address], [t].[DOB], [t].[DOJ], [t].[FirstName], [t].[Gender], [t].[Image], [t].[LastName]
+    FROM (
+        SELECT [u0].[UserId], [u0].[Address], [u0].[DOB], [u0].[DOJ], [u0].[FirstName], [u0].[Gender], [u0].[Image], [u0].[LastName], ROW_NUMBER() OVER(PARTITION BY [u0].[UserId] ORDER BY [u0].[UserId]) AS [row]
+        FROM [Users] AS [u0]
+    ) AS [t]
+    WHERE [t].[row] <= 1
+) AS [t0] ON [p].[UserId] = [t0].[UserId]
+WHERE ([p].[IsActive] = CAST(1 AS bit)) AND ([p].[IsDeleted] = CAST(0 AS bit))
+[2023-03-27 13:31:21.931 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.PostModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:31:21.931 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllPosts (Backend) in 2.0915ms
+[2023-03-27 13:31:21.931 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 13:31:21.931 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/PostList?userId=b690852c-30d5-415a-8a28-42e0605c2c28 - - - 200 - application/json;+charset=utf-8 2.8386ms
+[2023-03-27 13:32:25.115 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/UsersPost?userId=b690852c-30d5-415a-8a28-42e0605c2c28&PostUser=b690852c-30d5-415a-8a28-42e0605c2c28 - -
+[2023-03-27 13:32:25.117 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetPostsByUserId (Backend)'
+[2023-03-27 13:32:25.117 +05:30  INF]  Route matched with {action = "GetPostsByUserId", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPostsByUserId(System.String, System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-27 13:32:30.005 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:32:30.015 +05:30  INF]  Executed DbCommand (8ms) [Parameters=[@__userId_0='?' (Size = 450), @__postUser_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[UserId], [p].[Subject], [p].[CreatedAt], [p].[IsActive], [p].[IsDeleted], [p].[Content], [p].[Image], CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Likes] AS [l]
+        WHERE ([l].[ContentId] = [p].[PostId]) AND ([l].[UserId] = @__userId_0)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, (
+    SELECT COUNT(*)
+    FROM [Likes] AS [l0]
+    WHERE [l0].[ContentId] = [p].[PostId]), [t0].[UserId], [t0].[Address], [t0].[DOB], [t0].[DOJ], [t0].[FirstName], [t0].[Gender], [t0].[Image], [t0].[LastName]
+FROM [Posts] AS [p]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[UserId]
+LEFT JOIN (
+    SELECT [t].[UserId], [t].[Address], [t].[DOB], [t].[DOJ], [t].[FirstName], [t].[Gender], [t].[Image], [t].[LastName]
+    FROM (
+        SELECT [u0].[UserId], [u0].[Address], [u0].[DOB], [u0].[DOJ], [u0].[FirstName], [u0].[Gender], [u0].[Image], [u0].[LastName], ROW_NUMBER() OVER(PARTITION BY [u0].[UserId] ORDER BY [u0].[UserId]) AS [row]
+        FROM [Users] AS [u0]
+    ) AS [t]
+    WHERE [t].[row] <= 1
+) AS [t0] ON [p].[UserId] = [t0].[UserId]
+WHERE (([p].[UserId] = @__postUser_1) AND ([p].[IsActive] = CAST(1 AS bit))) AND ([p].[IsDeleted] = CAST(0 AS bit))
+[2023-03-27 13:32:30.051 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.PostModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:32:30.053 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetPostsByUserId (Backend) in 4936.7231ms
+[2023-03-27 13:32:30.054 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetPostsByUserId (Backend)'
+[2023-03-27 13:32:30.054 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/UsersPost?userId=b690852c-30d5-415a-8a28-42e0605c2c28&PostUser=b690852c-30d5-415a-8a28-42e0605c2c28 - - - 200 - application/json;+charset=utf-8 4938.6649ms
+[2023-03-27 13:39:36.556 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/token application/json 40
+[2023-03-27 13:39:36.557 +05:30  INF]  Executing endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:39:36.557 +05:30  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.TokenController (Backend).
+[2023-03-27 13:39:36.558 +05:30  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2023-03-27 13:39:36.558 +05:30  INF]  Executed action Backend.Controllers.TokenController.Post (Backend) in 0.4575ms
+[2023-03-27 13:39:36.558 +05:30  INF]  Executed endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:39:36.558 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/token application/json 40 - 200 - application/json;+charset=utf-8 1.5064ms
+[2023-03-27 13:39:36.618 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/PostList/?userId= - -
+[2023-03-27 13:39:36.618 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 13:39:36.618 +05:30  INF]  Route matched with {action = "GetAllPosts", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllPosts(System.String, System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-27 13:39:36.622 +05:30  INF]  Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+[2023-03-27 13:39:36.625 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllPosts (Backend) in 6.7898ms
+[2023-03-27 13:39:36.625 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 13:39:36.625 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/PostList/?userId= - - - 400 - application/problem+json;+charset=utf-8 7.5914ms
+[2023-03-27 13:39:59.357 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/token application/json 40
+[2023-03-27 13:39:59.358 +05:30  INF]  Executing endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:39:59.358 +05:30  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.TokenController (Backend).
+[2023-03-27 13:39:59.358 +05:30  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2023-03-27 13:39:59.358 +05:30  INF]  Executed action Backend.Controllers.TokenController.Post (Backend) in 0.3579ms
+[2023-03-27 13:39:59.358 +05:30  INF]  Executed endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:39:59.358 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/token application/json 40 - 200 - application/json;+charset=utf-8 0.7809ms
+[2023-03-27 13:39:59.377 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/Account/Login/ application/json 51
+[2023-03-27 13:39:59.378 +05:30  INF]  Executing endpoint 'Backend.Controllers.AccountController.Login (Backend)'
+[2023-03-27 13:39:59.380 +05:30  INF]  Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.AccountController (Backend).
+[2023-03-27 13:39:59.395 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:39:59.432 +05:30  INF]  Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+[2023-03-27 13:39:59.530 +05:30  ERR]  Login Error
+[2023-03-27 13:39:59.531 +05:30  INF]  Executing BadRequestObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[Backend.Core.Data.Entities.UserModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2023-03-27 13:39:59.533 +05:30  INF]  Executed action Backend.Controllers.AccountController.Login (Backend) in 152.9226ms
+[2023-03-27 13:39:59.534 +05:30  INF]  Executed endpoint 'Backend.Controllers.AccountController.Login (Backend)'
+[2023-03-27 13:39:59.534 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/Account/Login/ application/json 51 - 400 - application/json;+charset=utf-8 157.2863ms
+[2023-03-27 13:40:55.909 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/token application/json 40
+[2023-03-27 13:40:55.909 +05:30  INF]  Executing endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:40:55.909 +05:30  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.TokenController (Backend).
+[2023-03-27 13:40:55.910 +05:30  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2023-03-27 13:40:55.910 +05:30  INF]  Executed action Backend.Controllers.TokenController.Post (Backend) in 0.3246ms
+[2023-03-27 13:40:55.910 +05:30  INF]  Executed endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:40:55.910 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/token application/json 40 - 200 - application/json;+charset=utf-8 1.5744ms
+[2023-03-27 13:40:55.922 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/Account/Login/ application/json 51
+[2023-03-27 13:40:55.924 +05:30  INF]  Executing endpoint 'Backend.Controllers.AccountController.Login (Backend)'
+[2023-03-27 13:40:55.924 +05:30  INF]  Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.AccountController (Backend).
+[2023-03-27 13:40:55.934 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:40:55.938 +05:30  INF]  Executed DbCommand (4ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+[2023-03-27 13:40:56.022 +05:30  ERR]  Login Error
+[2023-03-27 13:40:56.022 +05:30  INF]  Executing BadRequestObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[Backend.Core.Data.Entities.UserModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2023-03-27 13:40:56.023 +05:30  INF]  Executed action Backend.Controllers.AccountController.Login (Backend) in 98.8201ms
+[2023-03-27 13:40:56.023 +05:30  INF]  Executed endpoint 'Backend.Controllers.AccountController.Login (Backend)'
+[2023-03-27 13:40:56.023 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/Account/Login/ application/json 51 - 400 - application/json;+charset=utf-8 100.9896ms
+[2023-03-27 13:41:34.741 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/token application/json 40
+[2023-03-27 13:41:34.742 +05:30  INF]  Executing endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:41:34.742 +05:30  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.TokenController (Backend).
+[2023-03-27 13:41:34.745 +05:30  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2023-03-27 13:41:34.746 +05:30  INF]  Executed action Backend.Controllers.TokenController.Post (Backend) in 4.6836ms
+[2023-03-27 13:41:34.747 +05:30  INF]  Executed endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:41:34.747 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/token application/json 40 - 200 - application/json;+charset=utf-8 6.3328ms
+[2023-03-27 13:41:34.756 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/Account/Login/ application/json 41
+[2023-03-27 13:41:34.756 +05:30  INF]  Executing endpoint 'Backend.Controllers.AccountController.Login (Backend)'
+[2023-03-27 13:41:34.756 +05:30  INF]  Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.AccountController (Backend).
+[2023-03-27 13:41:34.757 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:41:34.761 +05:30  INF]  Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+[2023-03-27 13:41:34.783 +05:30  INF]  Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Address], [u].[DOB], [u].[DOJ], [u].[FirstName], [u].[Gender], [u].[Image], [u].[LastName], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Users] AS [u]
+INNER JOIN [AspNetUsers] AS [a] ON [u].[UserId] = [a].[Id]
+WHERE [u].[UserId] = @__user_Id_0
+[2023-03-27 13:41:34.788 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[Backend.Core.Data.Entities.UserModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2023-03-27 13:41:34.788 +05:30  INF]  Executed action Backend.Controllers.AccountController.Login (Backend) in 31.5316ms
+[2023-03-27 13:41:34.788 +05:30  INF]  Executed endpoint 'Backend.Controllers.AccountController.Login (Backend)'
+[2023-03-27 13:41:34.788 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/Account/Login/ application/json 41 - 200 - application/json;+charset=utf-8 32.6026ms
+[2023-03-27 13:41:34.863 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/token application/json 40
+[2023-03-27 13:41:34.864 +05:30  INF]  Executing endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:41:34.864 +05:30  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.TokenController (Backend).
+[2023-03-27 13:41:34.864 +05:30  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2023-03-27 13:41:34.864 +05:30  INF]  Executed action Backend.Controllers.TokenController.Post (Backend) in 0.3656ms
+[2023-03-27 13:41:34.864 +05:30  INF]  Executed endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:41:34.864 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/token application/json 40 - 200 - application/json;+charset=utf-8 0.8604ms
+[2023-03-27 13:41:34.882 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/AdvertisementList/ - -
+[2023-03-27 13:41:34.882 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
+[2023-03-27 13:41:34.882 +05:30  INF]  Route matched with {action = "GetAllAdvertisements", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAdvertisements(System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-27 13:41:34.883 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:41:34.894 +05:30  INF]  Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[UserId], [a].[AdvertisementId], [a].[CreatedAt], [a].[Content], [a].[IsActive], [a].[IsDeleted], [a].[Subject], [u].[UserId], [i].[ImageId], [i].[AdvertisementId], [i].[Image], [t0].[UserId], [t0].[Address], [t0].[DOB], [t0].[DOJ], [t0].[FirstName], [t0].[Gender], [t0].[Image], [t0].[LastName], [t0].[Id], [t0].[AccessFailedCount], [t0].[ConcurrencyStamp], [t0].[Email], [t0].[EmailConfirmed], [t0].[LockoutEnabled], [t0].[LockoutEnd], [t0].[NormalizedEmail], [t0].[NormalizedUserName], [t0].[PasswordHash], [t0].[PhoneNumber], [t0].[PhoneNumberConfirmed], [t0].[SecurityStamp], [t0].[TwoFactorEnabled], [t0].[UserName]
+FROM [Advertisements] AS [a]
+INNER JOIN [Users] AS [u] ON [a].[UserId] = [u].[UserId]
+LEFT JOIN [Images] AS [i] ON [a].[AdvertisementId] = [i].[AdvertisementId]
+LEFT JOIN (
+    SELECT [t].[UserId], [t].[Address], [t].[DOB], [t].[DOJ], [t].[FirstName], [t].[Gender], [t].[Image], [t].[LastName], [t].[Id], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[Email], [t].[EmailConfirmed], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UserName]
+    FROM (
+        SELECT [u0].[UserId], [u0].[Address], [u0].[DOB], [u0].[DOJ], [u0].[FirstName], [u0].[Gender], [u0].[Image], [u0].[LastName], [a0].[Id], [a0].[AccessFailedCount], [a0].[ConcurrencyStamp], [a0].[Email], [a0].[EmailConfirmed], [a0].[LockoutEnabled], [a0].[LockoutEnd], [a0].[NormalizedEmail], [a0].[NormalizedUserName], [a0].[PasswordHash], [a0].[PhoneNumber], [a0].[PhoneNumberConfirmed], [a0].[SecurityStamp], [a0].[TwoFactorEnabled], [a0].[UserName], ROW_NUMBER() OVER(PARTITION BY [u0].[UserId] ORDER BY [u0].[UserId], [a0].[Id]) AS [row]
+        FROM [Users] AS [u0]
+        INNER JOIN [AspNetUsers] AS [a0] ON [u0].[UserId] = [a0].[Id]
+    ) AS [t]
+    WHERE [t].[row] <= 1
+) AS [t0] ON [a].[UserId] = [t0].[UserId]
+WHERE [a].[IsDeleted] = CAST(0 AS bit)
+ORDER BY [a].[AdvertisementId], [u].[UserId]
+[2023-03-27 13:41:34.894 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.AdvertisementModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:41:34.894 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend) in 11.99ms
+[2023-03-27 13:41:34.895 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllAdvertisements (Backend)'
+[2023-03-27 13:41:34.895 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/AdvertisementList/ - - - 200 - application/json;+charset=utf-8 12.6930ms
+[2023-03-27 13:42:24.893 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/token application/json 40
+[2023-03-27 13:42:24.894 +05:30  INF]  Executing endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:42:24.894 +05:30  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.TokenController (Backend).
+[2023-03-27 13:42:24.898 +05:30  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2023-03-27 13:42:24.899 +05:30  INF]  Executed action Backend.Controllers.TokenController.Post (Backend) in 5.1934ms
+[2023-03-27 13:42:24.899 +05:30  INF]  Executed endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:42:24.900 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/token application/json 40 - 200 - application/json;+charset=utf-8 6.8878ms
+[2023-03-27 13:42:24.971 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/PostList/?userId=b690852c-30d5-415a-8a28-42e0605c2c28 - -
+[2023-03-27 13:42:24.972 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 13:42:24.972 +05:30  INF]  Route matched with {action = "GetAllPosts", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllPosts(System.String, System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-27 13:42:24.976 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:42:24.986 +05:30  INF]  Executed DbCommand (7ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PostId], [p].[UserId], [p].[Subject], [p].[CreatedAt], [p].[IsActive], [p].[IsDeleted], [p].[Content], [p].[Image], CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Likes] AS [l]
+        WHERE ([l].[ContentId] = [p].[PostId]) AND ([l].[UserId] = @__userId_0)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, (
+    SELECT COUNT(*)
+    FROM [Likes] AS [l0]
+    WHERE [l0].[ContentId] = [p].[PostId]), [t0].[UserId], [t0].[Address], [t0].[DOB], [t0].[DOJ], [t0].[FirstName], [t0].[Gender], [t0].[Image], [t0].[LastName]
+FROM [Posts] AS [p]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[UserId]
+LEFT JOIN (
+    SELECT [t].[UserId], [t].[Address], [t].[DOB], [t].[DOJ], [t].[FirstName], [t].[Gender], [t].[Image], [t].[LastName]
+    FROM (
+        SELECT [u0].[UserId], [u0].[Address], [u0].[DOB], [u0].[DOJ], [u0].[FirstName], [u0].[Gender], [u0].[Image], [u0].[LastName], ROW_NUMBER() OVER(PARTITION BY [u0].[UserId] ORDER BY [u0].[UserId]) AS [row]
+        FROM [Users] AS [u0]
+    ) AS [t]
+    WHERE [t].[row] <= 1
+) AS [t0] ON [p].[UserId] = [t0].[UserId]
+WHERE ([p].[IsActive] = CAST(1 AS bit)) AND ([p].[IsDeleted] = CAST(0 AS bit))
+[2023-03-27 13:42:24.987 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.PostModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:42:24.987 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllPosts (Backend) in 14.4406ms
+[2023-03-27 13:42:24.987 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 13:42:24.987 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/PostList/?userId=b690852c-30d5-415a-8a28-42e0605c2c28 - - - 200 - application/json;+charset=utf-8 16.1308ms
+[2023-03-27 13:50:39.431 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/token application/json 40
+[2023-03-27 13:50:39.434 +05:30  INF]  Executing endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:50:39.436 +05:30  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.TokenController (Backend).
+[2023-03-27 13:50:39.438 +05:30  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2023-03-27 13:50:39.438 +05:30  INF]  Executed action Backend.Controllers.TokenController.Post (Backend) in 2.3553ms
+[2023-03-27 13:50:39.438 +05:30  INF]  Executed endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:50:39.439 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/token application/json 40 - 200 - application/json;+charset=utf-8 9.0184ms
+[2023-03-27 13:50:39.492 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Account/UserList/ - -
+[2023-03-27 13:50:39.493 +05:30  INF]  Executing endpoint 'Backend.Controllers.AccountController.UsersList (Backend)'
+[2023-03-27 13:50:39.493 +05:30  INF]  Route matched with {action = "UsersList", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UsersList() on controller Backend.Controllers.AccountController (Backend).
+[2023-03-27 13:50:39.494 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:50:39.508 +05:30  INF]  Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserId], [u].[Address], [u].[DOB], [u].[DOJ], [u].[FirstName], [u].[Gender], [u].[Image], [u].[LastName], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Users] AS [u]
+INNER JOIN [AspNetUsers] AS [a] ON [u].[UserId] = [a].[Id]
+[2023-03-27 13:50:39.509 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.UserModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:50:39.509 +05:30  INF]  Executed action Backend.Controllers.AccountController.UsersList (Backend) in 16.2681ms
+[2023-03-27 13:50:39.509 +05:30  INF]  Executed endpoint 'Backend.Controllers.AccountController.UsersList (Backend)'
+[2023-03-27 13:50:39.509 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Account/UserList/ - - - 200 - application/json;+charset=utf-8 17.0233ms
+[2023-03-27 13:51:07.848 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/token application/json 40
+[2023-03-27 13:51:07.849 +05:30  INF]  Executing endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:51:07.849 +05:30  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.TokenController (Backend).
+[2023-03-27 13:51:07.853 +05:30  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2023-03-27 13:51:07.853 +05:30  INF]  Executed action Backend.Controllers.TokenController.Post (Backend) in 4.0798ms
+[2023-03-27 13:51:07.853 +05:30  INF]  Executed endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:51:07.853 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/token application/json 40 - 200 - application/json;+charset=utf-8 6.1120ms
+[2023-03-27 13:51:07.865 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Account/UserList/ - -
+[2023-03-27 13:51:07.866 +05:30  INF]  Executing endpoint 'Backend.Controllers.AccountController.UsersList (Backend)'
+[2023-03-27 13:51:07.866 +05:30  INF]  Route matched with {action = "UsersList", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UsersList() on controller Backend.Controllers.AccountController (Backend).
+[2023-03-27 13:51:07.866 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.UserModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:51:07.866 +05:30  INF]  Executed action Backend.Controllers.AccountController.UsersList (Backend) in 0.3797ms
+[2023-03-27 13:51:07.866 +05:30  INF]  Executed endpoint 'Backend.Controllers.AccountController.UsersList (Backend)'
+[2023-03-27 13:51:07.866 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Account/UserList/ - - - 200 - application/json;+charset=utf-8 0.9844ms
+[2023-03-27 13:51:11.380 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/token application/json 40
+[2023-03-27 13:51:11.380 +05:30  INF]  Executing endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:51:11.381 +05:30  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.TokenController (Backend).
+[2023-03-27 13:51:11.381 +05:30  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2023-03-27 13:51:11.381 +05:30  INF]  Executed action Backend.Controllers.TokenController.Post (Backend) in 0.5389ms
+[2023-03-27 13:51:11.381 +05:30  INF]  Executed endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:51:11.381 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/token application/json 40 - 200 - application/json;+charset=utf-8 1.4187ms
+[2023-03-27 13:51:11.396 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Account/UserList/ - -
+[2023-03-27 13:51:11.397 +05:30  INF]  Executing endpoint 'Backend.Controllers.AccountController.UsersList (Backend)'
+[2023-03-27 13:51:11.397 +05:30  INF]  Route matched with {action = "UsersList", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UsersList() on controller Backend.Controllers.AccountController (Backend).
+[2023-03-27 13:51:11.397 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.UserModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:51:11.397 +05:30  INF]  Executed action Backend.Controllers.AccountController.UsersList (Backend) in 0.2993ms
+[2023-03-27 13:51:11.397 +05:30  INF]  Executed endpoint 'Backend.Controllers.AccountController.UsersList (Backend)'
+[2023-03-27 13:51:11.397 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Account/UserList/ - - - 200 - application/json;+charset=utf-8 0.8794ms
+[2023-03-27 13:51:28.261 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/token application/json 40
+[2023-03-27 13:51:28.261 +05:30  INF]  Executing endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:51:28.261 +05:30  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.TokenController (Backend).
+[2023-03-27 13:51:28.262 +05:30  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2023-03-27 13:51:28.262 +05:30  INF]  Executed action Backend.Controllers.TokenController.Post (Backend) in 0.6136ms
+[2023-03-27 13:51:28.262 +05:30  INF]  Executed endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:51:28.262 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/token application/json 40 - 200 - application/json;+charset=utf-8 1.3044ms
+[2023-03-27 13:51:28.277 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/PostList/?userId=b690852c-30d5-415a-8a28-42e0605c2c28 - -
+[2023-03-27 13:51:28.277 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 13:51:28.277 +05:30  INF]  Route matched with {action = "GetAllPosts", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllPosts(System.String, System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-27 13:51:28.278 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:51:28.286 +05:30  INF]  Executed DbCommand (8ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PostId], [p].[UserId], [p].[Subject], [p].[CreatedAt], [p].[IsActive], [p].[IsDeleted], [p].[Content], [p].[Image], CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Likes] AS [l]
+        WHERE ([l].[ContentId] = [p].[PostId]) AND ([l].[UserId] = @__userId_0)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, (
+    SELECT COUNT(*)
+    FROM [Likes] AS [l0]
+    WHERE [l0].[ContentId] = [p].[PostId]), [t0].[UserId], [t0].[Address], [t0].[DOB], [t0].[DOJ], [t0].[FirstName], [t0].[Gender], [t0].[Image], [t0].[LastName]
+FROM [Posts] AS [p]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[UserId]
+LEFT JOIN (
+    SELECT [t].[UserId], [t].[Address], [t].[DOB], [t].[DOJ], [t].[FirstName], [t].[Gender], [t].[Image], [t].[LastName]
+    FROM (
+        SELECT [u0].[UserId], [u0].[Address], [u0].[DOB], [u0].[DOJ], [u0].[FirstName], [u0].[Gender], [u0].[Image], [u0].[LastName], ROW_NUMBER() OVER(PARTITION BY [u0].[UserId] ORDER BY [u0].[UserId]) AS [row]
+        FROM [Users] AS [u0]
+    ) AS [t]
+    WHERE [t].[row] <= 1
+) AS [t0] ON [p].[UserId] = [t0].[UserId]
+WHERE ([p].[IsActive] = CAST(1 AS bit)) AND ([p].[IsDeleted] = CAST(0 AS bit))
+[2023-03-27 13:51:28.286 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.PostModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:51:28.287 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllPosts (Backend) in 9.0876ms
+[2023-03-27 13:51:28.287 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 13:51:28.287 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/PostList/?userId=b690852c-30d5-415a-8a28-42e0605c2c28 - - - 200 - application/json;+charset=utf-8 9.6564ms
+[2023-03-27 13:56:14.507 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/PostList?userId=b690852c-30d5-415a-8a28-42e0605c2c28 - -
+[2023-03-27 13:56:14.509 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 13:56:14.509 +05:30  INF]  Route matched with {action = "GetAllPosts", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllPosts(System.String, System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-27 13:56:14.516 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:56:14.528 +05:30  INF]  Executed DbCommand (11ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PostId], [p].[UserId], [p].[Subject], [p].[CreatedAt], [p].[IsActive], [p].[IsDeleted], [p].[Content], [p].[Image], CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Likes] AS [l]
+        WHERE ([l].[ContentId] = [p].[PostId]) AND ([l].[UserId] = @__userId_0)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, (
+    SELECT COUNT(*)
+    FROM [Likes] AS [l0]
+    WHERE [l0].[ContentId] = [p].[PostId]), [t0].[UserId], [t0].[Address], [t0].[DOB], [t0].[DOJ], [t0].[FirstName], [t0].[Gender], [t0].[Image], [t0].[LastName]
+FROM [Posts] AS [p]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[UserId]
+LEFT JOIN (
+    SELECT [t].[UserId], [t].[Address], [t].[DOB], [t].[DOJ], [t].[FirstName], [t].[Gender], [t].[Image], [t].[LastName]
+    FROM (
+        SELECT [u0].[UserId], [u0].[Address], [u0].[DOB], [u0].[DOJ], [u0].[FirstName], [u0].[Gender], [u0].[Image], [u0].[LastName], ROW_NUMBER() OVER(PARTITION BY [u0].[UserId] ORDER BY [u0].[UserId]) AS [row]
+        FROM [Users] AS [u0]
+    ) AS [t]
+    WHERE [t].[row] <= 1
+) AS [t0] ON [p].[UserId] = [t0].[UserId]
+WHERE ([p].[IsActive] = CAST(1 AS bit)) AND ([p].[IsDeleted] = CAST(0 AS bit))
+[2023-03-27 13:56:14.528 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.PostModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:56:14.528 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllPosts (Backend) in 19.1962ms
+[2023-03-27 13:56:14.528 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 13:56:14.528 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/PostList?userId=b690852c-30d5-415a-8a28-42e0605c2c28 - - - 200 - application/json;+charset=utf-8 22.0349ms
+[2023-03-27 13:57:30.655 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/token application/json 40
+[2023-03-27 13:57:30.656 +05:30  INF]  Executing endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:57:30.656 +05:30  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.TokenController (Backend).
+[2023-03-27 13:57:30.660 +05:30  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2023-03-27 13:57:30.661 +05:30  INF]  Executed action Backend.Controllers.TokenController.Post (Backend) in 4.351ms
+[2023-03-27 13:57:30.661 +05:30  INF]  Executed endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:57:30.661 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/token application/json 40 - 200 - application/json;+charset=utf-8 6.1186ms
+[2023-03-27 13:57:30.722 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Account/UserList/ - -
+[2023-03-27 13:57:30.724 +05:30  INF]  Executing endpoint 'Backend.Controllers.AccountController.UsersList (Backend)'
+[2023-03-27 13:57:30.724 +05:30  INF]  Route matched with {action = "UsersList", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UsersList() on controller Backend.Controllers.AccountController (Backend).
+[2023-03-27 13:57:30.749 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:57:30.755 +05:30  INF]  Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[UserId], [u].[Address], [u].[DOB], [u].[DOJ], [u].[FirstName], [u].[Gender], [u].[Image], [u].[LastName], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Users] AS [u]
+INNER JOIN [AspNetUsers] AS [a] ON [u].[UserId] = [a].[Id]
+[2023-03-27 13:57:30.756 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.UserModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:57:30.756 +05:30  INF]  Executed action Backend.Controllers.AccountController.UsersList (Backend) in 32.44ms
+[2023-03-27 13:57:30.756 +05:30  INF]  Executed endpoint 'Backend.Controllers.AccountController.UsersList (Backend)'
+[2023-03-27 13:57:30.756 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Account/UserList/ - - - 200 - application/json;+charset=utf-8 34.3474ms
+[2023-03-27 13:58:10.831 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/token application/json 40
+[2023-03-27 13:58:10.833 +05:30  INF]  Executing endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:58:10.833 +05:30  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.TokenController (Backend).
+[2023-03-27 13:58:10.838 +05:30  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2023-03-27 13:58:10.838 +05:30  INF]  Executed action Backend.Controllers.TokenController.Post (Backend) in 4.9331ms
+[2023-03-27 13:58:10.838 +05:30  INF]  Executed endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:58:10.838 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/token application/json 40 - 200 - application/json;+charset=utf-8 6.7649ms
+[2023-03-27 13:58:10.906 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/PostList/?userId=b690852c-30d5-415a-8a28-42e0605c2c28 - -
+[2023-03-27 13:58:10.907 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 13:58:10.908 +05:30  INF]  Route matched with {action = "GetAllPosts", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllPosts(System.String, System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-27 13:58:10.911 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:58:10.921 +05:30  INF]  Executed DbCommand (8ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PostId], [p].[UserId], [p].[Subject], [p].[CreatedAt], [p].[IsActive], [p].[IsDeleted], [p].[Content], [p].[Image], CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Likes] AS [l]
+        WHERE ([l].[ContentId] = [p].[PostId]) AND ([l].[UserId] = @__userId_0)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, (
+    SELECT COUNT(*)
+    FROM [Likes] AS [l0]
+    WHERE [l0].[ContentId] = [p].[PostId]), [t0].[UserId], [t0].[Address], [t0].[DOB], [t0].[DOJ], [t0].[FirstName], [t0].[Gender], [t0].[Image], [t0].[LastName]
+FROM [Posts] AS [p]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[UserId]
+LEFT JOIN (
+    SELECT [t].[UserId], [t].[Address], [t].[DOB], [t].[DOJ], [t].[FirstName], [t].[Gender], [t].[Image], [t].[LastName]
+    FROM (
+        SELECT [u0].[UserId], [u0].[Address], [u0].[DOB], [u0].[DOJ], [u0].[FirstName], [u0].[Gender], [u0].[Image], [u0].[LastName], ROW_NUMBER() OVER(PARTITION BY [u0].[UserId] ORDER BY [u0].[UserId]) AS [row]
+        FROM [Users] AS [u0]
+    ) AS [t]
+    WHERE [t].[row] <= 1
+) AS [t0] ON [p].[UserId] = [t0].[UserId]
+WHERE ([p].[IsActive] = CAST(1 AS bit)) AND ([p].[IsDeleted] = CAST(0 AS bit))
+[2023-03-27 13:58:10.921 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.PostModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:58:10.921 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllPosts (Backend) in 13.4601ms
+[2023-03-27 13:58:10.921 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 13:58:10.921 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/PostList/?userId=b690852c-30d5-415a-8a28-42e0605c2c28 - - - 200 - application/json;+charset=utf-8 14.8284ms
+[2023-03-27 13:59:31.853 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/token application/json 40
+[2023-03-27 13:59:31.853 +05:30  INF]  Executing endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:59:31.853 +05:30  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.TokenController (Backend).
+[2023-03-27 13:59:31.854 +05:30  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2023-03-27 13:59:31.854 +05:30  INF]  Executed action Backend.Controllers.TokenController.Post (Backend) in 0.3779ms
+[2023-03-27 13:59:31.854 +05:30  INF]  Executed endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:59:31.854 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/token application/json 40 - 200 - application/json;+charset=utf-8 0.7941ms
+[2023-03-27 13:59:31.904 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Account/UserList/ - -
+[2023-03-27 13:59:31.904 +05:30  INF]  Executing endpoint 'Backend.Controllers.AccountController.UsersList (Backend)'
+[2023-03-27 13:59:31.904 +05:30  INF]  Route matched with {action = "UsersList", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UsersList() on controller Backend.Controllers.AccountController (Backend).
+[2023-03-27 13:59:31.904 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.UserModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:59:31.905 +05:30  INF]  Executed action Backend.Controllers.AccountController.UsersList (Backend) in 0.3023ms
+[2023-03-27 13:59:31.905 +05:30  INF]  Executed endpoint 'Backend.Controllers.AccountController.UsersList (Backend)'
+[2023-03-27 13:59:31.905 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Account/UserList/ - - - 200 - application/json;+charset=utf-8 0.9077ms
+[2023-03-27 13:59:54.775 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/token application/json 40
+[2023-03-27 13:59:54.777 +05:30  INF]  Executing endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:59:54.777 +05:30  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.TokenController (Backend).
+[2023-03-27 13:59:54.781 +05:30  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2023-03-27 13:59:54.781 +05:30  INF]  Executed action Backend.Controllers.TokenController.Post (Backend) in 3.9158ms
+[2023-03-27 13:59:54.781 +05:30  INF]  Executed endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 13:59:54.781 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/token application/json 40 - 200 - application/json;+charset=utf-8 5.7685ms
+[2023-03-27 13:59:54.856 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/PostList/?userId=b690852c-30d5-415a-8a28-42e0605c2c28 - -
+[2023-03-27 13:59:54.856 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 13:59:54.856 +05:30  INF]  Route matched with {action = "GetAllPosts", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllPosts(System.String, System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-27 13:59:54.857 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 13:59:54.865 +05:30  INF]  Executed DbCommand (7ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PostId], [p].[UserId], [p].[Subject], [p].[CreatedAt], [p].[IsActive], [p].[IsDeleted], [p].[Content], [p].[Image], CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Likes] AS [l]
+        WHERE ([l].[ContentId] = [p].[PostId]) AND ([l].[UserId] = @__userId_0)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, (
+    SELECT COUNT(*)
+    FROM [Likes] AS [l0]
+    WHERE [l0].[ContentId] = [p].[PostId]), [t0].[UserId], [t0].[Address], [t0].[DOB], [t0].[DOJ], [t0].[FirstName], [t0].[Gender], [t0].[Image], [t0].[LastName]
+FROM [Posts] AS [p]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[UserId]
+LEFT JOIN (
+    SELECT [t].[UserId], [t].[Address], [t].[DOB], [t].[DOJ], [t].[FirstName], [t].[Gender], [t].[Image], [t].[LastName]
+    FROM (
+        SELECT [u0].[UserId], [u0].[Address], [u0].[DOB], [u0].[DOJ], [u0].[FirstName], [u0].[Gender], [u0].[Image], [u0].[LastName], ROW_NUMBER() OVER(PARTITION BY [u0].[UserId] ORDER BY [u0].[UserId]) AS [row]
+        FROM [Users] AS [u0]
+    ) AS [t]
+    WHERE [t].[row] <= 1
+) AS [t0] ON [p].[UserId] = [t0].[UserId]
+WHERE ([p].[IsActive] = CAST(1 AS bit)) AND ([p].[IsDeleted] = CAST(0 AS bit))
+[2023-03-27 13:59:54.865 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.PostModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 13:59:54.865 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllPosts (Backend) in 9.0683ms
+[2023-03-27 13:59:54.865 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 13:59:54.865 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/PostList/?userId=b690852c-30d5-415a-8a28-42e0605c2c28 - - - 200 - application/json;+charset=utf-8 9.6671ms
+[2023-03-27 14:00:38.636 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/token application/json 40
+[2023-03-27 14:00:38.636 +05:30  INF]  Executing endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 14:00:38.636 +05:30  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.TokenController (Backend).
+[2023-03-27 14:00:38.637 +05:30  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2023-03-27 14:00:38.637 +05:30  INF]  Executed action Backend.Controllers.TokenController.Post (Backend) in 0.3215ms
+[2023-03-27 14:00:38.637 +05:30  INF]  Executed endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 14:00:38.637 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/token application/json 40 - 200 - application/json;+charset=utf-8 0.7204ms
+[2023-03-27 14:00:38.688 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Account/UserList/ - -
+[2023-03-27 14:00:38.689 +05:30  INF]  Executing endpoint 'Backend.Controllers.AccountController.UsersList (Backend)'
+[2023-03-27 14:00:38.689 +05:30  INF]  Route matched with {action = "UsersList", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UsersList() on controller Backend.Controllers.AccountController (Backend).
+[2023-03-27 14:00:38.689 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.UserModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 14:00:38.689 +05:30  INF]  Executed action Backend.Controllers.AccountController.UsersList (Backend) in 0.3976ms
+[2023-03-27 14:00:38.690 +05:30  INF]  Executed endpoint 'Backend.Controllers.AccountController.UsersList (Backend)'
+[2023-03-27 14:00:38.690 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Account/UserList/ - - - 200 - application/json;+charset=utf-8 1.1871ms
+[2023-03-27 14:00:49.369 +05:30  INF]  Request starting HTTP/1.1 POST http://localhost:5238/api/token application/json 40
+[2023-03-27 14:00:49.369 +05:30  INF]  Executing endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 14:00:49.369 +05:30  INF]  Route matched with {action = "Post", controller = "Token"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Post(Backend.Core.ViewModels.LoginViewModel) on controller Backend.Controllers.TokenController (Backend).
+[2023-03-27 14:00:49.370 +05:30  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2023-03-27 14:00:49.370 +05:30  INF]  Executed action Backend.Controllers.TokenController.Post (Backend) in 0.5363ms
+[2023-03-27 14:00:49.370 +05:30  INF]  Executed endpoint 'Backend.Controllers.TokenController.Post (Backend)'
+[2023-03-27 14:00:49.370 +05:30  INF]  Request finished HTTP/1.1 POST http://localhost:5238/api/token application/json 40 - 200 - application/json;+charset=utf-8 1.2132ms
+[2023-03-27 14:00:49.384 +05:30  INF]  Request starting HTTP/1.1 GET http://localhost:5238/api/Employee/PostList/?userId=b690852c-30d5-415a-8a28-42e0605c2c28 - -
+[2023-03-27 14:00:49.385 +05:30  INF]  Executing endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 14:00:49.385 +05:30  INF]  Route matched with {action = "GetAllPosts", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllPosts(System.String, System.String) on controller Backend.Controllers.EmployeeController (Backend).
+[2023-03-27 14:00:49.386 +05:30  INF]  Entity Framework Core 6.0.12 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.12' with options: None
+[2023-03-27 14:00:49.394 +05:30  INF]  Executed DbCommand (8ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PostId], [p].[UserId], [p].[Subject], [p].[CreatedAt], [p].[IsActive], [p].[IsDeleted], [p].[Content], [p].[Image], CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Likes] AS [l]
+        WHERE ([l].[ContentId] = [p].[PostId]) AND ([l].[UserId] = @__userId_0)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, (
+    SELECT COUNT(*)
+    FROM [Likes] AS [l0]
+    WHERE [l0].[ContentId] = [p].[PostId]), [t0].[UserId], [t0].[Address], [t0].[DOB], [t0].[DOJ], [t0].[FirstName], [t0].[Gender], [t0].[Image], [t0].[LastName]
+FROM [Posts] AS [p]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[UserId]
+LEFT JOIN (
+    SELECT [t].[UserId], [t].[Address], [t].[DOB], [t].[DOJ], [t].[FirstName], [t].[Gender], [t].[Image], [t].[LastName]
+    FROM (
+        SELECT [u0].[UserId], [u0].[Address], [u0].[DOB], [u0].[DOJ], [u0].[FirstName], [u0].[Gender], [u0].[Image], [u0].[LastName], ROW_NUMBER() OVER(PARTITION BY [u0].[UserId] ORDER BY [u0].[UserId]) AS [row]
+        FROM [Users] AS [u0]
+    ) AS [t]
+    WHERE [t].[row] <= 1
+) AS [t0] ON [p].[UserId] = [t0].[UserId]
+WHERE ([p].[IsActive] = CAST(1 AS bit)) AND ([p].[IsDeleted] = CAST(0 AS bit))
+[2023-03-27 14:00:49.394 +05:30  INF]  Executing OkObjectResult, writing value of type 'Backend.Core.Common.ErrorHandlers.Results`1[[System.Collections.Generic.List`1[[Backend.Core.Data.Entities.PostModel, Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2023-03-27 14:00:49.394 +05:30  INF]  Executed action Backend.Controllers.EmployeeController.GetAllPosts (Backend) in 9.2692ms
+[2023-03-27 14:00:49.394 +05:30  INF]  Executed endpoint 'Backend.Controllers.EmployeeController.GetAllPosts (Backend)'
+[2023-03-27 14:00:49.394 +05:30  INF]  Request finished HTTP/1.1 GET http://localhost:5238/api/Employee/PostList/?userId=b690852c-30d5-415a-8a28-42e0605c2c28 - - - 200 - application/json;+charset=utf-8 10.0116ms

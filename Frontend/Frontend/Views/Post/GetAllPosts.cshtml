@@ -1,0 +1,125 @@
+﻿@model IEnumerable<Frontend.DTO.Response.PostResponseDTO>
+
+@{
+    Layout = "_MenuLayout";
+}
+
+<link href="~/css/postscss.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link href="~/font-awesome/css/all.css" rel="stylesheet" />
+
+@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">*@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<div class="toolbar h-45px">
+    <div class="container-fluid d-flex flex-stack">
+        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Posts</h1>
+            <span class="h-20px border-gray-200 border-start mx-4"></span>
+        </div>
+        <div class="d-flex align-items-center py-1">
+            <button class="btn btn-light-primary btn-sm" id="create"> <i class="fas fa-plus"></i>Add</button>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="row">
+        
+        @foreach(var item in Model)
+        {
+            <div class="col col-4">
+                    <div class="card main panel panel-default z-depth-4">
+                        <div class="panel-body">
+
+                            <div class="d-flex flex-row align-items-end  justify-content-between">
+                                <div class="d-flex flex-row gap-2">
+                                    <img src="https://mms.businesswire.com/media/20190122005910/en/701785/5/Camila-x-MC.jpg" height="40px" width="40px" class="rounded-circle">
+                                    <div class="mt-2 h5">@item.User.firstName</div>
+
+                                </div>
+                                <div class="d-flex">
+                                    <div><small>Neo Motto</small></div>
+                                </div>
+                            </div>
+
+
+                            <div class="post mt-2">
+                                <img class="not" src="https://media2.s-nbcnews.com/j/newscms/2019_16/2822711/ss-190415-notre-dame-fire-mn-04_96c827a9102e4af198aa42513fd02e74.fit-760w.jpg">
+                                <div>
+                                <label class="control-label mt-2"><strong>@item.Subject</strong></label>
+                                    <p class="iconsec">
+                                        <i class="fa-regular fa-heart h2"></i>
+                                    <a class="fa-regular fa-comment h2 collapsed" data-toggle="collapse" href="#collapseId-@item.PostId" role="button" aria-expanded="false" aria-controls="#collapseId-@item.PostId"></a>
+                                    </p>
+                                </div>
+                            </div>
+
+
+                        <div class="collapse" id="collapseId-@item.PostId">
+                                <div class="card card-title">
+                                    <label class="control-label">@item.Content</label>
+                                    <form asp-action="">
+                                        <div class="form-group mt-2">
+                                            <label class="control-label">Add a comment</label>
+                                            <input class="form-control" />
+                                            <span class="text-danger"></span>
+                                        </div>
+                                    </form>
+                                    <div class="form-group mt-2">
+                                        <input type="submit" value="Add" class="btn btn-success" />
+                                    </div>
+                                </div>
+                                <div class="card card-body">
+                                    sldhf.sfmxngkjshnfvkshojnilkdf.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        $('.collapse').collapse({
+            toggle: false
+        });
+
+        $('#create').click(function () {
+            console.log("clicked")
+            //$('.modal-title').html("Create ")
+            $.ajax({
+                "type": "GET",
+                "url": "@Url.Action("CreatePost", "Post")",
+                "dataType": "html",
+                "data": {},
+                "success": function (data) {
+                    $('#modalBody').html(data);
+                    $('#modalFooter').html("");
+                    $('#myModal').modal('show');
+                },
+                "error": function () {
+                    alert("error in loading model");
+                }
+            });
+        });
+    </script>
+}
+
+
+
+
+
+

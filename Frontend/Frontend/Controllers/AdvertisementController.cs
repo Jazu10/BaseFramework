@@ -32,14 +32,13 @@ namespace Frontend.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateAds(string id)
+        public IActionResult CreateAds()
         {
             AdvertisementResponseDTO newAd = new AdvertisementResponseDTO()
             {
                 CreatedAt = DateTime.Now,
                 IsDeleted = false,
-                IsActive = true,
-                UserId = id
+                IsActive = true
             };
             return View(newAd);
         }
@@ -49,6 +48,8 @@ namespace Frontend.Controllers
         {
             try
             {
+                model.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
                 if (ModelState.IsValid)
                 {
                     if (model.ImgFiles != null)
@@ -78,8 +79,9 @@ namespace Frontend.Controllers
             }
             return View(model);
         }
-        public async Task<IActionResult> DisplayPersonalAds(string id)
+        public async Task<IActionResult> DisplayPersonalAds()
         {
+            var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var response = await _client.GetAsync<AdvertisementResponseDTO>($"{ApiConstants.GetAllAdsById}?userId={id}");
             if (!response.IsError)
             {
@@ -88,9 +90,10 @@ namespace Frontend.Controllers
             return RedirectToAction("GetAllAds");
         }
 
-        public async Task<IActionResult> DeleteAds(string id)
+        [HttpGet]
+        public async Task<IActionResult> DeleteAds(string advertisementId)
         {
-            var response = await _client.DeleteAsync<SuccessResultDTO>($"{ApiConstants.DltAdsById}?advertisementId={id}");
+            var response = await _client.DeleteAsync<SuccessResultDTO>($"{ApiConstants.DltAdsById}?advertisementId={advertisementId}");
             if (!response.IsError)
             {
                 _toastService.AddSuccessToastMessage(response.Response.Message);
@@ -99,9 +102,9 @@ namespace Frontend.Controllers
         }
 
 
-        public async Task<IActionResult> EditAds(string id)
+        public async Task<IActionResult> EditAds(string advertisementId)
         {
-            var response = await _client.GetAsyncSingle<AdvertisementResponseDTO>($"{ApiConstants.EditAdsById}?advertisementId={id}");
+            var response = await _client.GetAsyncSingle<AdvertisementResponseDTO>($"{ApiConstants.EditAdsById}?advertisementId={advertisementId}");
             //var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if(response.Response!= null)
             {

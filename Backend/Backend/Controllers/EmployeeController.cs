@@ -326,7 +326,7 @@ namespace Backend.Controllers
                     response.Response = new SuccessResult()
                     {
                         Succeeded = await _repository.CreatePost(model),
-                        Message = "Post Created"
+                        Message = "Post Created and Sent it For Approval"
                     };
                     return Ok(response);
                 }
