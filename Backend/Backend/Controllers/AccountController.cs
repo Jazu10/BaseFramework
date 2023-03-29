@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Backend.Core.ViewModels;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.AspNetCore.Authorization;
+using Backend.Core.RepositoryInterface;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Backend.Controllers
@@ -19,16 +20,20 @@ namespace Backend.Controllers
     {
 
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ApplicationDbContext _context;
         private readonly IMemoryCache _cache;
         private readonly ILogger<AccountController> _logger;
 
         private const string UserListCache = "UserList";
 
-        public AccountController(UserManager<IdentityUser> userManager,
+        public AccountController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager,
             ApplicationDbContext context, IMemoryCache cache, ILogger<AccountController> logger)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
+
+
             _context = context;
             _cache = cache;
             _logger = logger;
@@ -38,10 +43,7 @@ namespace Backend.Controllers
         [Route("UserList")]
         public async Task<IActionResult> UsersList()
         {
-            var response = new Results<List<UserModel>>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<List<UserModel>>();
             try
             {
                 if (_cache.TryGetValue(UserListCache, out Results<List<UserModel>> userList))
@@ -77,10 +79,7 @@ namespace Backend.Controllers
         [Route("SingleUser")]
         public async Task<IActionResult> SingleUserDetails([FromQuery] string userId)
         {
-            var response = new Results<UserModel>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<UserModel>();
 
             try
             {
@@ -109,10 +108,7 @@ namespace Backend.Controllers
 
         public async Task<IActionResult> Register([FromBody] UserModel model)
         {
-            var response = new Results<SuccessResult>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<SuccessResult>();
 
             try
             {
@@ -176,10 +172,7 @@ namespace Backend.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
-            var response = new Results<UserModel>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<UserModel>();
 
             try
             {
@@ -221,10 +214,7 @@ namespace Backend.Controllers
         [Route("SingleUser")]
         public async Task<IActionResult> UpdateUser([FromBody] UserModel model)
         {
-            var response = new Results<SuccessResult>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<SuccessResult>();
 
             try
             {
@@ -274,14 +264,48 @@ namespace Backend.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetUsersInRole")]
+        public async Task<IActionResult> GetUsersInRoles(string roleId)
+        {
+            var response = new Results<List<UserModel>>()
+            {
+                Response = new List<UserModel>()
+            };
+
+            try
+            {
+                var role = await _roleManager.FindByIdAsync(roleId);
+
+                var users = await _context.UserList.ToListAsync();
+                for (int i = 0; i < users.Count; i++)
+                {
+                    users[i].User = await _userManager.FindByIdAsync(users[i].UserId);
+                }
+
+                foreach (var user in users)
+                {
+                    if (await _userManager.IsInRoleAsync(user?.User, role.Name))
+                    {
+                        response?.Response?.Add(user);
+                    }
+                }
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex,
+                    StatusCodes.Status400BadRequest, null);
+
+                return BadRequest(response);
+            }
+        }
+
         [HttpPut]
         [Route("ChangePassword")]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
-            var response = new Results<SuccessResult>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<SuccessResult>();
            
             try
             {

@@ -34,6 +34,12 @@ namespace Backend.Core.Repository
                 .Where(item => item.UserId == userId && item.IsDeleted == false).ToListAsync();
         }
 
+        public async Task<NewsModel> GetSingleNews(string newsId)
+        {
+            return await _context.NewsList.Include(item => item.User)
+                .Where(item => item.NewsId == newsId && item.IsDeleted == false).FirstOrDefaultAsync();
+        }
+
         public async Task<bool> UpdateNews(NewsModel model)
         {
             var result = await _context.NewsList.Where(x => x.NewsId == model.NewsId)
@@ -288,6 +294,34 @@ namespace Backend.Core.Repository
             return result;
         }
 
+        public async Task<PostModel> GetSinglePost(string postId, string userId)
+        {
+            var result = await(from post in _context.PostList
+                               join
+                         user in _context.UserList on post.UserId equals user.UserId
+                               select (new PostModel
+                               {
+                                   PostId = post.PostId,
+                                   UserId = post.UserId,
+                                   Subject = post.Subject,
+                                   CreatedAt = post.CreatedAt,
+                                   IsActive = post.IsActive,
+                                   IsDeleted = post.IsDeleted,
+                                   Content = post.Content,
+                                   Image = post.Image,
+                                   User = _context.UserList
+                                               .Where(item => item.UserId == post.UserId)
+                                               .FirstOrDefault(),
+
+                                   IsLiked = _context.LikeList.Where(item => item.ContentId == post.PostId
+                                            && item.UserId == userId).FirstOrDefault() != null ? true : false,
+
+                                   LikeCount = _context.LikeList.Where(item => item.ContentId == post.PostId).Count(),
+                               })).Where(item => item.PostId == postId  && item.IsActive == true && item.IsDeleted == false)
+                                      .FirstOrDefaultAsync();
+            return result;
+        }
+
         public async Task<bool> CreatePost(PostModel model)
         {
             await _context.PostList.AddAsync(model);
@@ -315,7 +349,7 @@ namespace Backend.Core.Repository
             var result = await _context.PostList.FindAsync(postId);
 
             if (result == null)
-                throw new Exception("$\"No Post Found With Id: {postId}");
+                throw new Exception("$No Post Found With Id: {postId}");
             result.IsActive = true;
 
             _context.PostList.Update(result);

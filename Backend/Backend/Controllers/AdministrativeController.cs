@@ -13,7 +13,7 @@ namespace Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = "Bearer")]
+    //[Authorize(AuthenticationSchemes = "Bearer")]
     public class AdministrativeController : ControllerBase
     {
 
@@ -31,10 +31,7 @@ namespace Backend.Controllers
         [Route("Roles")]
         public async Task<IActionResult> AllRoles()
         {
-            var response = new Results<List<IdentityRole>>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<List<IdentityRole>>();
 
             try
             {
@@ -54,10 +51,7 @@ namespace Backend.Controllers
         [Route("Roles")]
         public async Task<IActionResult> CreateRole(RoleViewModel model)
         {
-            var response = new Results<SuccessResult>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<SuccessResult>();
 
             IdentityRole role = new IdentityRole
             {
@@ -108,10 +102,7 @@ namespace Backend.Controllers
         [Route("SingleRole")]
         public async Task<IActionResult> SingleRole(string roleId)
         {
-            var response = new Results<IdentityRole>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<IdentityRole>();
 
             try
             {
@@ -137,10 +128,7 @@ namespace Backend.Controllers
         [Route("SingleRole")]
         public async Task<IActionResult> UpdateRole(RoleViewModel model)
         {
-            var response = new Results<SuccessResult>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<SuccessResult>();
 
             try
             {
@@ -194,10 +182,7 @@ namespace Backend.Controllers
         public async Task<IActionResult> AddRemoveRoles(string UserId)
         {
 
-            var response = new Results<UserResult>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<UserResult>();
 
             try
             {
@@ -241,10 +226,8 @@ namespace Backend.Controllers
         [Route("UserRoles")]
         public async Task<IActionResult> AddRemoveRoles(UserResult model)
         {
-            var response = new Results<SuccessResult>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<SuccessResult>();
+
             try
             {
                 var user = await _userManager.FindByIdAsync(model?.UserId);
@@ -291,10 +274,8 @@ namespace Backend.Controllers
         [Route("UserClaims")]
         public async Task<IActionResult> AddRemoveClaims(string UserId)
         {
-            var response = new Results<UserClaimViewModel>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<UserClaimViewModel>();
+
             try
             {
                 var user = await _userManager.FindByIdAsync(UserId);
@@ -335,10 +316,8 @@ namespace Backend.Controllers
         [Route("UserClaims")]
         public async Task<IActionResult> AddRemoveClaims(UserClaimViewModel model)
         {
-            var response = new Results<SuccessResult>()
-            {
-                Errors = new List<Error>()
-            };
+            var response = new Results<SuccessResult>();
+
             try
             {
                 var user = await _userManager.FindByIdAsync(model.UserId);
@@ -383,6 +362,7 @@ namespace Backend.Controllers
         public async Task<IActionResult> AddRemoveRoleClaims(string roleId)
         {
             var response = new Results<RoleClaimViewModel>();
+
             try
             {
                 var role = await _roleManager.FindByIdAsync(roleId);
@@ -419,6 +399,7 @@ namespace Backend.Controllers
         public async Task<IActionResult> AddRemoveRoleClaims(RoleClaimViewModel model)
         {
             var response = new Results<SuccessResult>();
+
             try
             {
                 var role = await _roleManager.FindByIdAsync(model.RoleId);

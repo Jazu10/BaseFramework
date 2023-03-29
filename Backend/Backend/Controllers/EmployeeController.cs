@@ -56,6 +56,24 @@ namespace Backend.Controllers
             }
         }
 
+        [Route("SingleNews")]
+        [HttpGet]
+        public async Task<IActionResult> GetSingleNews(string newsId)
+        {
+            var response = new Results<NewsModel>();
+
+            try
+            {
+                response.Response = await _repository.GetSingleNews(newsId);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
+                return BadRequest(response);
+            }
+        }
+
         [Route("NewsList")]
         [HttpPost]
         public async Task<IActionResult> CreateNews(NewsModel model)
@@ -312,6 +330,24 @@ namespace Backend.Controllers
             }
         }
 
+        [Route("SinglePost")]
+        [HttpGet]
+        public async Task<IActionResult> GetSinglePost(string postId, string userId)
+        {
+            var response = new Results<PostModel>();
+
+            try
+            {
+                response.Response = await _repository.GetSinglePost(postId, userId);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
+                return BadRequest(response);
+            }
+        }
+
         [Route("PostList")]
         [HttpPost]
         public async Task<IActionResult> CreatePosts(PostModel model)
@@ -320,7 +356,6 @@ namespace Backend.Controllers
 
             try
             {
-
                 if (ModelState.IsValid)
                 {
                     response.Response = new SuccessResult()
