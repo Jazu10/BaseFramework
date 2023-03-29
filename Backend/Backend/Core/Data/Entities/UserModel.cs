@@ -39,12 +39,6 @@ namespace Backend.Core.Data.Entities
         [Required(ErrorMessage = "Please Enter Your Address")]
         public string? Address { get; set; }
 
-
-
-
-        [NotMapped]
-        public string? UserName { get; set; }
-
         [NotMapped]
         public string EmailId { get; set; }
 
