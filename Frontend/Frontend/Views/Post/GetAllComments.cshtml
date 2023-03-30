@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Frontend.DTO.Request.CommentRequestDTO>
+
+@{
+    Layout = "_Layout1";
+}
+
+<link href="~/css/comments.css" rel="stylesheet" />
+
+
+    <div class="row d-flex justify-content-center">
+        <div class="">
+            <div class="headings d-flex justify-content-between align-items-center mb-3">
+                <div class="h5">Comments(@Model.Count())</div>
+            </div>
+
+            @foreach (var item in Model)
+            {
+                <div class="card p-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="user d-flex flex-row align-items-center">
+                            <img src="~/Images/@item.User.image" width="30" class="rounded-circle mr-2 alt="No image">
+                            <div class="d-flux flux-col">
+                                    <div><strong class="font-weight-bold text-primary">@item.User.firstName @item.User.lastName</strong></div>
+                                    <div><small class="font-weight-bold">@item.Comment</small></div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="action d-flex justify-content-end mt-2 align-items-center">
+                        <div class="icons align-items-center">
+                            <a class="fa fa-edit btn btn-primary"></a>
+                            <a class="fa fa-trash btn btn-danger" aria-hidden="true" asp-route-id="@item.CommentId" asp-action="DltComment" asp-controller="Post"></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+@section scripts
+    {
+}

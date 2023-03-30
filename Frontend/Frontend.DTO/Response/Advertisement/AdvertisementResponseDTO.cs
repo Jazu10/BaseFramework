@@ -30,7 +30,7 @@ namespace Frontend.DTO.Response.Advertisement
         public string Content { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
-        public string UserId { get; set; }
+        public string? UserId { get; set; }
         public UserResponseDTO? User { get; set; }
 
         public List<ImageModelDTO>? Images { get; set; }
