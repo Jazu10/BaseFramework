@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model Result<IdentityRole>
+
+@{
+    ViewData["Title"] = "SingleRole";
+}
+
+<h1>SingleRole</h1>
+
+<div>
+    <h4>RoleListResponseDTO</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Response.Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Response.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Response.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Response.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

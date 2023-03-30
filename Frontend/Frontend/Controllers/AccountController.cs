@@ -33,7 +33,16 @@ namespace Frontend.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction(nameof(UsersList));
+                if (User.IsInRole("Admin"))
+                {
+                    return RedirectToAction("index", "Administrative", new { area = "Admin" });
+
+                }
+                else
+                {
+                    return RedirectToAction("index", "Administrative", new { area = "admin" });
+
+                }
             }
             return View();
         }
@@ -50,10 +59,17 @@ namespace Frontend.Controllers
                     var flag = await CreateIdentity(result.Response);
                     if (flag)
                     {
-                        _toastService.AddSuccessToastMessage($"Welcome {result.Response.firstName} {result.Response.lastName}");
+                        if (User.IsInRole("Admin"))
+                        {
+                            _toastService.AddSuccessToastMessage($"Welcome {result.Response.firstName} {result.Response.lastName}");
+                            return RedirectToAction("index", "Administrative", new { area = "Admin" });
+                        }
+                        else
+                        {
+                            _toastService.AddSuccessToastMessage($"Welcome {result.Response.firstName} {result.Response.lastName}");
+                            return RedirectToAction("index", "Administrative", new { area = "Admin" });
 
-                        return RedirectToAction("GetAllAds", "Advertisement");
-
+                        }
                     }
                 }
             }
@@ -95,7 +111,7 @@ namespace Frontend.Controllers
                     if (result.Response.Succeeded)
                         _toastService.AddSuccessToastMessage(result.Response.Message);
 
-                    return RedirectToAction("GetAllAds", "Advertisement");
+                    return RedirectToAction(nameof(Login));
                 }
             }
             catch (Exception ex)
@@ -105,20 +121,7 @@ namespace Frontend.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> UsersList()
-        {
-            try
-            {
-                var result = await _client.GetAllAsync<UserResponseDTO>(ApiConstants.GetAllUsers);
-                return View(result);
-            }
-            catch (Exception ex)
-            {
-                DisplayErrors(ex);
-                return View();
-            }
-        }
+
 
         [HttpGet]
         public async Task<IActionResult> EditUser(string userId)
@@ -136,14 +139,13 @@ namespace Frontend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditUser(Result<UserResponseDTO> model)
+        public async Task<IActionResult> /*EditUser*/ Profile(Result<UserResponseDTO> model)
         {
             try
             {
                 RegistrationRequestDTO updateModel = new RegistrationRequestDTO()
                 {
                     UserId = model.Response.userId,
-                    UserName = model.Response.user.userName,
                     EmailId = model.Response.user.email,
                     PhoneNumber = model.Response.user.phoneNumber,
                     FirstName = model.Response.firstName,
@@ -170,7 +172,7 @@ namespace Frontend.Controllers
                 if (result.Response.Succeeded)
                     _toastService.AddSuccessToastMessage(result.Response.Message);
 
-                return RedirectToAction(nameof(UsersList));
+                return RedirectToAction(nameof(Logout));
             }
             catch (Exception ex)
             {
@@ -208,7 +210,7 @@ namespace Frontend.Controllers
                 if (ModelState.IsValid)
                 {
                     model.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                    var result = await _client.PostAsync<SuccessResultDTO>(ApiConstants.ChangePassword, model);
+                    var result = await _client.PutAsync<SuccessResultDTO>(ApiConstants.ChangePassword, model);
                     if (result.Response.Succeeded)
                     {
                         _toastService.AddSuccessToastMessage(result.Response.Message);
@@ -232,6 +234,21 @@ namespace Frontend.Controllers
             return RedirectToAction(nameof(Login));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Profile()
+        {
+            try
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var result = await _client.GetAsync<UserResponseDTO>($"{ApiConstants.SingleUser}?userId={userId}");
+                return View(result);
+            }
+            catch (Exception ex)
+            {
+                DisplayErrors(ex);
+                return View();
+            }
+        }
 
         [NonAction]
         private async Task<bool> CreateIdentity(UserResponseDTO model)
@@ -240,8 +257,12 @@ namespace Frontend.Controllers
             {
                 new Claim(ClaimTypes.NameIdentifier, model.userId),
                 new Claim(ClaimTypes.Name, model.user.userName),
-                new Claim(ClaimTypes.Email, model.user.email)
-            };
+                new Claim(ClaimTypes.Email, model.user.email),
+                new Claim(ClaimTypes.GivenName,$"{model.firstName} {model.lastName}"),
+                new Claim(ClaimTypes.MobilePhone, model.user.phoneNumber),
+                new Claim("Images", model.image ?? "Blank.png")
+
+        };
 
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
@@ -269,5 +290,44 @@ namespace Frontend.Controllers
                 _toastService.AddErrorToastMessage(ex.Message);
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> UsersList()
+        {
+            return View();
+
+        }
+
+
+        //[HttpGet]
+        //public async Task<IActionResult> UsersList()
+        //{
+        //    try
+        //    {
+        //        var result = await _client.GetAllAsync<UserResponseDTO>(ApiConstants.GetAllUsers);
+        //        return View(result.Response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        DisplayErrors(ex);
+        //        return View();
+        //    }
+        //}
+
+        [HttpGet]
+        public async Task<JsonResult> UsersListdata()
+        {
+            try
+            {
+                var result = await _client.GetAllAsync<UserResponseDTO>(ApiConstants.GetAllUsers);
+                return Json(result.Response);
+            }
+            catch (Exception ex)
+            {
+                DisplayErrors(ex);
+                return Json(ex.Message);
+            }
+        }
+
+
     }
 }
