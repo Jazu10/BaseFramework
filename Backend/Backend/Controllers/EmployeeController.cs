@@ -532,6 +532,24 @@ namespace Backend.Controllers
                 return BadRequest(response);
             }
         }
+        [HttpGet]
+        [Route("DashboardItems")]
+        public async Task<IActionResult> GetDashboard()
+        {
+
+            var response = new Results<DashbordViewModel>();
+
+            try
+            {
+                response.Response = await _repository.GetDashboard();
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Errors = ErrorHandler.GetErrorAsync(response.Errors, ex, 400, null);
+                return BadRequest(response);
+            }
+        }
 
     }
 }

@@ -137,6 +137,9 @@ namespace Backend.Controllers
                             Message = "User Registration Successfull"
                         };
 
+                        if (_cache.Get(UserListCache) != null)
+                            _cache.Remove(UserListCache);
+
                         return Ok(response);
                     }
                     var ErrorList = result.Errors.ToList();
