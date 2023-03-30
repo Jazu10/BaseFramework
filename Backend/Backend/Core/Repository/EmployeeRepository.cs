@@ -275,6 +275,7 @@ namespace Backend.Core.Repository
                           user in _context.UserList on post.UserId equals user.UserId
                                 select (new PostModel
                                 {
+                                    PostId = post.PostId,
                                     UserId = post.UserId,
                                     Subject = post.Subject,
                                     CreatedAt = post.CreatedAt,
