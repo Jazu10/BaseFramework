@@ -8,9 +8,6 @@ namespace Frontend.DTO.Request
     {
         public string? UserId { get; set; }
 
-        [DisplayName("User Name")]
-        [Required(ErrorMessage = "Please Enter Your User Name")]
-        public string UserName { get; set; }
 
         [DisplayName("Email Id")]
         [Required(ErrorMessage = "Please Enter Your Email ID")]

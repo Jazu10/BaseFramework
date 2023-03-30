@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Frontend.DTO.Request;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -37,6 +38,8 @@ namespace Frontend.DTO.Response
         public string address { get; set; }
 
         public User? user { get; set; }
+
+        public ChangePasswordRequestDTO? changePasswordRequestDTO { get; set; }
 
         public IFormFile? File { get; set; }
     }

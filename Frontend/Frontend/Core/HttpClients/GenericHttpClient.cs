@@ -21,7 +21,7 @@ namespace Frontend.Core.HttpClients
 
         }
 
-        public async Task<Result<TResponse>> DeleteAsync<TResponse>(string address)
+        public async Task DeleteAsync(string address)
         {
             var request = new HttpRequestMessage(HttpMethod.Delete, address);
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(MediaTypeNames.Application.Json));
@@ -30,8 +30,8 @@ namespace Frontend.Core.HttpClients
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    var result = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<Result<TResponse>>(result);
+                    //var result = await response.Content.ReadAsStringAsync();
+                    //return JsonConvert.DeserializeObject<TResponse>(result);                 }
                 }
                 var errResult = await response.Content.ReadAsStringAsync();
                 throw new Exception(errResult);
@@ -61,28 +61,7 @@ namespace Frontend.Core.HttpClients
             }
         }
 
-        public async Task<Result<List<TResponse>>> GetAsync<TResponse>(string address)
-        {
-            var request = new HttpRequestMessage(HttpMethod.Get, address);
-            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(MediaTypeNames.Application.Json));
-            request.Headers.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
-
-            var token = await GetToken();
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
-            using (var response = await _client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<Result<List<TResponse>>>(result);
-                }
-                var errResult = await response.Content.ReadAsStringAsync();
-                throw new Exception(errResult);
-            }
-        }
-
-        public async Task<Result<TResponse>> GetAsyncSingle<TResponse>(string address)
+        public async Task<Result<TResponse>> GetAsync<TResponse>(string address)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, address);
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(MediaTypeNames.Application.Json));
