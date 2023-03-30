@@ -1,0 +1,76 @@
+﻿@model IEnumerable<NewsResponseDTO>
+
+@{
+    Layout = "_MenuLayout";
+    var Image = "";
+
+}
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/assets/css/newscard.css" asp-append-version="true" />
+</head>
+<p>
+    <a asp-action="AddNews" class="btn btn-primary">Create New</a>
+</p>
+<h2>My Publications</h2>
+<div class="container mt-2">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="card mb-3 rounded-3 border-5 border-hover-warning" style="max-width: 940px; vertical-align:middle;">
+                <div class="row no-gutters">
+                    <div class="col-md-3" style="border-radius:10%;">
+                        @{
+                            Image = item.Image;
+                        }
+                        <img src="~/Images/@Image" style="height:200px;width:200px">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body" id="heading-2">
+                            <h2 class="card-title">
+                                @Html.DisplayFor(modelItem => item.Subject)
+                            </h2>
+                            @*<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>*@
+                            <h6 class="card-text">
+                                <small class="text-muted">
+                                    Published on @Html.DisplayFor(modelItem => item.CreatedAt)
+                                </small>
+                            </h6>
+
+                            <h5 class="mb-0">
+                                <button class="collapse btn btn-primary" role="button" data-toggle="collapse" href="#collapse-@item.NewsId" aria-expanded="false" aria-controls="collapse-@item.NewsId">
+                                    Click to Expand
+                                </button>
+                            </h5>
+
+                        </div>
+                        <div id="collapse-@item.NewsId" class="collapse" data-parent="#accordion" aria-labelledby="heading-2">
+                            <div class="card-body">
+                                @Html.DisplayFor(modelItem => item.Content)
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        }
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+
+    <script>
+        $('.collapse').collapse()
+    </script>
+}

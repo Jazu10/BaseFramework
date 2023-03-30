@@ -49,10 +49,6 @@ app.UseAuthorization();
 app.UseNToastNotify();
 
 app.MapControllerRoute(
-    name: "Admin",
-    pattern: "{area:exists}/{controller=Administrative}/{action=index}/{id?}");
-
-app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Account}/{action=Login}/{id?}");
 

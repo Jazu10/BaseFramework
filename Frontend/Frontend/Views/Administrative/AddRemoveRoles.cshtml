@@ -1,0 +1,39 @@
+﻿@model Result<AddRemoveRoles>
+@{
+    ViewData["Title"] = "AddRemoveRoles";
+}
+<div class="d-flex justify-content-around">
+    <div class="card col-6 mt-lg-5">
+        <div class="card-header">
+            <div class="d-flex">
+                @*<div class="form-control col-4">@Model?.Response?.UserId</div>*@
+                <div class="form-control col-4">@Model?.Response?.UserName</div>
+
+            </div>
+        </div>
+        <div class="card-body">
+            <form asp-action="AddRemoveRoles" method="post">
+                <input type="hidden" asp-for="@Model.Response.UserId">
+                <input type="hidden" asp-for="@Model.Response.UserName">
+
+                <table class="table table-bordered table-striped ">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Response.AddRemove.First().RoleName)</th>
+                        <th></th>
+                    </tr>
+                    @for (int i = 0; i < Model?.Response?.AddRemove.Count(); i++)
+                    {
+                        <tr>
+                            <td>
+                                <input type="hidden" asp-for="@Model.Response.AddRemove[i].RoleId">
+                                @Html.DisplayFor(modelitem => Model.Response.AddRemove[i].RoleName)
+                                <input type="hidden" asp-for="@Model.Response.AddRemove[i].RoleName">
+                            </td>
+                            <td><input type="checkbox" asp-for="@Model.Response.AddRemove[i].IsSelected" /></td>
+                        </tr>
+                    }
+                </table><input type="Submit" value="Update Role" class="btn btn-outline-primary" />
+            </form>
+        </div>
+    </div>
+</div>

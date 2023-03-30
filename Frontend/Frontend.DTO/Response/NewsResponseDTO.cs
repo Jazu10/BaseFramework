@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+
+
 
 namespace Frontend.DTO.Response
 {
@@ -15,8 +19,12 @@ namespace Frontend.DTO.Response
 
 
 
+
+
         [Display(Name = "Created Date")]
         public DateTime CreatedAt { get; set; }
+
+
 
 
 
@@ -26,21 +34,36 @@ namespace Frontend.DTO.Response
 
 
 
+
+
         [Required]
         [Display(Name = "News Content")]
         public string Content { get; set; }
 
 
 
+
+
         [Display(Name = "Image")]
         public string? Image { get; set; }
+
+
+
+
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
 
 
 
-        [Required]
-        public string UserId { get; set; }
+
+
+
+        public string? UserId { get; set; }
+
+
+
+        [JsonIgnore]
+        public IFormFile? ImgFiles { get; set; }
         public UserResponseDTO? User { get; set; }
     }
 }

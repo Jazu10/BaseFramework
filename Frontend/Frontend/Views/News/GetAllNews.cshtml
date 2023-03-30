@@ -1,105 +1,113 @@
 ﻿@model IEnumerable<NewsResponseDTO>
 @{
     Layout = "_MenuLayout";
-    ViewData["Title"] = "GetAllNews";
+    ViewData["Title"] = "News";
+    var Image = "";
+
 }
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/assets/css/newscard.css" asp-append-version="true" />
 
+<link href="~/css/news.css" rel="stylesheet" />
 
-    <style>
-                body {
-                        margin: 30px;
+<div class="card" style="margin-top:20px;">
 
-        }
-    </style>
-</head>
+    
 
 
 
 
+    <div class="toolbar">
 
-<div id="accordion">
+        <div class="container-fluid d-flex flex-stack">
 
-    <div class="card mb-3" style="max-width: 940px;">
-        <div class="row no-gutters">
-            <div class="col-md-4">
-                <img src="/assets/media/avatars/blank.png" height="200px" class="card-img" alt="...">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body" id="heading-2">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    <h5 class="mb-0">
-                        <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
-                            How to get this trade copier?
-                        </a>
-                    </h5>
-                </div>
+            <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 
+                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1"><b>@ViewData["Title"]</b></h1>
 
+                <span class="h-20px border-gray-200 border-start mx-4"></span>
 
             </div>
+
+            <div class="d-flex align-items-center py-1">
+            </div>
+
         </div>
-        <div id="collapse-2" class="collapse" data-parent="#accordion" aria-labelledby="heading-2">
-            <div class="card-body">
-                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
-                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
-                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
-                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
-                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
-                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
-            </div>
-        </div>
+
     </div>
 
 
 
-    <div class="card mb-3" style="max-width: 940px;">
-        <div class="row no-gutters">
-            <div class="col-md-4">
-                <img src="/assets/media/avatars/blank.png" height="200px" class="card-img" alt="...">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body" id="heading-3">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    <h5 class="mb-0">
-                        <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
-                            How to get this trade copier?
-                        </a>
-                    </h5>
+    <div class="flexgrid " style="margin-top:2rem;">
+        <div class='container'>
+            @foreach (var item in Model)
+            {
+
+
+
+                <div class='thing' >
+                    <div class="example-2 card" >
+                        @{
+                            Image = @item.Image;
+                        }
+                        <div class="wrapper" style="background:url(../Images/@item.Image) center / cover no-repeat;border-radius:5px;">
+                            <div class="date">
+                                <p>Published on @Html.DisplayFor(modelItem => item.CreatedAt)</p>
+
+                            </div>
+                            <div class="data">
+                                <div class="content">
+                                    <span class="author">
+                                        <p>
+                                            By
+                                            @Html.DisplayFor(modelItem => item.User.firstName)
+                                            @Html.DisplayFor(modelItem => item.User.lastName)
+                                        </p>
+                                    </span>
+                                    <h1 class="title">
+                                        <a href="#">
+                                            @Html.DisplayFor(modelItem => item.Subject)
+                                        </a>
+                                    </h1>
+                                    <p class="text">
+                                        @Html.DisplayFor(modelItem => item.Content)
+                                    </p>
+                                    <a asp-action="SingleNews" asp-route-id="@item.NewsId" class="button">Read more</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-
-
-            </div>
-        </div>
-        <div id="collapse-3" class="collapse" data-parent="#accordion" aria-labelledby="heading-3">
-            <div class="card-body">
-                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
-                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
-                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
-                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
-                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
-                After subscription you will get our special trade copier. If you want to use this copier for business purpose or other commercial pupose then directly contact with www.fxcopier.co.uk.
-            </div>
+            }
         </div>
     </div>
 </div>
 
 
-
 @section scripts{
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-
-
-    <script>
-        $('.collapse').collapse()
-    </script>
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

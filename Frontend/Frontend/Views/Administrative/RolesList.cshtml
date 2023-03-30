@@ -1,0 +1,54 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model Result<List<IdentityRole>>
+
+@{
+    ViewData["Title"] = "RolesList";
+}
+
+<h1>RolesList</h1>
+
+<p>
+    <a asp-action="CreateRole">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Response.First().Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Response.First().Name)
+            </th>
+@*            <th>
+                @Html.DisplayNameFor(model => model.Response.First().normalizedName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Response.First().concurrencyStamp)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Response) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+@*            <td>
+                @Html.DisplayFor(modelItem => item.normalizedName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.concurrencyStamp)
+            </td>*@
+            <td>
+                @Html.ActionLink("Edit", "EditRole", new { roleId=item.Id }) |
+                    @Html.ActionLink("Details", "SingleRole", new { roleId=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

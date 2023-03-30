@@ -1,29 +1,10 @@
-﻿@model List<UserResponseDTO>
+﻿@model Result<List<UserResponseDTO>>
 
 @{
-    Layout = "_MenuLayout";
-    ViewData["Title"] = "Users List";
+    ViewData["Title"] = "UsersList";
 }
 
-<div class="toolbar">
-    <div class="container-fluid d-flex flex-stack">
-        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">@ViewData["Title"]</h1>
-            <span class="h-20px border-gray-200 border-start mx-4"></span>
-        </div>
-        <div class="d-flex align-items-center py-1">
-
-            <a class="btn btn-light-primary btn-sm" asp-controller="account" asp-action="register" >Register User</a>
- 
-
-            @*    <a asp-controller="Administrative" asp-action="CreateRole" class="btn btn-light-primary btn-sm">
-            <i class="fas fa-plus"></i> Role Create*@
-            
-        </div>
-    </div>
-</div>
-
-@*<h1>UsersList</h1>
+<h1>UsersList</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -65,8 +46,8 @@
         </tr>
     </thead>
     <tbody>
-
-        @if (Model != null)
+        
+        @if(Model != null)
         {
             @foreach (var item in Model.Response)
             {
@@ -110,101 +91,4 @@
             }
         }
     </tbody>
-</table>*@
-
-
-<div class="card">
-    <div class="card-body mt-4">
-        <table id="userListTable" class="table table-border" width="100%">
-            <thead class="">
-                <tr style="background-color:#E1EBEE">
-
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Gender</th>
-                    <th>Action</th>
-
-                </tr>
-            </thead>
-            <tbody></tbody>
-
-        </table>
-    </div>
-</div>
-@section scripts{
-
-        <script>
-            $(document).ready(function () {
-                $('#userListTable').DataTable({
-                    "processing": true,
-                    "serverSide": false,
-                    "filter": true,
-                    "scrollX": true,
-                    "searching": true,
-                    "order": [1, "asc"],
-                    "ajax": {
-                            "url": "/account/usersListdata",
-                        "type": "Get",
-                        "dataSrc": ""
-                       
-
-                    },
-                    "columnDefs": [{
-
-                    }],
-                    "columns": [
-
-
-                        { "data": "firstName", "name": "First Name" },
-                        { "data": "lastName", "name": "Last Name" },
-                        { "data": "user.userName", "name": "Email" },
-                        { "data": "gender", "name": "Gender" },
-
-
-
-
-
-
-                        {
-                            "orderable": false,
-                            "render": function (data, type, full, meta) {
-                                return `<div class="d-flex gap-2">
-
-                                               <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" onclick="assignRole('${full.userId}')"><i class="fa fa-users"></i></button>
-
-                                        </div>`;
-                            }
-                        },
-                    ]
-                    //< button class= "btn btn-danger" > <i class="fa fa-trash"> </i></button >
-
-
-
-                }).columns.adjust();
-            });
-
-
-                function assignRole(id) {
-                    console.log("hello");
-                $.ajax({
-                    "type": "GET",
-                        "url": "@Url.Action("AddRemoveRoles", "Administrative",new { area = "Admin" })",
-                    "dataType": "html",
-                        "data": { "userId": id },
-                    "success": function (data) {
-                        $('#modalBody').html(data);
-                        $('#modalFooter').html("");
-                        $('#myModal').modal('show');
-                    },
-                    "error": function () {
-                        alert("error in loading model");
-                    }
-                });
-            }
-
-
-        </script>
-
-
-}
+</table>
