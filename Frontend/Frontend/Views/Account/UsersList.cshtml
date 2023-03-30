@@ -1,7 +1,7 @@
 ﻿@model List<UserResponseDTO>
 
 @{
-    Layout = "_menuLayout";
+    Layout = "_MenuLayout";
     ViewData["Title"] = "Users List";
 }
 
@@ -185,7 +185,8 @@
             });
 
 
-                     function assignRole(id) {
+                function assignRole(id) {
+                    console.log("hello");
                 $.ajax({
                     "type": "GET",
                         "url": "@Url.Action("AddRemoveRoles", "Administrative",new { area = "Admin" })",

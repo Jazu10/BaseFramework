@@ -101,7 +101,7 @@ namespace Frontend.Areas.Admin.Controllers
         {
             try
             {
-                var result = await _client.GetAsync<RoleRequestDTO>($"{ApiConstants.SingleRole}?roleId={id}");
+                var result = await _client.GetAsyncSingle<RoleRequestDTO>($"{ApiConstants.SingleRole}?roleId={id}");
                 return View(result.Response);
             }
             catch (Exception ex)
@@ -153,7 +153,7 @@ namespace Frontend.Areas.Admin.Controllers
         {
             try
             {
-                var result = await _client.GetAsync<AddRemoveRoles>($"{ApiConstants.UserRoles}?userId={userId}");
+                var result = await _client.GetAsyncSingle<AddRemoveRoles>($"{ApiConstants.UserRoles}?userId={userId}");
                 return View(result);
             }
             catch (Exception ex)

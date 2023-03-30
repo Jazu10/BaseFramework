@@ -240,7 +240,7 @@ namespace Frontend.Controllers
             try
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var result = await _client.GetAsync<UserResponseDTO>($"{ApiConstants.SingleUser}?userId={userId}");
+                var result = await _client.GetAsyncSingle<UserResponseDTO>($"{ApiConstants.SingleUser}?userId={userId}");
                 return View(result);
             }
             catch (Exception ex)

@@ -31,11 +31,11 @@
 							</span>
 						</span>
 						<div class="flex-grow-1 me-2">
-							<a href="@Url.Action("PendingQueue", "Workflow")" class="fw-bolder text-gray-800 text-hover-primary fs-6">@Html.DisplayNameFor(model => model.PendingItemsCount)</a>
+							<a href="@Url.Action("ApproveRejectPost", "Post",new {area="default"})" class="fw-bolder text-gray-800 text-hover-primary fs-6">@Html.DisplayNameFor(model => model.PendingItemsCount)</a>
 							<span class="text-muted fw-bold d-block">Actionable Items</span>
 						</div>
 						<span class="py-1">
-							<a class="fw-bolder text-warning" href="@Url.Action("PendingQueue", "Workflow")" title="Open Pending Queue">
+							<a class="fw-bolder text-warning" href="@Url.Action("ApproveRejectPost", "Post")" title="Open Pending Queue">
 								@Html.DisplayFor(model => model.PendingItemsCount)
 							</a>
 						</span>

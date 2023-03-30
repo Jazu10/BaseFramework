@@ -73,7 +73,7 @@
                             <span class="menu-sub menu-sub-accordion menu-active-bg">123456789</span>
 
                             </span>*@
-                        
+
 
                             <div class="menu-item">
                                 <a href="@Url.Action("Index","Administrative",new { area = "admin" })" class="btnMenuLogOff menu-link">
@@ -111,7 +111,7 @@
                             </div>
 
 
-                    
+
 
                             <div class="menu-item">
                                 <a href="@Url.Action("logout","account",new { area = "default" })" class="btnMenuLogOff menu-link">
@@ -168,6 +168,7 @@
                                         <div class="form-text me-2">Welcome <a href="@Url.Action("Profile", "Account",new {area="default"})">@User.FindFirstValue(ClaimTypes.GivenName)</a></div>
                                         <div class="cursor-pointer symbol symbol-20px symbol-md-25px" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end" data-kt-menu-flip="bottom">
                                             @{
+
                                                 var userId = Context.User.Identity.Name;
                                                 var pic = @User.FindFirstValue("Images");
                                                 if (!string.IsNullOrWhiteSpace(userId))
@@ -279,10 +280,10 @@
                             <span class="text-muted me-1 appversion">Version : portal-v:0.1 © @DateTime.Now.Year</span>
                             <a href="https://www.unityinfotech.com" target="_blank" class="text-gray-800 text-hover-primary">Unity Infotech</a>
                         </div>
-                     @*   <ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
-                            <li class="menu-item">
-                                <a href="@Url.Action("About", "Home")" target="_blank" class="menu-link px-2">About</a>
-                            </li>
+                        @*   <ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
+                        <li class="menu-item">
+                        <a href="@Url.Action("About", "Home")" target="_blank" class="menu-link px-2">About</a>
+                        </li>
                         </ul>*@
                     </div>
                 </div>
@@ -305,7 +306,7 @@
     <script src="/assets/plugins/global/plugins.bundle.js" asp-append-version="true"></script>
     <script src="/assets/js/scripts.bundle.js" asp-append-version="true"></script>
     <script src="/assets/js/custom/moment.min.js" asp-append-version="true"></script>
-@*    <script src="/js/mask.min.js" asp-append-version="true"></script>*@
+    @*    <script src="/js/mask.min.js" asp-append-version="true"></script>*@
     <script src="~/datatables/js/jquery.datatables.js"></script>
 
     <script src="~/assets/plugins/custom/datatables/datatables.bundle.js"></script>
