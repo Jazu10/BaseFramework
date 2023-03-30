@@ -16,6 +16,7 @@
         public const string UserRoles = "api/Administrative/UserRoles/";
         public const string UserClaims = "api/Administrative/UserClaims/";
         public const string RoleClaims = "api/Administrative/RoleClaims/";
+        public const string UserInRole = "api/Account/GetUsersInRole/";
 
         public const string GetAllAds = "api/Employee/AdvertisementList/";
         public const string GetAllAdsById = "api/Employee/UsersAdvertisement/";

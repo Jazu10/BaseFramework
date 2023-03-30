@@ -4,7 +4,10 @@ using Frontend.DTO.Response.Advertisement;
 using Frontend.DTO.Response.Common;
 using Microsoft.AspNetCore.Mvc;
 using NToastNotify;
+using System.IO;
+using System;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Frontend.Controllers
 {
@@ -180,4 +183,4 @@ namespace Frontend.Controllers
             return RedirectToAction("AdminNewsView");
         }
     }
-    }
+}

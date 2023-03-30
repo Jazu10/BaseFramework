@@ -16,52 +16,22 @@ namespace Frontend.DTO.Response
     {
         [Display(Name = "News Id")]
         public string? NewsId { get; set; }
-
-
-
-
-
         [Display(Name = "Created Date")]
         public DateTime CreatedAt { get; set; }
-
-
-
-
 
         [Required]
         [Display(Name = "News Title")]
         public string Subject { get; set; }
 
-
-
-
-
         [Required]
         [Display(Name = "News Content")]
         public string Content { get; set; }
 
-
-
-
-
         [Display(Name = "Image")]
         public string? Image { get; set; }
-
-
-
-
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
-
-
-
-
-
-
         public string? UserId { get; set; }
-
-
-
         [JsonIgnore]
         public IFormFile? ImgFiles { get; set; }
         public UserResponseDTO? User { get; set; }

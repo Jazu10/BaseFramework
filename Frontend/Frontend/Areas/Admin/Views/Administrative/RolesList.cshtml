@@ -1,0 +1,147 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model List<IdentityRole>
+
+@{
+    Layout = "_menuLayout";
+    ViewData["Title"] = "RolesList";
+}
+
+<div class="toolbar">
+    <div class="container-fluid d-flex flex-stack">
+        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">@ViewData["Title"]</h1>
+            <span class="h-20px border-gray-200 border-start mx-4"></span>
+        </div>
+        <div class="d-flex align-items-center py-1">
+
+            <button class="btn btn-light-primary btn-sm" onclick="create()">Create Role</button>
+
+            @*    <a asp-controller="Administrative" asp-action="CreateRole" class="btn btn-light-primary btn-sm">
+            <i class="fas fa-plus"></i> Role Create*@
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-body mt-4">
+        <table id="roleListTable" class="table table-border" width="100%">
+            <thead>
+                <tr style="background-color:#E1EBEE">
+                    @*<th>Role Id</th>*@
+                    <th>
+                       Role Name
+                    </th>
+                    @*<th>Role Name</th>*@
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+@section scripts{
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('#roleListTable').DataTable({
+                "processing": true,
+                "serverSide": false,
+                "filter": true,
+                "scrollX": true,
+                "searching": true,
+                "order": [1, "asc"],
+                "ajax": {
+                    "url": "@Url.Action("RoleListData","Administrative",new { area = "Admin" })",
+                    "type": "Get",
+                    "datatype": "json",
+                    "dataSrc": ""
+                },
+                "columns": [
+                    //{ "data": "id", "name": "Id", "orderable": false },
+                    { "data": "name", "name": "Role Name","autowidth":true },
+                    {
+                        "orderable": false,
+                        "render": function (data, type, full, meta) {
+                            return `<div class="d-flex gap-2">
+
+                                                                                        <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" onclick="userInrole('${full.id}')"><i class="fa fa-users"></i></button>
+                                                                                <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" onclick="editRole('${full.id}')"><i class="fa fa-edit"></i></button>
+                                                                        </div>`;
+                        }
+                    },
+                ]
+                //< button class= "btn btn-danger" > <i class="fa fa-trash"> </i></button >
+            }).columns.adjust();
+        });
+
+
+        function userInrole(id) {
+            $.ajax({
+                "type": "GET",
+                "url": "@Url.Action("UserInrole", "Administrative",new { area = "Admin" })",
+                "dataType": "html",
+                "data": { "roleid": id },
+                "success": function (data) {
+                    $('#modalBody').html(data);
+                    $('#modalFooter').html("");
+                    $('#myModal').modal('show');
+                },
+                "error": function () {
+                    alert("error in loading model");
+                }
+            });
+        }
+
+
+
+
+
+
+
+        function create() {
+            $.ajax({
+                "type": "GET",
+                "url": "@Url.Action("CreateRole", "Administrative",new { area = "Admin" })",
+                "dataType": "html",
+                "data": {},
+                "success": function (data) {
+                    $('#modalBody').html(data);
+                    $('#modalFooter').html("");
+                    $('#myModal').modal('show');
+                },
+                "error": function () {
+                    alert("error in loading model");
+                }
+            });
+        }
+
+
+        function editRole(id) {
+            $.ajax({
+                "type": "GET",
+                "url": "@Url.Action("EditRole", "Administrative",new { area = "Admin" })",
+                "dataType": "html",
+                "data": { id },
+                "success": function (data) {
+                    $('#modalBody').html(data);
+                    $('#modalFooter').html("");
+                    $('#myModal').modal('show');
+                },
+                "error": function () {
+                    alert("error in loading model");
+                }
+            });
+        }
+    </script>
+
+
+    }
