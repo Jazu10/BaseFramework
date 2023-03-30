@@ -1,7 +1,9 @@
 ﻿using Frontend.Core.HttpClients;
+using Frontend.DTO.Request;
 using Frontend.DTO.Response;
 using Frontend.DTO.Response.Common;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using NToastNotify;
 using System.Reflection;
 using System.Security.Claims;
@@ -31,11 +33,23 @@ namespace Frontend.Controllers
             return RedirectToAction("GetAllNews", "News");
         }
 
+        public async Task<IActionResult> PersonalPosts()
+        {
+            var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var response = await _client.GetAllAsync<PostResponseDTO>($"{ApiConstants.UserPosts}?userId={id}&postUser={id}");
+            if (response.Response != null)
+            {
+                return View(response.Response);
+            }
+            return RedirectToAction("GetAllNews", "News");
+        }
+
         [HttpGet]
         public async Task<IActionResult> CreatePost()
         {
             PostResponseDTO newPost = new PostResponseDTO()
             {
+                UserId = User.FindFirstValue(ClaimTypes.NameIdentifier),
                 LikeCount = 0,
                 CreatedAt = DateTime.Now
             };
@@ -47,7 +61,7 @@ namespace Frontend.Controllers
             try
             {
                 model.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                
+
                 if (ModelState.IsValid)
                 {
                     if (model.ImgFiles != null)
@@ -69,7 +83,103 @@ namespace Frontend.Controllers
             {
                 DisplayErrors(ex);
             }
-            return View(model);
+            return RedirectToAction(nameof(GetAllPosts));
+        }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> ApproveRejectPost()
+        {
+            try
+            {
+                var response = await _client.GetAllAsync<PostResponseDTO>(ApiConstants.GetAllPostsAdmin);
+                if (!response.IsError)
+                {
+                    return View(response.Response);
+                }
+                return RedirectToAction("GetAllPosts");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("GetAllPosts");
+            }
+            return RedirectToAction("GetAllPosts");
+        }
+
+        public async Task<IActionResult> ApprovePost(string id)
+        {
+            PostResponseDTO model = new PostResponseDTO();
+            var response = await _client.PutAsync<SuccessResultDTO>($"{ApiConstants.ApprovePost}?postId={id}", model);
+            return RedirectToAction("ApproveRejectPost");
+        }
+
+        public async Task<IActionResult> RejectPost(string id)
+        {
+            var response = await _client.DeleteAsync<SuccessResultDTO>($"{ApiConstants.RejectPost}?postId={id}");
+            //if (user.isinrole("admin"))
+            //{
+            //    return redirecttoaction("approverejectpost");
+            //}
+            return RedirectToAction("PersonalPosts");
+        }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> AddComment(string id, string comments)
+        {
+            try
+            {
+                CommentRequestDTO newComment = new CommentRequestDTO()
+                {
+                    PostId = id,
+                    Comment = comments,
+                    UserId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+                };
+                var response = await _client.PostAsync<SuccessResultDTO>(ApiConstants.Comment, newComment);
+                if (response.Response.Succeeded)
+                {
+                    _toastService.AddSuccessToastMessage(response.Response.Message);
+                    return RedirectToAction("GetAllPosts", "Post");
+                }
+                return RedirectToAction("GetAllPosts", "Post");
+            }
+            catch (Exception ex)
+            {
+                DisplayErrors(ex);
+            }
+            return RedirectToAction("GetAllPosts", "Post");
+        }
+
+        public async Task<IActionResult> GetAllComments(string id)
+        {
+            var response = await _client.GetAllAsync<CommentRequestDTO>($"{ApiConstants.GetAllComments}?postId={id}");
+
+            return View(response.Response);
+        }
+
+        public async Task<IActionResult> AddDltLikes(string id)
+        {
+            LikeRequestDTO model = new LikeRequestDTO()
+            {
+                ContentId = id,
+                UserId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+            };
+
+            var response = await _client.PostAsync<SuccessResultDTO>($"{ApiConstants.AddDltLikes}?postId={id}&userId={User.FindFirstValue(ClaimTypes.NameIdentifier)}", model);
+            if (response.Response.Succeeded)
+            {
+                return RedirectToAction("GetAllPosts", "Post");
+            }
+            return RedirectToAction("GetAllPosts", "Post");
+        }
+
+        public async Task<IActionResult> DltComment(string id)
+        {
+            var response = await _client.DeleteAsync<CommentRequestDTO>($"{ApiConstants.GetAllComments}?commentId={id}");
+
+            return RedirectToAction(nameof(GetAllPosts));
         }
     }
 }

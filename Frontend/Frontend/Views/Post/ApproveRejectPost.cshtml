@@ -1,0 +1,129 @@
+﻿@model IEnumerable<Frontend.DTO.Response.PostResponseDTO>
+
+@{
+    Layout = "_MenuLayout";
+    ViewData["Title"] = "ApproveRejectPost";
+    var fullName = "";
+}
+
+<div class="toolbar h-45px">
+    <div class="container-fluid d-flex flex-stack">
+        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">@ViewData["Title"]</h1>
+            <span class="h-20px border-gray-200 border-start mx-4"></span>
+        </div>
+    </div>
+</div>
+
+<table id="approve" class="table">
+    <thead>
+        <tr>
+            <th hidden>
+                @Html.DisplayNameFor(model => model.PostId)
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Time
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.user.userName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th hidden>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th hidden>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th hidden>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+            <th hidden>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th hidden>
+                @Html.DisplayNameFor(model => model.IsLiked)
+            </th>
+            <th hidden>
+                @Html.DisplayNameFor(model => model.LikeCount)
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            {
+                fullName = $"{item.User.firstName} {item.User.lastName}";
+            }
+            <tr>
+                <td hidden>
+                    @Html.DisplayFor(modelItem => item.PostId)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.CreatedAt)*@
+                    @Convert.ToDateTime(item.CreatedAt).ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Convert.ToDateTime(item.CreatedAt).ToString("HH:MM")
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => fullName )*@
+                    @fullName
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td hidden>
+                    @Html.DisplayFor(modelItem => item.Image)
+                </td>
+                <td hidden>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                <td hidden>
+                    @Html.DisplayFor(modelItem => item.IsDeleted)
+                </td>
+                <td hidden>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td hidden>
+                    @Html.DisplayFor(modelItem => item.IsLiked)
+                </td>
+                <td hidden>
+                    @Html.DisplayFor(modelItem => item.LikeCount)
+                </td>
+                <td>
+                    @if (!item.IsActive)
+                    {
+                        <a asp-action="ApprovePost" asp-controller="Post" asp-route-id="@item.PostId" class="btn-btn-primary mr-2"><i class="fa fa-thumbs-up text-success"></i></a>
+
+                        <a asp-action="RejectPost" asp-controller="Post" asp-route-id="@item.PostId" class="btn-btn-primary"><i class="fa fa-thumbs-down text-danger"></i></a>
+                    }else
+                    {
+                        <a asp-action="RejectPost" asp-controller="Post" asp-route-id="@item.PostId" class="btn-btn-primary"><i class="fa fa-trash "></i></a>
+                    }
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#approve').DataTable();
+        });
+    </script>
+}

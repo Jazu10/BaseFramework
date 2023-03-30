@@ -30,6 +30,16 @@
         public const string DeleteNews = "api/Administrative/SingleNews/";
 
         public const string GetAllPosts = "api/Employee/PostList/";
+        public const string UserPosts = "api/Employee/UsersPost";
+        public const string GetAllPostsAdmin = "api/Employee/AdminPosts/";
+        public const string ApprovePost = "api/Employee/ApprovePost/";
+        public const string RejectPost = "api/Employee/SinglePost";
+
+        public const string Comment = "api/Employee/Comment/";
+        public const string GetAllComments = "api/Employee/Comment";
+
+
+        public const string AddDltLikes = "api/Employee/Liker";
 
     }
 }

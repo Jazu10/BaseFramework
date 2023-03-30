@@ -21,7 +21,7 @@
             <span class="h-20px border-gray-200 border-start mx-4"></span>
         </div>
         <div class="d-flex align-items-center py-1">
-            <a class="btn btn-light-primary btn-sm" asp-action="PersonalPosts"> <i class="fas fa-plus"></i>My Contributions</a>
+        <button class="btn btn-light-primary btn-sm" id="create"> <i class="fas fa-plus"></i>Add</button>
         </div>
     </div>
 </div>
@@ -83,11 +83,13 @@
                                     </div>
                                 </form>
 
-
                             </div>
-                            <div class="card card-body">
+                            <div class="card card-body row">
+                                <div class="col">
                                 @*<a class="btn btn-light-primary btn-sm" asp-action="GetAllComments" asp-controller="Post" asp-route-id="@item.PostId">See All Comments</a>*@
                                 <button class="btn btn-light-primary btn-sm" onclick="Comments('@item.PostId')">See All Comments</button>
+                                <a class="btn btn-light-danger btn-sm" asp-action="RejectPost" asp-controller="Post" asp-route-id="@item.PostId">Delete</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -108,9 +110,24 @@
             toggle: false
         });
 
+        $('#create').click(function () {
+            $.ajax({
+                "type": "GET",
+                "url": "@Url.Action("CreatePost", "Post")",
+                "dataType": "html",
+                "data": {},
+                "success": function (data) {
+                    $('#modalBody').html(data);
+                    $('#modalFooter').html("");
+                    $('#myModal').modal('show');
+                },
+                "error": function () {
+                    alert("error in loading model");
+                }
+            });
+        });
+
         function Comments(id) {
-            var path = window.location.href;
-            path = path.split("/")[4];
             $.ajax({
                 "type": "Get",
                 "url": "@Url.Action("GetAllComments", "Post")",
@@ -130,4 +147,6 @@
 
     </script>
 }
+
+
 
