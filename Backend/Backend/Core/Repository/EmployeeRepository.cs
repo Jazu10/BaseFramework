@@ -1,6 +1,7 @@
 ﻿using Backend.Core.Data;
 using Backend.Core.Data.Entities;
 using Backend.Core.RepositoryInterface;
+using Backend.Core.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Core.Repository
@@ -297,28 +298,28 @@ namespace Backend.Core.Repository
 
         public async Task<PostModel> GetSinglePost(string postId, string userId)
         {
-            var result = await(from post in _context.PostList
-                               join
-                         user in _context.UserList on post.UserId equals user.UserId
-                               select (new PostModel
-                               {
-                                   PostId = post.PostId,
-                                   UserId = post.UserId,
-                                   Subject = post.Subject,
-                                   CreatedAt = post.CreatedAt,
-                                   IsActive = post.IsActive,
-                                   IsDeleted = post.IsDeleted,
-                                   Content = post.Content,
-                                   Image = post.Image,
-                                   User = _context.UserList
-                                               .Where(item => item.UserId == post.UserId)
-                                               .FirstOrDefault(),
+            var result = await (from post in _context.PostList
+                                join
+                          user in _context.UserList on post.UserId equals user.UserId
+                                select (new PostModel
+                                {
+                                    PostId = post.PostId,
+                                    UserId = post.UserId,
+                                    Subject = post.Subject,
+                                    CreatedAt = post.CreatedAt,
+                                    IsActive = post.IsActive,
+                                    IsDeleted = post.IsDeleted,
+                                    Content = post.Content,
+                                    Image = post.Image,
+                                    User = _context.UserList
+                                                .Where(item => item.UserId == post.UserId)
+                                                .FirstOrDefault(),
 
-                                   IsLiked = _context.LikeList.Where(item => item.ContentId == post.PostId
-                                            && item.UserId == userId).FirstOrDefault() != null ? true : false,
+                                    IsLiked = _context.LikeList.Where(item => item.ContentId == post.PostId
+                                             && item.UserId == userId).FirstOrDefault() != null ? true : false,
 
-                                   LikeCount = _context.LikeList.Where(item => item.ContentId == post.PostId).Count(),
-                               })).Where(item => item.PostId == postId  && item.IsActive == true && item.IsDeleted == false)
+                                    LikeCount = _context.LikeList.Where(item => item.ContentId == post.PostId).Count(),
+                                })).Where(item => item.PostId == postId && item.IsActive == true && item.IsDeleted == false)
                                       .FirstOrDefaultAsync();
             return result;
         }
@@ -440,6 +441,19 @@ namespace Backend.Core.Repository
             }
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<DashbordViewModel> GetDashboard()
+        {
+            //var result = await _context.PostList
+            //    .GroupBy(item => item.IsActive).Select(item => item.Count()).ToListAsync();
+
+            DashbordViewModel model = new DashbordViewModel()
+            {
+                ApprovedItemsCount = await _context.PostList.Where(item => item.IsActive == true).CountAsync(),
+                PendingItemsCount = await _context.PostList.Where(item => item.IsActive == false).CountAsync(),
+            };
+            return model;
         }
     }
 }

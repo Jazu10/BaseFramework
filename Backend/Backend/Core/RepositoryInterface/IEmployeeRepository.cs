@@ -1,4 +1,5 @@
 ﻿using Backend.Core.Data.Entities;
+using Backend.Core.ViewModels;
 
 namespace Backend.Core.RepositoryInterface
 {
@@ -36,6 +37,7 @@ namespace Backend.Core.RepositoryInterface
 
 
         public Task<bool> HandleLikes(string postId, string userId);
+        public Task<DashbordViewModel> GetDashboard();
 
     }
 }
