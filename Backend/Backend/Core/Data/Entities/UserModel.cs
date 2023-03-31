@@ -63,7 +63,6 @@ namespace Backend.Core.Data.Entities
         public IdentityUser? User { get; set; }
 
         [NotMapped]
-        [JsonIgnore]
-        public IdentityRole? Role { get; set; }
+        public IList<string>? Role { get; set; }
     }
 }
