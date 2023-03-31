@@ -35,7 +35,7 @@
 							<span class="text-muted fw-bold d-block">Actionable Items</span>
 						</div>
 						<span class="py-1">
-							<a class="fw-bolder text-warning" href="@Url.Action("ApproveRejectPost", "Post")" title="Open Pending Queue">
+							<a class="fw-bolder text-warning" href="@Url.Action("ApproveRejectPost", "Post",new {area="default"})" title="Open Pending Queue">
 								@Html.DisplayFor(model => model.PendingItemsCount)
 							</a>
 						</span>

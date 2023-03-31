@@ -21,7 +21,7 @@
     <link href="~/datatables/css/datatables.bootstrap4.min.css" rel="stylesheet" />*@
 
     <link href="~/assets/plugins/custom/datatables/datatables.dark.bundle.css" rel="stylesheet" />
-
+    <link href="~/font-awesome/css/all.css" rel="stylesheet" />
 </head>
 <body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
 
@@ -44,9 +44,6 @@
 
     <div class="d-flex flex-column flex-root">
         <div class="page d-flex flex-row flex-column-fluid">
-
-
-
             <div id="kt_aside" class="aside aside-dark aside-hoverable" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_mobile_toggle">
                 <div class="aside-logo flex-column-auto" id="kt_aside_logo">
                     <a href="@Url.Action("Index", "Home")" class="brand-logo">
@@ -61,18 +58,26 @@
                         </span>
                     </div>
                 </div>
+
+
                 <div class="aside-menu flex-column-fluid">
                     <div class="hover-scroll-overlay-y my-5 my-lg-5" id="kt_aside_menu_wrapper" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer" data-kt-scroll-wrappers="#kt_aside_menu" data-kt-scroll-offset="0">
                         <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500" id="#kt_aside_menu" data-kt-menu="true">
 
-                            @*	<div data-kt-menu-trigger='click' class='menu-item menu-accordion'>
+
+
+                            @*    <div data-kt-menu-trigger='click' class='menu-item menu-accordion'>
                             <span class="menu-link">
                             <span class="menu-icon"><i class=""></i></span>
                             <span class="menu-title">drop</span>
                             <span class="menu-arrow"></span>
                             <span class="menu-sub menu-sub-accordion menu-active-bg">123456789</span>
 
+
+
                             </span>*@
+
+
 
 
                             <div class="menu-item">
@@ -81,6 +86,8 @@
                                     <span class="menu-title">Dashboard</span>
                                 </a>
                             </div>
+
+
 
                             <div data-kt-menu-trigger='click' class='menu-item menu-accordion'>
                                 <span class="menu-link">
@@ -109,10 +116,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
                             <div class="menu-item">
                                 <a href="@Url.Action("logout","account",new { area = "default" })" class="btnMenuLogOff menu-link">
                                     <span class="menu-icon"><i class="bi bi-shield-check fs-3"></i></span>
@@ -123,7 +126,6 @@
                     </div>
                 </div>
             </div>
-
 
             @*@await Component.InvokeAsync("Menu")*@
 
@@ -154,11 +156,32 @@
                                      data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_header_menu_mobile_toggle" data-kt-swapper="true"
                                      data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
                                     <div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch" id="#kt_header_menu" data-kt-menu="true">
+                                        @if (User.FindFirstValue(ClaimTypes.NameIdentifier) != null)
+                                        {
+                                            <div class="menu-item me-lg-1">
+                                                <a class="menu-link py-3 active" href="@Url.Action("Index", "Administrative",new{Area="Admin"})">
+                                                    <span class="menu-title">Dashboard</span>
+                                                </a>
+                                            </div>
+                                        }
                                         <div class="menu-item me-lg-1">
-                                            <a class="menu-link py-3 active" href="@Url.Action("Index", "Home")">
-                                                <span class="menu-title">Dashboard</span>
+                                            <a class="menu-link py-3 active" href="@Url.Action("GetAllNews", "News",new {area="default"})">
+                                                <span class="menu-title">News</span>
                                             </a>
                                         </div>
+                                        @if (User.FindFirstValue(ClaimTypes.NameIdentifier) != null)
+                                        {
+                                            <div class="menu-item me-lg-1">
+                                                <a class="menu-link py-3 active" href="@Url.Action("GetAllPosts", "Post",new {area="default"})">
+                                                    <span class="menu-title">Post</span>
+                                                </a>
+                                            </div>
+                                            <div class="menu-item me-lg-1">
+                                                <a class="menu-link py-3 active" href="@Url.Action("GetAllAds", "Advertisement",new {area="default"})">
+                                                    <span class="menu-title">Advertisement</span>
+                                                </a>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             </div>
