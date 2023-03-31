@@ -1,0 +1,152 @@
+﻿@model IEnumerable<Frontend.DTO.Response.PostResponseDTO>
+
+@{
+    Layout = "_MenuLayout";
+}
+
+<link href="~/css/postscss.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link href="~/font-awesome/css/all.css" rel="stylesheet" />
+
+@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">*@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<div class="toolbar h-45px">
+    <div class="container-fluid d-flex flex-stack">
+        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Posts</h1>
+            <span class="h-20px border-gray-200 border-start mx-4"></span>
+        </div>
+        <div class="d-flex align-items-center py-1">
+        <button class="btn btn-light-primary btn-sm" id="create"> <i class="fas fa-plus"></i>Add</button>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            <div class="col col-4">
+                <div class="card main panel panel-default z-depth-4">
+                    <div class="panel-body">
+
+                        <div class="d-flex flex-row align-items-end  justify-content-between">
+                            <div class="d-flex flex-row gap-2">
+                                <img src="~/Images/@item.User.image" height="40px" width="40px" class="rounded-circle">
+                                <div class="mt-2 h5">@item.User.firstName</div>
+
+                            </div>
+                            <div class="d-flex">
+                                <div><small>Created At: @item.CreatedAt.Date.ToString().Split(" ").First()</small></div>
+                            </div>
+                        </div>
+
+
+                        <div class="post mt-2">
+                            <img class="not" src="~/Images/@item.Image">
+                            <div>
+                                <label class="control-label mt-2"><strong>@item.Subject</strong></label>
+                                <p class="iconsec">
+                                    @if (item.IsLiked)
+                                    {
+                                        <a asp-action="AddDltLikes" asp-controller="Post" class="fa fa-heart h2" asp-route-id="@item.PostId"></a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="AddDltLikes" asp-controller="Post" class="fa-regular fa-heart h2" asp-route-id="@item.PostId"></a>
+                                    }
+                                    <a class="fa-regular fa-comment h2 collapsed" data-toggle="collapse" href="#collapseId-@item.PostId" role="button" aria-expanded="false" aria-controls="#collapseId-@item.PostId"></a>
+                                </p>
+                            </div>
+                        </div>
+                        <label class="control-label mt-2"><small>@item.LikeCount likes</small></label>
+
+                        <div class="collapse" id="collapseId-@item.PostId">
+                            <div class="card card-title">
+                                <label class="control-label">@item.Content</label>
+
+                                <form asp-action="AddComment" asp-controller="Post" method="post" asp-route-id="@item.PostId">
+                                    <div class="form-group mt-2">
+                                        <label class="control-label">Add a comment</label>
+                                        <input class="form-control" name="comments" />
+                                        <span class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mt-2 py-1">
+                                        <input type="submit" value="Add" class="btn btn-success" />
+                                    </div>
+                                </form>
+
+                            </div>
+                            <div class="card card-body row">
+                                <div class="col">
+                                @*<a class="btn btn-light-primary btn-sm" asp-action="GetAllComments" asp-controller="Post" asp-route-id="@item.PostId">See All Comments</a>*@
+                                <button class="btn btn-light-primary btn-sm" onclick="Comments('@item.PostId')">See All Comments</button>
+                                <a class="btn btn-light-danger btn-sm" asp-action="RejectPost" asp-controller="Post" asp-route-id="@item.PostId">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        $('.collapse').collapse({
+            toggle: false
+        });
+
+        $('#create').click(function () {
+            $.ajax({
+                "type": "GET",
+                "url": "@Url.Action("CreatePost", "Post")",
+                "dataType": "html",
+                "data": {},
+                "success": function (data) {
+                    $('#modalBody').html(data);
+                    $('#modalFooter').html("");
+                    $('#myModal').modal('show');
+                },
+                "error": function () {
+                    alert("error in loading model");
+                }
+            });
+        });
+
+        function Comments(id) {
+            $.ajax({
+                "type": "Get",
+                "url": "@Url.Action("GetAllComments", "Post")",
+                "dataType": "html",
+                "data": { "id": id },
+                "success": function (data) {
+                    $('#modalBody').html(data);
+                    $('#myModal').modal('show');
+
+                },
+                "error": function () {
+                    alert("error in loading model");
+                }
+
+            });
+        }
+
+    </script>
+}
+
+
+

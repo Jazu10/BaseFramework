@@ -1,63 +1,62 @@
 @model Frontend.DTO.Response.Advertisement.AdvertisementResponseDTO
 
+
 @{
-    ViewData["Title"] = "CreateAds";
+    Layout = "_Layout1";
 }
 
-<h1>CreateAds</h1>
 
-<h4>AdvertisementResponseDTO</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="CreateAds" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CreatedAt" class="control-label"></label>
-                <input asp-for="CreatedAt" class="form-control" />
-                <span asp-validation-for="CreatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Subject" class="control-label"></label>
-                <input asp-for="Subject" class="form-control" />
-                <span asp-validation-for="Subject" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Content" class="control-label"></label>
-                <input asp-for="Content" class="form-control" />
-                <span asp-validation-for="Content" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <input asp-for="UserId" class="form-control" />
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ImgFiles" class="control-label"></label>
-                <input asp-for="ImgFiles" multiple class="form-control"/>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<form asp-action="CreateAds" asp-controller="Advertisement" method="post" enctype="multipart/form-data">
+    <div class="flex-grow-1">
+        <h3 class="text-center">Create New Advertisement</h3>
+        <hr class="hrClass" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="CreatedAt" hidden class="form-control form-control" placeholder="" style="width:326px">
+        <input type=hidden asp-for="UserId" />
+        <div class="form-group mt-3">
+            <label asp-for="Subject" class="control-label"></label>
+            <input asp-for="Subject" class="form-control" />
+            <span asp-validation-for="Subject" class="text-danger"></span>
+        </div>
+        <div class="form-group mt-3">
+            <label asp-for="Content" class="control-label"></label>
+            <textarea asp-for="Content" class="form-control"></textarea>
+            <span asp-validation-for="Content" class="text-danger"></span>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div class="form-group form-check" hidden>
+        <label class="form-check-label">
+            <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+        </label>
+    </div>
+    <div class="form-group form-check" hidden>
+        <label class="form-check-label">
+            <input class="form-check-input" asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
+        </label>
+    </div>
+
+
+
+    <div class="form-group mt-3">
+        <label asp-for="ImgFiles" class="control-label">Upload Images</label>
+        <input asp-for="ImgFiles" multiple class="form-control" />
+    </div>
+    <div class="form-group mt-3">
+        <input type="submit" value="Create Ad" class="btn btn-primary w-100" />
+    </div>
+
+    </div>
+    </div>
+
+</form>
+    </div>
+    </div>
+
+
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
-
