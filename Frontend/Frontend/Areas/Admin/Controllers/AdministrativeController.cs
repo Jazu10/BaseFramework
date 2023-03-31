@@ -4,8 +4,10 @@ using Frontend.Core.HttpClients;
 using Frontend.DTO.Request;
 using Frontend.DTO.Response;
 using Frontend.DTO.Response.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 using Newtonsoft.Json;
 using NToastNotify;
 
@@ -25,13 +27,20 @@ namespace Frontend.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             DashbordViewModel model = new DashbordViewModel();
-            model.ApprovedItemsCount = 1;
-            model.PendingItemsCount = 33;
-            model.RejectedItemsCount = 1;
-            return View(model);
+            try
+            {
+                var result = await _client.GetAsyncSingle<DashbordViewModel>(ApiConstants.DashboardList);
+                return View(result.Response);
+            }
+            catch (Exception ex)
+            {
+                DisplayErrors(ex);
+                return View(model);
+            }
+
         }
 
 

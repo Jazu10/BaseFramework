@@ -452,6 +452,7 @@ namespace Backend.Core.Repository
             {
                 ApprovedItemsCount = await _context.PostList.Where(item => item.IsActive == true).CountAsync(),
                 PendingItemsCount = await _context.PostList.Where(item => item.IsActive == false).CountAsync(),
+                RejectedItemsCount=await _context.PostList.Where(item=>item.IsDeleted==false).CountAsync()
             };
             return model;
         }

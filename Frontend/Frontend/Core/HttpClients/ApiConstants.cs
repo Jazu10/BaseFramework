@@ -42,5 +42,7 @@
 
         public const string AddDltLikes = "api/Employee/Liker";
 
+        public const string DashboardList = "api/Employee/DashboardItems";
+
     }
 }

@@ -22,8 +22,30 @@
 
     <link href="~/assets/plugins/custom/datatables/datatables.dark.bundle.css" rel="stylesheet" />
     <link href="~/font-awesome/css/all.css" rel="stylesheet" />
+
+    @{
+        ViewBag.padding = "";
+        ViewBag.left = "";
+        ViewBag.dashboard = "";
+        ViewBag.aside = "aside-enabled aside-fixed";
+        if (User.FindFirstValue(ClaimTypes.NameIdentifier) == null)
+        {
+            ViewBag.padding = "padding:10rem 0;";
+            ViewBag.left = "left:0";
+            ViewBag.dashboard = "display:none";
+            ViewBag.aside = "";
+        }
+        else if (User.FindFirstValue(ClaimTypes.NameIdentifier) != null && User.FindFirstValue("Roles") == "F")
+        {
+            ViewBag.padding = "padding:10rem 0;";
+            ViewBag.left = "left:0";
+            ViewBag.dashboard = "display:none";
+            ViewBag.aside = "";
+        }
+
+    }
 </head>
-<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed @ViewBag.aside" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
 
     <div class="modal fade" id="myModal">
         <div class="modal-dialog">
@@ -43,17 +65,17 @@
 
 
     <div class="d-flex flex-column flex-root">
-        <div class="page d-flex flex-row flex-column-fluid">
-            <div id="kt_aside" class="aside aside-dark aside-hoverable" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_mobile_toggle">
+        <div class="page flex-row flex-column-fluid">
+            <div id="kt_aside" class="aside aside-dark aside-hoverable" style="@ViewBag.dashboard" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_mobile_toggle">
                 <div class="aside-logo flex-column-auto" id="kt_aside_logo">
-                    <a href="@Url.Action("Index", "Home")" class="brand-logo">
-                        <img alt="Logo" src="/assets/media/logos/logo.png" class="h-25px logo" />
+                    <a href="https://www.unityinfotech.com/"target="_blank" class="brand-logo">
+                        <img alt="logo" src="/assets/media/logos/logo.png" class="h-25px logo" />
                     </a>
                     <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-primary aside-toggle" data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body" data-kt-toggle-name="aside-minimize">
                         <span class="svg-icon svg-icon-1 rotate-180">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path opacity="0.5" d="M14.2657 11.4343L18.45 7.25C18.8642 6.83579 18.8642 6.16421 18.45 5.75C18.0358 5.33579 17.3642 5.33579 16.95 5.75L11.4071 11.2929C11.0166 11.6834 11.0166 12.3166 11.4071 12.7071L16.95 18.25C17.3642 18.6642 18.0358 18.6642 18.45 18.25C18.8642 17.8358 18.8642 17.1642 18.45 16.75L14.2657 12.5657C13.9533 12.2533 13.9533 11.7467 14.2657 11.4343Z" fill="black" />
-                                <path d="M8.2657 11.4343L12.45 7.25C12.8642 6.83579 12.8642 6.16421 12.45 5.75C12.0358 5.33579 11.3642 5.33579 10.95 5.75L5.40712 11.2929C5.01659 11.6834 5.01659 12.3166 5.40712 12.7071L10.95 18.25C11.3642 18.6642 12.0358 18.6642 12.45 18.25C12.8642 17.8358 12.8642 17.1642 12.45 16.75L8.2657 12.5657C7.95328 12.2533 7.95328 11.7467 8.2657 11.4343Z" fill="black" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none">
+                                <path opacity="0.5" d="m14.2657 11.4343l18.45 7.25c18.8642 6.83579 18.8642 6.16421 18.45 5.75c18.0358 5.33579 17.3642 5.33579 16.95 5.75l11.4071 11.2929c11.0166 11.6834 11.0166 12.3166 11.4071 12.7071l16.95 18.25c17.3642 18.6642 18.0358 18.6642 18.45 18.25c18.8642 17.8358 18.8642 17.1642 18.45 16.75l14.2657 12.5657c13.9533 12.2533 13.9533 11.7467 14.2657 11.4343z" fill="black" />
+                                <path d="m8.2657 11.4343l12.45 7.25c12.8642 6.83579 12.8642 6.16421 12.45 5.75c12.0358 5.33579 11.3642 5.33579 10.95 5.75l5.40712 11.2929c5.01659 11.6834 5.01659 12.3166 5.40712 12.7071l10.95 18.25c11.3642 18.6642 12.0358 18.6642 12.45 18.25c12.8642 17.8358 12.8642 17.1642 12.45 16.75l8.2657 12.5657c7.95328 12.2533 7.95328 11.7467 8.2657 11.4343z" fill="black" />
                             </svg>
                         </span>
                     </div>
@@ -66,61 +88,85 @@
 
 
 
-                            @*    <div data-kt-menu-trigger='click' class='menu-item menu-accordion'>
-                            <span class="menu-link">
-                            <span class="menu-icon"><i class=""></i></span>
-                            <span class="menu-title">drop</span>
-                            <span class="menu-arrow"></span>
-                            <span class="menu-sub menu-sub-accordion menu-active-bg">123456789</span>
-
-
-
-                            </span>*@
-
-
-
-
-                            <div class="menu-item">
-                                <a href="@Url.Action("Index","Administrative",new { area = "admin" })" class="btnMenuLogOff menu-link">
-                                    <span class="menu-icon"><i class="bi bi-calendar3-event fs-3"></i></span>
-                                    <span class="menu-title">Dashboard</span>
-                                </a>
-                            </div>
-
-
-
                             <div data-kt-menu-trigger='click' class='menu-item menu-accordion'>
-                                <span class="menu-link">
-                                    <span class="menu-icon"><i class="bi bi-people fs-3"></i></span>
-                                    <span class="menu-title">Admin</span>
+                              @*  <span class="menu-link">
+                                    <span class="menu-icon"><i class=""></i></span>
+                                    <span class="menu-title">drop</span>
                                     <span class="menu-arrow"></span>
-                                </span>
-                                <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                    <div class="menu-item">
-                                        <a class="menu-link" href=" @Url.Action("register","account",new { area = "default" })">
-                                            <span class="menu-icon"><i class="bi bi-dot"></i></span>
-                                            <span class="menu-title">Register List</span>
-                                        </a>
-                                    </div>
-                                    <div class="menu-item">
-                                        <a class="menu-link" href=" @Url.Action("UsersList","account",new { area = "default" })">
-                                            <span class="menu-icon"><i class="bi bi-dot"></i></span>
-                                            <span class="menu-title">User List</span>
-                                        </a>
-                                    </div>
-                                    <div class="menu-item">
-                                        <a class="menu-link" href="@Url.Action("RolesList","Administrative",new { area = "admin" })">
-                                            <span class="menu-icon"><i class="bi bi-dot"></i></span>
-                                            <span class="menu-title">Roles</span>
-                                        </a>
+                                    <span class="menu-sub menu-sub-accordion menu-active-bg">123456789</span>
+                                </span>*@
+
+
+
+
+                                <div class="menu-item">
+                                    <a href="@Url.Action("index","administrative",new { area = "admin" })" class="btnmenulogoff menu-link">
+                                        <span class="menu-icon"><i class="bi bi-calendar3-event fs-3"></i></span>
+                                        <span class="menu-title">Dashboard</span>
+                                    </a>
+                                </div>
+
+
+
+                                <div data-kt-menu-trigger='click' class='menu-item menu-accordion'>
+                                    <span class="menu-link">
+                                        <span class="menu-icon"><i class="bi bi-people fs-3"></i></span>
+                                        <span class="menu-title">Admin</span>
+                                        <span class="menu-arrow"></span>
+                                    </span>
+                                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                                        <div class="menu-item">
+                                            <a class="menu-link" href=" @Url.Action("register","account",new { area = "default" })">
+                                                <span class="menu-icon"><i class="bi bi-dot"></i></span>
+                                                <span class="menu-title">Register User</span>
+                                            </a>
+                                        </div>
+                                        <div class="menu-item">
+                                            <a class="menu-link" href=" @Url.Action("userslist","account",new { area = "default" })">
+                                                <span class="menu-icon"><i class="bi bi-dot"></i></span>
+                                                <span class="menu-title">User List</span>
+                                            </a>
+                                        </div>
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="@Url.Action("roleslist","administrative",new { area = "admin" })">
+                                                <span class="menu-icon"><i class="bi bi-dot"></i></span>
+                                                <span class="menu-title">Roles</span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="menu-item">
-                                <a href="@Url.Action("logout","account",new { area = "default" })" class="btnMenuLogOff menu-link">
-                                    <span class="menu-icon"><i class="bi bi-shield-check fs-3"></i></span>
-                                    <span class="menu-title">Sign Out</span>
-                                </a>
+                                
+                                <div data-kt-menu-trigger='click' class='menu-item menu-accordion'>
+                                    <span class="menu-link">
+                                        <span class="menu-icon"><i class="bi bi-paperclip fs-3"></i></span>
+                                        <span class="menu-title">Actions</span>
+                                        <span class="menu-arrow"></span>
+                                    </span>
+                                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                                        <div class="menu-item">
+                                            <a class="menu-link" href=" @Url.Action("adminnewsview","news",new { area = "default" })">
+                                                <span class="menu-icon"><i class="bi bi-dot"></i></span>
+                                                <span class="menu-title">Manage News</span>
+                                            </a>
+                                        </div>
+                                        <div class="menu-item">
+                                            <a class="menu-link" href=" @Url.Action("approverejectpost","post",new { area = "default" })">
+                                                <span class="menu-icon"><i class="bi bi-dot"></i></span>
+                                                <span class="menu-title">Manage Posts</span>
+                                            </a>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
+
+
+                                <div class="menu-item">
+                                    <a href="@Url.Action("logout","account",new { area = "default" })" class="btnmenulogoff menu-link">
+                                        <span class="menu-icon"><i class="bi bi-shield-check fs-3"></i></span>
+                                        <span class="menu-title">Sign Out</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -130,8 +176,8 @@
             @*@await Component.InvokeAsync("Menu")*@
 
 
-            <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
-                <div id="kt_header" style="" class="header align-items-stretch">
+            <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper" style="@ViewBag.padding">
+                <div id="kt_header" class="header align-items-stretch" style="@ViewBag.left">
                     <div class="container-fluid d-flex align-items-stretch justify-content-between">
                         <div class="d-flex align-items-center d-lg-none ms-n3 me-1" title="Show aside menu">
                             <div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px" id="kt_aside_mobile_toggle">
@@ -156,7 +202,7 @@
                                      data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_header_menu_mobile_toggle" data-kt-swapper="true"
                                      data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
                                     <div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch" id="#kt_header_menu" data-kt-menu="true">
-                                        @if (User.FindFirstValue(ClaimTypes.NameIdentifier) != null)
+                                        @if (User.FindFirstValue(ClaimTypes.NameIdentifier) != null && User.FindFirstValue("Roles") == "T")
                                         {
                                             <div class="menu-item me-lg-1">
                                                 <a class="menu-link py-3 active" href="@Url.Action("Index", "Administrative",new{Area="Admin"})">
@@ -248,22 +294,35 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="separator my-2"></div>
-                                            <div class="menu-item px-5">
-                                                <a href="@Url.Action("Profile","Account",new { area = "default" }))" class="menu-link px-5">My Profile</a>
-                                            </div>
+                                            @if (User.FindFirstValue(ClaimTypes.NameIdentifier) != null)
+                                            {
+                                                <div class="separator my-2"></div>
+
+                                                <div class="menu-item px-5">
+                                                    <a href="@Url.Action("Profile","Account",new { area = "default" }))" class="menu-link px-5">My Profile</a>
+                                                </div>
 
 
 
-                                            @*<div class="menu-item px-5 my-1">
+                                                @*<div class="menu-item px-5 my-1">
                                             <a href="#" class="menu-link px-5">Account Settings</a>
                                             </div>*@
 
-                                            <div class="separator my-2"></div>
-                                            <div class="menu-item px-5">
-                                                <a asp-action="Logout" asp-controller="Account" asp-area="default" class="btnMenuLogOff menu-link px-5">Sign Out</a>
-                                            </div>
+                                                <div class="separator my-2"></div>
+                                                <div class="menu-item px-5">
+                                                    <a asp-action="Logout" asp-controller="Account" asp-area="default" class="btnMenuLogOff menu-link px-5">Sign Out</a>
+                                                </div>
+                                            }
+                                            else
 
+                                            {
+
+                                                <div class="separator my-2"></div>
+                                                <div class="menu-item px-5">
+                                                    <a asp-action="Login" asp-controller="Account" asp-area="default" class="btnMenuLogOff menu-link px-5">Sign In</a>
+                                                </div>
+
+                                            }
 
                                             @*<div class="separator my-2"></div>
                                             <div class="menu-item px-5">
@@ -320,6 +379,7 @@
                 <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="black" />
             </svg>
         </span>
+    </div>
     </div>
     @{
         var currentCtrAct = ViewContext?.RouteData?.Values["area"]?.ToString().ToLower() + ViewContext?.RouteData?.Values["Controller"]?.ToString().ToLower() + ViewContext?.RouteData?.Values["Action"]?.ToString().ToLower();

@@ -42,6 +42,8 @@ namespace Frontend.DTO.Response
         public ChangePasswordRequestDTO? changePasswordRequestDTO { get; set; }
 
         public IFormFile? File { get; set; }
+
+        public List<string>? Role { get; set; }
     }
 
     public class User

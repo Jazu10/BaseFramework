@@ -1,31 +1,43 @@
-﻿@model IEnumerable<NewsResponseDTO>
+﻿@using System.Security.Claims;
+@model IEnumerable<NewsResponseDTO>
 @{
     Layout = "_MenuLayout";
+
     ViewData["Title"] = "News";
     var Image = "";
 }
 
 
+<style>
+    #kt_wrapper {
+        padding-top: 0px !important;
+    }
+
+    .content {
+        margin-top: 70px
+    }
+
+</style>
 
 <link href="~/css/news.css" rel="stylesheet" />
 
-
-
-<div class="toolbar">
-    <div class="container-fluid d-flex flex-stack">
-        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1"><b>@ViewData["Title"]</b></h1>
-            <span class="h-20px border-gray-200 border-start mx-4"></span>
-        </div>
-        <div class="d-flex align-items-center py-1">
+@if (User.FindFirstValue(ClaimTypes.NameIdentifier) != null)
+{
+    <div class="toolbar">
+        <div class="container-fluid d-flex flex-stack">
+            <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1"><b>@ViewData["Title"]</b></h1>
+                <span class="h-20px border-gray-200 border-start mx-4"></span>
+            </div>
+            <div class="d-flex align-items-center py-1">
+            </div>
         </div>
     </div>
-</div>
+}
 
 
 
-
-<div class="card">
+<div class="card" style="font-family:Bahnschrift;">
     <div class="flexgrid " style="margin-top:2rem;">
         <div class='container'>
             @foreach (var item in Model)
@@ -53,7 +65,10 @@
                                     </span>
                                     <h1 class="title">
                                         <a href="#">
-                                            @Html.DisplayFor(modelItem => item.Subject)
+                                            <b>
+                                                @Html.DisplayFor(modelItem => item.Subject)
+
+                                            </b>
                                         </a>
                                     </h1>
                                     <p class="text">

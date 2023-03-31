@@ -1,14 +1,13 @@
 ﻿@model DashbordViewModel
 @{
     Layout = "_MenuLayout";
-	ViewData["Title"] = "Dashboard";
 
 }
 
 <div class="toolbar">
 	<div class="container-fluid d-flex flex-stack">
 		<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-			<h5 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">@ViewBag.Title</h5>
+			<h5 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Dashboard</h5>
 			<span class="h-20px border-gray-200 border-start mx-4"></span>
 		</div>
 		<div class="d-flex align-items-center py-1">
@@ -50,11 +49,11 @@
 							</span>
 						</span>
 						<div class="flex-grow-1 me-2">
-							<a href="@Url.Action("ApprovedQueue", "Workflow")" class="fw-bolder text-gray-800 text-hover-primary fs-6">@Html.DisplayNameFor(model => model.ApprovedItemsCount)</a>
+							<a href="@Url.Action("getallposts", "Post",new {area="default"})" class="fw-bolder text-gray-800 text-hover-primary fs-6">@Html.DisplayNameFor(model => model.ApprovedItemsCount)</a>
 							<span class="text-muted fw-bold d-block">Approved Items</span>
 						</div>
 						<span class="py-1">
-							<a class="fw-bolder text-success" href="@Url.Action("ApprovedQueue", "Workflow")" title="Open Approved Queue">
+							<a class="fw-bolder text-success" href="@Url.Action("getallposts", "Post",new {area="default"})" title="Open Approved Queue">
 								@Html.DisplayFor(model => model.ApprovedItemsCount)
 							</a>
 						</span>
@@ -69,11 +68,11 @@
 							</span>
 						</span>
 						<div class="flex-grow-1 me-2">
-							<a href="@Url.Action("RejectedQueue", "Workflow")" class="fw-bolder text-gray-800 text-hover-primary fs-6">@Html.DisplayNameFor(model => model.RejectedItemsCount)</a>
+							<a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">@Html.DisplayNameFor(model => model.RejectedItemsCount)</a>
 							<span class="text-muted fw-bold d-block">Rejected Items</span>
 						</div>
 						<span class="py-1">
-							<a class="fw-bolder text-danger" href="@Url.Action("RejectedQueue", "Workflow")" title="Open Rejected Queue">
+							<a class="#" title="Open Rejected Queue">
 								@Html.DisplayFor(model => model.RejectedItemsCount)
 							</a>
 						</span>

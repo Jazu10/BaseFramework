@@ -12,13 +12,13 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Frontend.Controllers
 {
-    [Authorize]
+    
     public class AccountController : BaseController
     {
         private readonly IGenericHttpClient _client;
         private readonly IWebHostEnvironment _env;
         private IToastNotification _toastService;
-
+        public string Roles = "";
         public AccountController(IGenericHttpClient client,
             IWebHostEnvironment env, IToastNotification toastService) : base(toastService)
         {
@@ -33,14 +33,14 @@ namespace Frontend.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                if (User.IsInRole("Admin"))
+                if (User.FindFirstValue("ROles")=="T")
                 {
                     return RedirectToAction("index", "Administrative", new { area = "Admin" });
 
                 }
                 else
                 {
-                    return RedirectToAction("index", "Administrative", new { area = "admin" });
+                    return RedirectToAction("GetAllNews", "News", new { area = "default" });
 
                 }
             }
@@ -59,10 +59,10 @@ namespace Frontend.Controllers
                     var flag = await CreateIdentity(result.Response);
                     if (flag)
                     {
-                        if (User.IsInRole("Admin"))
+                        if (Roles=="F")
                         {
                             _toastService.AddSuccessToastMessage($"Welcome {result.Response.firstName} {result.Response.lastName}");
-                            return RedirectToAction("index", "Administrative", new { area = "Admin" });
+                            return RedirectToAction("GetAllNews", "News", new { area = "default" });
                         }
                         else
                         {
@@ -260,10 +260,11 @@ namespace Frontend.Controllers
                 new Claim(ClaimTypes.Email, model.user.email),
                 new Claim(ClaimTypes.GivenName,$"{model.firstName} {model.lastName}"),
                 new Claim(ClaimTypes.MobilePhone, model.user.phoneNumber),
-                new Claim("Images", model.image ?? "Blank.png")
+                new Claim("Images", model.image ?? "Blank.png"),
+                new Claim("Roles", model?.Role?.Count() > 0 ? "T" : "F")
 
         };
-
+            Roles = model?.Role?.Count() > 0 ? "T" : "F";
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
