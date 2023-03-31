@@ -191,6 +191,8 @@ namespace Backend.Controllers
                     response.Response = await _context.UserList.Include(item => item.User)
                     .Where(item => item.UserId == user.Id).FirstOrDefaultAsync();
 
+                    response.Response.Role = await _userManager.GetRolesAsync(user);
+
                     return Ok(response);
                 }
 
