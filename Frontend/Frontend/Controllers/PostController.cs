@@ -22,10 +22,10 @@ namespace Frontend.Controllers
             _client = client;
             _env = env;
         }
-        public async Task<IActionResult> GetAllPosts()
+        public async Task<IActionResult> GetAllPosts(string ? search)
         {
             var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var response = await _client.GetAllAsync<PostResponseDTO>($"{ApiConstants.GetAllPosts}?userId={id}");
+            var response = await _client.GetAllAsync<PostResponseDTO>($"{ApiConstants.GetAllPosts}?userId={id}&search={search}");
             if (response.Response != null)
             {
                 return View(response.Response);

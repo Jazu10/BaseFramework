@@ -4,14 +4,15 @@
     Layout = "_MenuLayout";
 }
 
-<link href="~/css/postscss.css" rel="stylesheet" />
+@*<link href="~/css/postscss.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link href="~/font-awesome/css/all.css" rel="stylesheet" />
+<link href="~/font-awesome/css/all.css" rel="stylesheet" />*@
 
 @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">*@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>*@
 
 
 <div class="toolbar h-45px">
@@ -22,6 +23,20 @@
         </div>
         <div class="d-flex align-items-center py-1">
             <a class="btn btn-light-primary btn-sm" asp-action="PersonalPosts"> <i class="fas fa-plus"></i>My Contributions</a>
+            <span class="h-20px border-gray-200 border-start mx-4"></span>
+
+                <form class="" asp-action="GetAllPosts" method="get" asp-controller="Post">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Search for Posts..."
+                               aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary btn-sm" type="submit">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+           
         </div>
     </div>
 </div>
@@ -34,7 +49,7 @@
         @foreach (var item in Model)
         {
             <div class="col col-4">
-                <div class="card main panel panel-default z-depth-4">
+                <div class="card main panel panel-default z-depth-4 px-2 py-2">
                     <div class="panel-body">
 
                         <div class="d-flex flex-row align-items-end  justify-content-between">
@@ -43,14 +58,14 @@
                                 <div class="mt-2 h5">@item.User.firstName</div>
 
                             </div>
-                            <div class="d-flex">
-                                <div><small>Created At: @item.CreatedAt.Date.ToString().Split(" ").First()</small></div>
+                            <div class="d-flex px-2">
+                                <div><small>Posted At: @item.CreatedAt.Date.ToString().Split(" ").First()</small></div>
                             </div>
                         </div>
 
 
                         <div class="post mt-2">
-                            <img class="not" src="~/Images/@item.Image">
+                            <img class="not" src="~/Images/@item.Image" width="100%" height="250px" style="object-fit:contain">
                             <div>
                                 <label class="control-label mt-2"><strong>@item.Subject</strong></label>
                                 <p class="iconsec">
@@ -62,7 +77,7 @@
                                     {
                                         <a asp-action="AddDltLikes" asp-controller="Post" class="fa-regular fa-heart h2" asp-route-id="@item.PostId"></a>
                                     }
-                                    <a class="fa-regular fa-comment h2 collapsed" data-toggle="collapse" href="#collapseId-@item.PostId" role="button" aria-expanded="false" aria-controls="#collapseId-@item.PostId"></a>
+                                    <a class="fa-regular fa-comment h2 collapsed px-2" data-toggle="collapse" href="#collapseId-@item.PostId" role="button" aria-expanded="false" aria-controls="#collapseId-@item.PostId"></a>
                                 </p>
                             </div>
                         </div>

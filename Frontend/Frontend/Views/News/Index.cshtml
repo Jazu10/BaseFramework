@@ -1,0 +1,213 @@
+﻿@*horizontal box style news box*@
+@*<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Helvetica, Arial, sans-serif;
+        background-color: #E2E1E1;
+    }
+
+    .post {
+        background-color: white;
+        display: flex;
+        width: 90%;
+        margin: 20px auto;
+        box-shadow: 0 5px 15px 0 #777;
+    }
+
+    .post-date {
+        font-size: 13px;
+        color: #bbb;
+    }
+
+    .post-author {
+        color: #555;
+    }
+
+    .post-excerpt {
+        letter-spacing: 1px;
+        line-height: 1.33;
+    }
+
+    .post-image {
+        position: relative;
+        flex: 0 0 40%;
+        width: auto;
+        max-width: 300px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        img
+
+    {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+        position: absolute
+    }
+
+    }
+
+    .post-image-1 {
+        background-image: url(https://images.freeimages.com/images/large-previews/bf4/the-road-through-the-woods-1449194.jpg);
+    }
+
+    .post-image-2 {
+        background-image: url(https://images.freeimages.com/images/large-previews/7e9/ladybird-1367182.jpg);
+    }
+
+    .post-image-3 {
+        background-image: url(https://images.freeimages.com/images/large-previews/ddb/corn-field-2-1368926.jpg);
+    }
+
+    .post-content {
+        flex: 0 0 60%;
+        padding: 20px 30px;
+    }
+
+    .post-link {
+        display: inline-block;
+        margin: 0 0 15px;
+        padding: 16px 48px;
+        background: lightblue;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4em;
+        transition: background .2s ease-in-out;
+        &:hover
+
+    {
+        background: darken(lightblue, 10%);
+    }
+
+    }
+
+
+
+    .post-image {
+        height: 270px;
+        max-width: 100%;
+    }
+
+    #content {
+        overflow: hidden;
+        height: 3.6em;
+        line-height: 1.2em;
+        width: 400px;
+    }
+
+    #more:checked + div {
+        height: auto;
+    }
+
+    }
+</style>
+
+@foreach (var item in Model)
+{
+    <div class="post">
+        <div class="post-image post-image-1">
+            @{
+                Image = item.Image;
+            }
+            <img src="~/Images/@Image" style="height:270px;width:270px;padding-left:10px; padding-top:10px;padding-bottom:10px" class="center">
+        </div>
+        <div class="post-content">
+            <p class="post-date">
+                @Html.DisplayFor(modelItem => item.CreatedAt) by <a class="post-author" href="#">
+                    @Html.DisplayFor(modelItem => item.User.firstName)
+                    @Html.DisplayFor(modelItem => item.User.lastName)
+
+                </a>
+            </p>
+            <h2 class="post-title">
+                @Html.DisplayFor(modelItem => item.Subject)
+
+            </h2>
+            <input id="more" type="checkbox">Read more
+
+            <div class="post-excerpt" id="content">
+                @Html.DisplayFor(modelItem => item.Content)
+            </div>
+            <button>Read more</button>
+
+
+
+        </div>
+    </div>
+}
+*@
+@*Chakku Style*@
+      @*<div class="container">
+    <div class="d-flex justify-content-end mr-3">
+        <div>
+            <a asp-action="SingleUserNews" asp-route-id="@Model.FirstOrDefault().UserId" class="btn btn-primary">My Contributions</a>
+        </div>
+        <div>
+            <a asp-action="AddNews" asp-route-id="@Model.FirstOrDefault().UserId" class="btn btn-primary">Add</a>
+        </div>
+    </div>
+</div>
+<h1>News</h1>
+
+<div class="container mt-2">
+    <div class=" row">
+
+
+
+    @foreach (var item in Model)
+    {
+
+        <div id="accordion">
+
+
+
+            <div class="card mb-3 rounded-3 border-hover-warning" style="max-width: 940px; vertical-align:middle;">
+                <div class="row no-gutters">
+                    <div class="col-md-3" style="border-radius:10%;">
+                         @{
+                                Image = item.Image;
+                            }
+                            <img src="~/Images/@Image" style="height:200px;width:200px" >   
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body" id="heading-2">
+                            <h2 class="card-title">
+                                @Html.DisplayFor(modelItem => item.Subject)
+                            </h2>*@
+                            @*<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>*@
+                            @*<h6 class="card-text">
+                                <small class="text-muted">
+                                    Published on @Html.DisplayFor(modelItem => item.CreatedAt)
+                                </small>
+                            </h6>
+                    
+                                <h5 class="mb-0">
+                                    <button class="collapse btn btn-primary" role="button" data-toggle="collapse" href="#collapse-@item.NewsId" aria-expanded="false" aria-controls="collapse-@item.NewsId">
+                                            <i class="bi bi-arrow-down">Click to Expand</i>
+                                    </button>
+                                </h5>
+                                <p class="card-title">
+                                    @Html.DisplayFor(modelItem => item.Content)
+                                </p>
+
+                        </div>
+                        <div id="collapse-@item.NewsId" class="collapse" data-parent="#accordion" aria-labelledby="heading-2">
+                            <div class="card-body">
+                                @Html.DisplayFor(modelItem => item.Content)
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+    </div>
+</div>*@

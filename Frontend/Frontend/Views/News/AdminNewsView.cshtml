@@ -1,0 +1,191 @@
+﻿@model IEnumerable<Frontend.DTO.Response.NewsResponseDTO>
+
+@{
+    ViewData["Title"] = "AdminNewsView";
+    Layout = "_MenuLayout";
+    var Image = "";
+}
+
+<link href="~/lib/datatables/css/datatables.bootstrap4.css" rel="stylesheet" />
+<link href="~/lib/datatables/css/jquery.datatables.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css" />
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Deleting News </h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this news ?
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="$('#modal_id').modal('hide');">Close</button>
+                <a class="btn btn-danger" id="deletebtn">Delete</a>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="toolbar h-45px">
+    <div class="container-fluid d-flex flex-stack">
+        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Admin News View </h1>
+            <span class="h-20px border-gray-200 border-start mx-4"></span>
+        </div>
+        <div class="d-flex align-items-center py-1">
+
+
+
+            <button class=" btn btn-light-primary btn-sm" onclick="add()">+Create News</button>
+
+        </div>
+    </div>
+</div>
+<div style="margin-left:2rem;margin-right:2rem;">
+
+    <table id="myTable" class="table table-bordered table-responsive hover table-row-bordered" style="background-color:white">
+        <thead class="thead-dark">
+            <tr style="border-color:black">
+                <th hidden="hidden">
+                    @Html.DisplayNameFor(model => model.NewsId)
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Time
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Subject)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Content)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+
+                <tr style="border-color:black">
+                    <td hidden="hidden">
+                        @Html.DisplayFor(modelItem => item.NewsId)
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.CreatedAt)*@
+                        @Convert.ToDateTime(item.CreatedAt).ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @Convert.ToDateTime(item.CreatedAt).ToString("HH:MM")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.firstName)
+                        @Html.DisplayFor(modelItem => item.User.lastName)
+                    </td>
+                    <td>
+                        <b>@Html.DisplayFor(modelItem => item.Subject)</b>
+                    </td>
+                    <td class="text-truncate" style="max-width: 30vw; max-height:3rem;overflow:hidden;">
+                        @Html.DisplayFor(modelItem => item.Content)
+                    </td>
+                    <td>
+                        @{
+                            Image = item.Image;
+                        }
+                        <img src="~/Images/@Image" style="height:100px;width:100px">
+                    </td>
+                    <td>
+
+                        <button class=" btn btn-primary btn-sm" onclick="edit('@item.NewsId')"><i class="bi bi-pencil-square"></i></button>
+
+                        <hr>
+
+                        <button class=" btn btn-danger btn-sm " data-target="#delete" id="delete" onclick="deletefunction('@item.NewsId')"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src=" https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+
+
+    <script>
+        var deletefunction = function (id) {
+
+            console.log(id)
+            $('#deleteModal').modal('show');
+            $('#deletebtn').attr('href', '/News/DeleteNews?NewsId=' + id + '');
+        }
+
+        function edit(id) {
+            console.log("clicked")
+            //$('.modal-title').html("Create ")
+            $.ajax({
+                "type": "Get",
+                "url": "@Url.Action("EditNews", "News")",
+                "dataType": "html",
+                "data": { "NewsId": id },
+                "success": function (data) {
+                    $('#modalBody').html(data);
+                    $('#modalFooter').html("");
+                    $('#myModal').modal('show');
+                },
+                "error": function () {
+                    alert("error in loading model");
+                }
+            });
+        }
+
+        function add() {
+            console.log("clicked")
+            //$('.modal-title').html("Create ")
+            $.ajax({
+                "type": "Get",
+                "url": "@Url.Action("AddNews", "News")",
+                "dataType": "html",
+                "data": {},
+                "success": function (data) {
+                    $('#modalBody').html(data);
+                    $('#modalFooter').html("");
+                    $('#myModal').modal('show');
+                },
+                "error": function () {
+                    alert("error in loading model");
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+
+
+    </script>
+}
