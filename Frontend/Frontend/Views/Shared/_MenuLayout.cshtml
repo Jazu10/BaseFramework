@@ -45,6 +45,7 @@
 
     }
 </head>
+
 <body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed @ViewBag.aside" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
 
     <div class="modal fade" id="myModal">
@@ -234,6 +235,15 @@
                             <div class="d-flex align-items-stretch flex-shrink-0">
                                 <div class="d-flex align-items-stretch flex-shrink-0">
                                     <div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
+                                        @if (User.FindFirstValue(ClaimTypes.NameIdentifier) != null)
+                                        {
+                                            <a href="https://learning.unityinfotech.com/auth" target="_blank"><img src="/assets/media/logos/logo.png" class="d-flex align-items-center fw-bolder fs-3 my-1 h-25px" /></a>
+                                            <span class="h-20px border-gray-200 border-start mx-4"></span>
+                                            <a href="http://192.168.0.26:8012/" target="_blank"><img src="~/assets/media/logos/favicon.ico" class="d-flex align-items-center fw-bolder fs-3 my-1 rounded-circle w-30px" /></a>
+                                            <span class="h-20px border-gray-200 border-start mx-4"></span>
+                                            <a href="https://www.zoho.com/people/" target="_blank"><img src="~/images/zoho.png" class="d-flex align-items-center fw-bolder fs-3 my-1 rounded-circle w-40px" /></a>
+                                            <span class="h-20px border-gray-200 border-start mx-4"></span>
+                                        }
                                         <div class="form-text me-2">Welcome <a href="@Url.Action("Profile", "Account",new {area="default"})">@User.FindFirstValue(ClaimTypes.GivenName)</a></div>
                                         <div class="cursor-pointer symbol symbol-20px symbol-md-25px" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end" data-kt-menu-flip="bottom">
                                             @{

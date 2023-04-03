@@ -39,91 +39,95 @@
 
 
 <div class="toolbar h-45px">
-<div class="container-fluid d-flex flex-stack">
-<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Admin News View </h1>
-<span class="h-20px border-gray-200 border-start mx-4"></span>
-</div>
-<div class="d-flex align-items-center py-1">
+    <div class="container-fluid d-flex flex-stack">
+        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Admin News View </h1>
+            <span class="h-20px border-gray-200 border-start mx-4"></span>
+        </div>
+        <div class="d-flex align-items-center py-1">
 
 
 
             <button class=" btn btn-light-primary btn-sm" onclick="add()">+Create News</button>
 
-</div>
-</div>
+        </div>
+    </div>
 </div>
 <div style="margin-left:2rem;margin-right:2rem;">
 
-<table id="myTable" class="table table-bordered table-responsive hover table-row-bordered" style="background-color:white">
-    <thead class="thead-dark">
-        <tr style="border-color:black">
-            <th hidden="hidden">
-                @Html.DisplayNameFor(model => model.NewsId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Subject)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
-
-            <th>
-                Username
-            </th>
-
-            <th>
-                Actions
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-
-
+    <table id="myTable" class="table table-bordered table-responsive hover table-row-bordered" style="background-color:white">
+        <thead class="thead-dark">
             <tr style="border-color:black">
-                <td hidden="hidden">
-                    @Html.DisplayFor(modelItem => item.NewsId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedAt)
-                </td>
-                <td>
-                    <b>@Html.DisplayFor(modelItem => item.Subject)</b>
-                </td>
-                    <td class="text-truncate" style="max-width: 30vw; max-height:3rem;overflow:hidden;">
-                    @Html.DisplayFor(modelItem => item.Content)
-                </td>
-                <td>
-                    @{
-                        Image = item.Image;
-                    }
-                    <img src="~/Images/@Image" style="height:100px;width:100px">
-                </td>
+                <th hidden="hidden">
+                    @Html.DisplayNameFor(model => model.NewsId)
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Time
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Subject)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Content)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.User.firstName)
-                    @Html.DisplayFor(modelItem => item.User.lastName)
-                </td>
-                <td>
+
+                <tr style="border-color:black">
+                    <td hidden="hidden">
+                        @Html.DisplayFor(modelItem => item.NewsId)
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.CreatedAt)*@
+                        @Convert.ToDateTime(item.CreatedAt).ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @Convert.ToDateTime(item.CreatedAt).ToString("HH:MM")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.firstName)
+                        @Html.DisplayFor(modelItem => item.User.lastName)
+                    </td>
+                    <td>
+                        <b>@Html.DisplayFor(modelItem => item.Subject)</b>
+                    </td>
+                    <td class="text-truncate" style="max-width: 30vw; max-height:3rem;overflow:hidden;">
+                        @Html.DisplayFor(modelItem => item.Content)
+                    </td>
+                    <td>
+                        @{
+                            Image = item.Image;
+                        }
+                        <img src="~/Images/@Image" style="height:100px;width:100px">
+                    </td>
+                    <td>
 
                         <button class=" btn btn-primary btn-sm" onclick="edit('@item.NewsId')"><i class="bi bi-pencil-square"></i></button>
 
-                    <hr>
+                        <hr>
 
                         <button class=" btn btn-danger btn-sm " data-target="#delete" id="delete" onclick="deletefunction('@item.NewsId')"><i class="fa fa-trash"></i></button>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 
 @section scripts{
@@ -166,7 +170,7 @@
                 "type": "Get",
                 "url": "@Url.Action("AddNews", "News")",
                 "dataType": "html",
-                "data": { },
+                "data": {},
                 "success": function (data) {
                     $('#modalBody').html(data);
                     $('#modalFooter').html("");

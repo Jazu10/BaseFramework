@@ -4,6 +4,7 @@
     Layout = "_MenuLayout";
 
     ViewData["Title"] = "News";
+    ViewBag.margin = "";
     var Image = "";
 }
 
@@ -23,6 +24,7 @@
 
 @if (User.FindFirstValue(ClaimTypes.NameIdentifier) != null)
 {
+    ViewBag.margin = " mt-10";
     <div class="toolbar">
         <div class="container-fluid d-flex flex-stack">
             <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
@@ -37,7 +39,7 @@
 
 
 
-<div class="card" style="font-family:Bahnschrift;">
+<div class="card @ViewBag.margin" style="font-family:Bahnschrift;">
     <div class="flexgrid " style="margin-top:2rem;">
         <div class='container'>
             @foreach (var item in Model)
